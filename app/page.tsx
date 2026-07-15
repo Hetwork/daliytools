@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -482,9 +483,43 @@ export default function Home() {
               >
                 daliy.tools — everyday utilities
               </p>
-              <p style={{ fontSize: 12, opacity: 0.3, fontWeight: 500 }}>
-                © {new Date().getFullYear()}
-              </p>
+              <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+                <Link
+                  href="/privacy-policy"
+                  style={{
+                    fontSize: 12,
+                    opacity: 0.3,
+                    fontWeight: 500,
+                    letterSpacing: "0.06em",
+                    textDecoration: "none",
+                    color: "#f3f2f2",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.3")}
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/terms-of-use"
+                  style={{
+                    fontSize: 12,
+                    opacity: 0.3,
+                    fontWeight: 500,
+                    letterSpacing: "0.06em",
+                    textDecoration: "none",
+                    color: "#f3f2f2",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.3")}
+                >
+                  Terms of Use
+                </Link>
+                <p style={{ fontSize: 12, opacity: 0.3, fontWeight: 500 }}>
+                  © {new Date().getFullYear()}
+                </p>
+              </div>
             </div>
           </div>
         </footer>
