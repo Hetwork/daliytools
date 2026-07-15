@@ -10,7 +10,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Coming Soon — Daliy.Tools",
+  title: "Coming Soon : Daliy.Tools",
   description:
     "One simple website. Hundreds of genuinely useful tools. Fast. Free whenever possible. No unnecessary complexity. Coming soon.",
 };
