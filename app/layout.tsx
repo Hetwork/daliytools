@@ -11,9 +11,12 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Coming Soon : Daliy.Tools",
+  title: {
+    default: "Daliy.Tools — Everyday Tools, Actually Simple",
+    template: "%s",
+  },
   description:
-    "One simple website. Hundreds of genuinely useful tools. Fast. Free whenever possible. No unnecessary complexity. Coming soon.",
+    "One simple website. Hundreds of genuinely useful tools. Fast. Free whenever possible. No unnecessary complexity.",
 };
 
 export default function RootLayout({
@@ -22,7 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${archivo.variable} h-full`}
+      data-scroll-behavior="smooth"
+    >
       <body className="min-h-full flex flex-col">{children}</body>
       <Script
         async
