@@ -86,7 +86,7 @@ export default function MergePdfContent() {
         pages.forEach((p) => merged.addPage(p));
       }
       const mergedBytes = await merged.save({ useObjectStreams: true });
-      const blob = new Blob([mergedBytes], { type: "application/pdf" });
+      const blob = new Blob([mergedBytes.buffer as ArrayBuffer], { type: "application/pdf" });
       setDownloadUrl(URL.createObjectURL(blob));
       setMergedSize(mergedBytes.byteLength);
       setStatus("done");
