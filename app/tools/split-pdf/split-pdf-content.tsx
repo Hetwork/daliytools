@@ -126,7 +126,7 @@ export default function SplitPdfContent() {
         const pages = await out.copyPages(sourceDoc, pageIndices);
         pages.forEach((p) => out.addPage(p));
         const outBytes = await out.save({ useObjectStreams: true });
-        const blob = new Blob([outBytes], { type: "application/pdf" });
+        const blob = new Blob([outBytes.buffer as ArrayBuffer], { type: "application/pdf" });
         setDownloadUrl(URL.createObjectURL(blob));
         setDownloadName(`${baseName}_pages_${rangeInput.replace(/\s/g, "")}.pdf`);
         setOutputCount(pageIndices.length);
