@@ -36,12 +36,14 @@ export const tools: Tool[] = [
     name: "Merge PDF",
     category: "PDF Tools",
     description: "Combine multiple PDFs into one file.",
+    live: true,
   },
   {
     slug: "split-pdf",
     name: "Split PDF",
     category: "PDF Tools",
     description: "Pull specific pages out of a PDF.",
+    live: true,
   },
   {
     slug: "resize-image",
@@ -189,17 +191,10 @@ export const tools: Tool[] = [
     live: true,
   },
   {
-    slug: "instagram-reel",
-    name: "Instagram Reel Downloader",
+    slug: "youtube-downloader",
+    name: "YouTube Video Downloader",
     category: "Social Media",
-    description: "Save Instagram reels in HD directly to your device.",
-    live: true,
-  },
-  {
-    slug: "instagram-story",
-    name: "Instagram Story Viewer",
-    category: "Social Media",
-    description: "View Instagram stories anonymously without a trace.",
+    description: "Download any public YouTube video in MP4 or audio-only format.",
     live: true,
   },
 ];

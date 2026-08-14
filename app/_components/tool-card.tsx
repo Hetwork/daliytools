@@ -85,7 +85,7 @@ export default function ToolCard({
             color: tool.live ? "#ec3013" : "inherit",
           }}
         >
-          {tool.live ? "Live — Try it →" : "Coming Soon"}
+          {tool.live ? "Live" : "Coming Soon"}
         </span>
       </div>
     </>
