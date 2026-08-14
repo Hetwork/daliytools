@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 function extractImageUrls(html: string): string[] {
   const imageUrls: string[] = [];
 
-  // Method 1: display_url (per carousel slide)
+  // Method 1: display_url — one per carousel slide, already full quality
   const displayUrlPattern = /"display_url":"([^"]+)"/g;
   let match;
   while ((match = displayUrlPattern.exec(html)) !== null) {
@@ -11,15 +11,13 @@ function extractImageUrls(html: string): string[] {
     if (url.includes(".jpg") || url.includes(".jpeg")) imageUrls.push(url);
   }
 
-  // Method 2: image_versions2 candidates
-  const imageVersionPattern = /"image_versions2":\{"candidates":\[([^\]]+)\]/g;
-  while ((match = imageVersionPattern.exec(html)) !== null) {
-    const urlMatches = match[1].match(/"url":"([^"]+)"/g);
-    if (urlMatches) {
-      for (const urlMatch of urlMatches) {
-        const url = urlMatch
-          .replace(/"url":"/g, "")
-          .replace(/"/g, "")
+  // Method 2: image_versions2 — only take the FIRST candidate (highest res) per block
+  if (imageUrls.length === 0) {
+    const blockPattern = /"image_versions2":\{"candidates":\[([^\]]+)\]/g;
+    while ((match = blockPattern.exec(html)) !== null) {
+      const firstUrl = match[1].match(/"url":"([^"]+)"/);
+      if (firstUrl?.[1]) {
+        const url = firstUrl[1]
           .replace(/\\u0026/g, "&")
           .replace(/\\\//g, "/");
         if (url.includes(".jpg") || url.includes(".jpeg")) imageUrls.push(url);
@@ -27,23 +25,36 @@ function extractImageUrls(html: string): string[] {
     }
   }
 
-  // Method 3: og:image meta tag
-  const ogPattern = /<meta\s+property="og:image"\s+content="([^"]+)"/g;
-  while ((match = ogPattern.exec(html)) !== null) {
-    const url = match[1].replace(/&amp;/g, "&");
-    if (url.includes(".jpg") || url.includes(".jpeg")) imageUrls.push(url);
-  }
-
-  // Method 4: CDN URLs
-  const cdnPattern = /https:\\\/\\\/[^"]+\.cdninstagram\.com[^"]+\.jpg/g;
-  const cdnMatches = html.match(cdnPattern);
-  if (cdnMatches) {
-    for (const u of cdnMatches) {
-      imageUrls.push(u.replace(/\\u0026/g, "&").replace(/\\\//g, "/"));
+  // Method 3: og:image meta tag (single image fallback)
+  if (imageUrls.length === 0) {
+    const ogPattern = /<meta\s+property="og:image"\s+content="([^"]+)"/gi;
+    while ((match = ogPattern.exec(html)) !== null) {
+      const url = match[1].replace(/&amp;/g, "&");
+      if (url.includes(".jpg") || url.includes(".jpeg") || url.includes("cdninstagram")) {
+        imageUrls.push(url);
+      }
     }
   }
 
-  return Array.from(new Set(imageUrls));
+  // Method 4: CDN URLs as last resort
+  if (imageUrls.length === 0) {
+    const cdnPattern = /https:\\\/\\\/[^"]+\.cdninstagram\.com[^"]+\.jpg/g;
+    const cdnMatches = html.match(cdnPattern);
+    if (cdnMatches) {
+      for (const u of cdnMatches) {
+        imageUrls.push(u.replace(/\\u0026/g, "&").replace(/\\\//g, "/"));
+      }
+    }
+  }
+
+  // Deduplicate by URL path (strip query string for comparison)
+  const seen = new Set<string>();
+  return imageUrls.filter((url) => {
+    const key = url.split("?")[0];
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function extractMetadata(html: string): { username: string; caption: string; thumbnailUrl: string | null } {
@@ -51,7 +62,6 @@ function extractMetadata(html: string): { username: string; caption: string; thu
   let caption = "";
   let thumbnailUrl: string | null = null;
 
-  // Username
   for (const re of [/"owner":\{"username":"([^"]+)"/, /"username":"([^"]+)"/]) {
     const m = html.match(re);
     if (m?.[1] && m[1] !== "reel") { username = `@${m[1]}`; break; }
@@ -62,7 +72,6 @@ function extractMetadata(html: string): { username: string; caption: string; thu
     if (handleMatch) username = `@${handleMatch[1]}`;
   }
 
-  // Caption
   for (const re of [
     /"edge_media_to_caption":\{"edges":\[\{"node":\{"text":"([^"]+)"/,
     /"caption":"([^"]+)"/,
@@ -75,15 +84,12 @@ function extractMetadata(html: string): { username: string; caption: string; thu
     if (ogDesc) caption = ogDesc.replace(/&amp;/g, "&").split("\n")[0].trim();
   }
 
-  // Thumbnail
-  for (const re of [
-    /"display_url":"([^"]+)"/,
-    /"thumbnail_src":"([^"]+)"/,
-  ]) {
+  const thumbPatterns = [/"display_url":"([^"]+)"/, /"thumbnail_src":"([^"]+)"/];
+  for (const re of thumbPatterns) {
     const m = html.match(re);
     if (m?.[1]) {
       const url = m[1].replace(/\\u0026/g, "&").replace(/\\\//g, "/");
-      if (url.includes(".jpg") || url.includes("cdninstagram.com")) { thumbnailUrl = url; break; }
+      if (url.includes(".jpg") || url.includes("cdninstagram")) { thumbnailUrl = url; break; }
     }
   }
   if (!thumbnailUrl) {
@@ -145,14 +151,12 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const imageUrls = extractImageUrls(html);
-    const { username, caption, thumbnailUrl } = extractMetadata(html);
-
-    // Check for video
     const ogVideo =
       html.match(/<meta\s+property="og:video:secure_url"\s+content="([^"]+)"/i)?.[1] ??
       html.match(/<meta\s+property="og:video"\s+content="([^"]+)"/i)?.[1] ??
       null;
+
+    const { username, caption, thumbnailUrl } = extractMetadata(html);
 
     if (ogVideo) {
       return NextResponse.json({
@@ -167,6 +171,8 @@ export async function GET(request: NextRequest) {
         caption,
       });
     }
+
+    const imageUrls = extractImageUrls(html);
 
     if (imageUrls.length === 0) {
       return NextResponse.json(
