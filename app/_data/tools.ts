@@ -50,12 +50,14 @@ export const tools: Tool[] = [
     name: "Resize Image",
     category: "Image Tools",
     description: "Resize photos to the exact dimensions you need.",
+    live: true,
   },
   {
     slug: "remove-background",
     name: "Remove Background",
     category: "Image Tools",
     description: "Cut backgrounds out of images automatically.",
+    live: true,
   },
   {
     slug: "convert-image-format",
