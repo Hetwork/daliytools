@@ -82,9 +82,8 @@ export default function ToolsContent() {
               maxWidth: 560,
             }}
           >
-            Nothing below is live yet — we&apos;re building each one properly
-            instead of rushing broken versions out the door. Here&apos;s
-            what&apos;s on the way.
+            Live tools are ready to use right now — no sign-up, no uploads to
+            servers, no watermarks. Coming Soon tools are on the way.
           </p>
         </div>
       </section>
