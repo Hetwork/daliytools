@@ -219,11 +219,11 @@ body {
 
 /* ── marquee ticker ── */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
+  0% {
+    transform: translate3d(0, 0, 0);
   }
-  to {
-    transform: translateX(-50%);
+  100% {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -232,16 +232,42 @@ body {
   border-top: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
   background: var(--ink);
+  user-select: none;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  will-change: transform;
+  animation: marquee 35s linear infinite;
 }
 
 .marquee-wrap:hover .marquee-track {
   animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 0;
+  color: #f3f2f2;
+  font-size: clamp(13px, 1.6vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.marquee-dot {
+  color: #ec3013;
+  font-size: 20px;
+  margin: 0 20px;
+  line-height: 1;
 }
 
 /* ── tool cards ── */

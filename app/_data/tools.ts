@@ -137,6 +137,13 @@ export const tools: Tool[] = [
     live: true,
   },
   {
+    slug: "icon-kitchen",
+    name: "Icon Kitchen",
+    category: "Generators",
+    description: "Generate Android, iOS, and Web app icons & favicons in every size and format.",
+    live: true,
+  },
+  {
     slug: "lorem-ipsum-generator",
     name: "Lorem Ipsum Generator",
     category: "Generators",

@@ -249,27 +249,24 @@ export default function HomeContent() {
           zIndex: 1,
         }}
       >
-        <div className="marquee-wrap">
+        <div className="marquee-wrap" aria-label="Highlights ticker">
           <div className="marquee-track">
-            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span
-                key={`${item}-${i}`}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 20,
-                  padding: "16px 0",
-                  color: "#f3f2f2",
-                  fontSize: "clamp(13px, 1.6vw, 16px)",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {item}
-                <span style={{ color: "#ec3013", fontSize: 20 }}>&middot;</span>
-              </span>
-            ))}
+            <div className="marquee-group">
+              {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+                <span key={`group1-${i}`} className="marquee-item">
+                  <span>{item}</span>
+                  <span className="marquee-dot" aria-hidden="true">&middot;</span>
+                </span>
+              ))}
+            </div>
+            <div className="marquee-group" aria-hidden="true">
+              {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+                <span key={`group2-${i}`} className="marquee-item">
+                  <span>{item}</span>
+                  <span className="marquee-dot" aria-hidden="true">&middot;</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
