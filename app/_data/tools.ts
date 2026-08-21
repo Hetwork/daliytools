@@ -9,6 +9,7 @@ export type Tool = {
 export const categories = [
   "PDF Tools",
   "Image Tools",
+  "Media Tools",
   "Text Tools",
   "Generators",
   "Calculators & Converters",
@@ -99,6 +100,13 @@ export const tools: Tool[] = [
     name: "Video to Frames",
     category: "Image Tools",
     description: "Extract individual frames from a video at any interval.",
+    live: true,
+  },
+  {
+    slug: "audio-cutter",
+    name: "Audio Cutter",
+    category: "Media Tools",
+    description: "Trim and export the exact audio segment you need.",
     live: true,
   },
   {
