@@ -1,6 +1,6 @@
 # 💡 Daliy.Tools — Tool Ideas & Roadmap
 
-This document catalogs high-impact, privacy-first, everyday utility tool ideas designed to fit the core ethos of **Daliy.Tools**:
+This document catalogs high-impact, privacy-first, everyday utility tool ideas designed to fit the core ethos of **Daliy.Tools**
 > *Everyday tools. Actually simple. 100% client-side, zero bloated ad-tech, no paywalls, no popups.*
 
 ---
