@@ -1,7 +1,9 @@
 import { NextRequest } from "next/server";
 import { spawn } from "child_process";
 
-const YTDLP = "/opt/homebrew/bin/yt-dlp";
+const YTDLP = process.env.YTDLP_PATH || "yt-dlp";
+
+export const runtime = "nodejs";
 
 function isValidYouTubeUrl(url: string): boolean {
   return /^https?:\/\/(www\.)?(youtube\.com\/(watch|shorts)|youtu\.be\/)/.test(url);
@@ -27,10 +29,17 @@ export async function GET(request: NextRequest) {
     "--no-playlist",
     "-o", "-",
     url,
-  ]);
+  ], { windowsHide: true });
 
   const readable = new ReadableStream({
     start(controller) {
+      proc.on("error", (err: NodeJS.ErrnoException) => {
+        if (err.code === "ENOENT") {
+          controller.error(new Error("yt-dlp not found. Install yt-dlp and ensure it is available in PATH, or set YTDLP_PATH."));
+          return;
+        }
+        controller.error(err);
+      });
       proc.stdout.on("data", (chunk: Buffer) => controller.enqueue(chunk));
       proc.stdout.on("end", () => controller.close());
       proc.stdout.on("error", (err: Error) => controller.error(err));

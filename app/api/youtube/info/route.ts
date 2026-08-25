@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { spawn } from "child_process";
 
-const YTDLP = "/opt/homebrew/bin/yt-dlp";
+const YTDLP = process.env.YTDLP_PATH || "yt-dlp";
+
+export const runtime = "nodejs";
 
 const QUALITY_ORDER: Record<string, number> = {
   "2160p": 0, "1440p": 1, "1080p": 2, "720p": 3, "480p": 4, "360p": 5, "240p": 6, "144p": 7,
@@ -13,9 +15,16 @@ function isValidYouTubeUrl(url: string): boolean {
 
 function runYtdlp(args: string[]): Promise<string> {
   return new Promise((resolve, reject) => {
-    const proc = spawn(YTDLP, args);
+    const proc = spawn(YTDLP, args, { windowsHide: true });
     let out = "";
     let err = "";
+    proc.on("error", (spawnErr: NodeJS.ErrnoException) => {
+      if (spawnErr.code === "ENOENT") {
+        reject(new Error("yt-dlp not found. Install yt-dlp and ensure it is available in PATH, or set YTDLP_PATH."));
+        return;
+      }
+      reject(spawnErr);
+    });
     proc.stdout.on("data", (d: Buffer) => (out += d.toString()));
     proc.stderr.on("data", (d: Buffer) => (err += d.toString()));
     proc.on("close", (code) => {
@@ -85,6 +94,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (err) {
     console.error("[youtube/info]", err);
-    return NextResponse.json({ error: "Failed to fetch video info. Make sure it is a public video." }, { status: 500 });
+    const message = err instanceof Error ? err.message : "Failed to fetch video info.";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

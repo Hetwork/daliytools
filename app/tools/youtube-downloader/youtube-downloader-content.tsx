@@ -42,6 +42,7 @@ export default function YouTubeDownloaderContent() {
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState<VideoInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [setupWarning, setSetupWarning] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false);
 
@@ -56,6 +57,35 @@ export default function YouTubeDownloaderContent() {
     );
     document.querySelectorAll(".reveal, .reveal-fast").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    async function checkDownloaderRuntime() {
+      try {
+        const res = await fetch("/api/youtube/status", { cache: "no-store" });
+        if (!active) return;
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => null);
+          const hint = data?.windowsHint || data?.installHint || "Install yt-dlp and ensure it is in PATH.";
+          setSetupWarning(`YouTube downloads are not ready on this server. ${hint}`);
+          return;
+        }
+
+        setSetupWarning(null);
+      } catch {
+        if (!active) return;
+        setSetupWarning("Could not verify downloader runtime. If fetching fails, install yt-dlp and ensure it is in PATH.");
+      }
+    }
+
+    void checkDownloaderRuntime();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   async function handleFetch(e: React.FormEvent) {
@@ -128,6 +158,20 @@ export default function YouTubeDownloaderContent() {
         </div>
 
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }}>
+          {setupWarning && (
+            <div
+              className="fade-in-up"
+              style={{
+                marginBottom: 16,
+                border: "2px solid #ec3013",
+                background: "rgba(236,48,19,0.06)",
+                padding: "12px 14px",
+              }}
+            >
+              <p style={{ fontSize: 13, color: "#201e1d", fontWeight: 600, lineHeight: 1.55 }}>{setupWarning}</p>
+            </div>
+          )}
+
           <form onSubmit={handleFetch} className="fade-in-up">
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <input
