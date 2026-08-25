@@ -229,13 +229,6 @@ export const tools: Tool[] = [
     live: true,
   },
   {
-    slug: "uuid-generator",
-    name: "UUID & Hash Generator",
-    category: "Developer Tools",
-    description: "Generate UUIDs and hashes including SHA-256, SHA-512, and MD5.",
-    live: true,
-  },
-  {
     slug: "contrast-checker",
     name: "WCAG Contrast Checker",
     category: "Developer Tools",
