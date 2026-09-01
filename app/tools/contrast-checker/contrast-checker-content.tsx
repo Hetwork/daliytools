@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 function normalizeHex(value: string): string {
   const clean = value.trim().replace("#", "").toLowerCase();
@@ -149,6 +151,7 @@ export default function ContrastCheckerContent() {
             <p style={{ color: "#ec3013", fontWeight: 600 }}>Enter valid HEX colors, for example #111111 and #ffffff.</p>
           )}
         </div>
+        <ToolEditorial toolName="WCAG Contrast Checker" {...toolEditorialData["contrast-checker"]} />
       </section>
 
       <SiteFooter />

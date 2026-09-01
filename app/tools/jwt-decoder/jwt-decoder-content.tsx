@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const SAMPLE_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRhbGl5IFRvb2xzIiwiaWF0IjoxNzUxMzMzMDAwLCJleHAiOjE5MDkwOTQ0MDB9.signature";
@@ -178,6 +180,7 @@ export default function JwtDecoderContent() {
             </div>
           )}
         </div>
+        <ToolEditorial toolName="JWT Token Decoder" {...toolEditorialData["jwt-decoder"]} />
       </section>
 
       <SiteFooter />

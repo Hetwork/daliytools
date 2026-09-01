@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface AgeResult {
   years: number;
@@ -287,6 +289,7 @@ export default function AgeCalculatorContent() {
             Age is calculated by subtracting the birth date from the reference date in full calendar units — borrowing days from the previous month when needed, and borrowing months when the month count goes negative. This matches how ages are expressed in everyday language. All statistics (total days, weeks, hours) are derived from the raw millisecond difference between the two dates.
           </p>
         </div>
+        <ToolEditorial toolName="Age Calculator" {...toolEditorialData["age-calculator"]} />
       </section>
 
       <SiteFooter />

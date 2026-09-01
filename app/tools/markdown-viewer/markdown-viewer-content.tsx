@@ -6,6 +6,8 @@ import dynamic from "next/dynamic";
 import FullScreenModal from "../../_components/full-screen-modal";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
 const remarkGfm = dynamic(() => import("remark-gfm").then((m) => m.default), { ssr: false });
@@ -272,8 +274,6 @@ export default function MarkdownViewerContent() {
             strikethrough, and task lists. All rendering happens in your browser — nothing is sent to a server.
           </p>
         </div>
-      </section>
-
       <style>{`
         .md-preview h1,.md-preview h2,.md-preview h3 { font-weight:800; margin:16px 0 8px; letter-spacing:-0.02em; }
         .md-preview h1 { font-size:1.8em; }
@@ -292,6 +292,9 @@ export default function MarkdownViewerContent() {
         .md-preview a { color:#ec3013; text-decoration:underline; }
         .md-preview strong { font-weight:800; }
       `}</style>
+
+        <ToolEditorial toolName="Markdown Viewer" {...toolEditorialData["markdown-viewer"]} />
+      </section>
 
       <SiteFooter />
     </main>

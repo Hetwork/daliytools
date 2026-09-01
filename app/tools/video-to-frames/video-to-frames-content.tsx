@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface ExtractedFrame { url: string; timestamp: number; index: number }
 interface VideoFile { file: File; url: string; duration: number }
@@ -287,6 +289,7 @@ export default function VideoToFramesContent() {
             individually or bundled into a ZIP using JSZip — no server involved.
           </p>
         </div>
+        <ToolEditorial toolName="Video to Frames" {...toolEditorialData["video-to-frames"]} />
       </section>
 
       <SiteFooter />

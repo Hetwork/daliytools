@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface ImageData { file: File; url: string }
 interface Selection { startX: number; startY: number; width: number; height: number }
@@ -300,6 +302,7 @@ export default function WatermarkRemoverContent() {
             All processing runs locally on a canvas — your image never leaves your browser.
           </p>
         </div>
+        <ToolEditorial toolName="Watermark Remover" {...toolEditorialData["watermark-remover"]} />
       </section>
 
       <SiteFooter />

@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const ERROR_LEVELS = ["L", "M", "Q", "H"] as const;
 type ECC = (typeof ERROR_LEVELS)[number];
@@ -210,14 +212,10 @@ export default function QrCodeGeneratorContent() {
           </div>
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
-          <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
-          <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
-            Your text is encoded into a QR matrix using the <strong>qrcode</strong> library, then rendered onto a canvas element.
-            Error correction level controls how much of the QR code can be damaged before it becomes unreadable — higher levels
-            produce a denser pattern but scan more reliably. Everything runs in your browser; no data is sent anywhere.
-          </p>
-        </div>
+        <ToolEditorial
+          toolName="QR Code Generator"
+          {...toolEditorialData["qr-code-generator"]}
+        />
       </section>
 
       <SiteFooter />

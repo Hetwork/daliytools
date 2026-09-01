@@ -3,6 +3,7 @@ import Link from "next/link";
 const FOOTER_LINKS = [
   { href: "/tools", label: "Tools" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/terms-of-use", label: "Terms of Use" },
 ];
@@ -20,7 +21,7 @@ export default function SiteFooter() {
       }}
     >
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
-        <div className="reveal">
+        <div>
           <p
             style={{
               fontSize: "clamp(28px, 5vw, 56px)",
@@ -64,7 +65,7 @@ export default function SiteFooter() {
               letterSpacing: "0.06em",
             }}
           >
-            daliy.tools — everyday utilities
+            daliy.tools : everyday utilities
           </p>
           <div
             style={{

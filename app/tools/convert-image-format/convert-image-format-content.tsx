@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const FORMATS = [
   { value: "image/jpeg", label: "JPEG", ext: "jpg", note: "Best for photos" },
@@ -235,6 +237,7 @@ export default function ConvertImageFormatContent() {
             All processing is client-side — nothing is uploaded. AVIF and WebP produce the smallest files; PNG preserves transparency.
           </p>
         </div>
+        <ToolEditorial toolName="Convert Image Format" {...toolEditorialData["convert-image-format"]} />
       </section>
 
       <SiteFooter />

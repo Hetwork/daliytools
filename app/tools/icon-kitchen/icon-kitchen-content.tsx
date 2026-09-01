@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 import {
   CLIPARTS,
   IconConfig,
@@ -1206,6 +1208,7 @@ export default function IconKitchenContent() {
             </div>
           </div>
         </div>
+        <ToolEditorial toolName="Icon Kitchen" {...toolEditorialData["icon-kitchen"]} />
       </section>
 
       <SiteFooter />

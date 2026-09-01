@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const MAX_SIZE = 20 * 1024 * 1024;
 const ACCEPTED = ["image/jpeg", "image/png", "image/webp"];
@@ -248,6 +250,7 @@ export default function RemoveBackgroundContent() {
             The AI model (by img.ly) is downloaded once from a CDN and cached in your browser. After that, all processing happens locally using ONNX Runtime — your images never leave your device. The result is exported as a transparent PNG.
           </p>
         </div>
+        <ToolEditorial toolName="Remove Background" {...toolEditorialData["remove-background"]} />
       </section>
 
       <SiteFooter />

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const WORDS = [
   "lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit","sed","do",
@@ -270,6 +272,7 @@ export default function LoremIpsumGeneratorContent() {
             Everything runs in your browser with no network requests.
           </p>
         </div>
+        <ToolEditorial toolName="Lorem Ipsum Generator" {...toolEditorialData["lorem-ipsum-generator"]} />
       </section>
 
       <SiteFooter />

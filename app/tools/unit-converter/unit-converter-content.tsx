@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 type Category = "Length" | "Weight" | "Volume" | "Temperature" | "Area" | "Speed";
 
@@ -332,6 +334,7 @@ export default function UnitConverterContent() {
             Temperature uses offsets rather than ratios. All math runs in your browser with no network requests.
           </p>
         </div>
+        <ToolEditorial toolName="Unit Converter" {...toolEditorialData["unit-converter"]} />
       </section>
 
       <SiteFooter />

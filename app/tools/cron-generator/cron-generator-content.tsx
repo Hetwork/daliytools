@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 function parseField(field: string, min: number, max: number): Set<number> | null {
   const out = new Set<number>();
@@ -178,6 +180,7 @@ export default function CronGeneratorContent() {
             </div>
           )}
         </div>
+        <ToolEditorial toolName="Cron Expression Builder" {...toolEditorialData["cron-generator"]} />
       </section>
 
       <SiteFooter />

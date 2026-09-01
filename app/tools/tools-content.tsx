@@ -71,7 +71,7 @@ export default function ToolsContent() {
               maxWidth: 680,
             }}
           >
-            Every tool we&apos;re building, in one place.
+            All your daily tools, in one simple place.
           </p>
           <p
             style={{
@@ -82,8 +82,7 @@ export default function ToolsContent() {
               maxWidth: 560,
             }}
           >
-            Live tools are ready to use right now — no sign-up, no uploads to
-            servers, no watermarks. Coming Soon tools are on the way.
+            Every tool runs 100% in your browser, zero file uploads to servers, no account required, no paywalls, and no watermarks.
           </p>
         </div>
       </section>

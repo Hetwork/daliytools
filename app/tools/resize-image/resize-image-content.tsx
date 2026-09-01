@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const MAX_SIZE = 30 * 1024 * 1024;
 const ACCEPTED = ["image/jpeg", "image/png", "image/webp"];
@@ -415,12 +417,10 @@ export default function ResizeImageContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
-          <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
-          <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
-            Your image is drawn onto an HTML canvas at the target dimensions using high-quality bicubic-style smoothing, then exported in your chosen format. Everything happens locally — nothing is uploaded.
-          </p>
-        </div>
+        <ToolEditorial
+          toolName="Resize Image"
+          {...toolEditorialData["resize-image"]}
+        />
       </section>
 
       <SiteFooter />
