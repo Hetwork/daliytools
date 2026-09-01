@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface CompressedImage {
   original: File;
@@ -257,15 +259,10 @@ export default function CompressImageContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
-          <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>
-            How It Works
-          </p>
-          <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
-            Your image is drawn onto an HTML canvas, then re-encoded as a JPEG at the quality level you choose.
-            Lower quality means smaller file size — drag the slider to find the right balance for your use case.
-          </p>
-        </div>
+        <ToolEditorial
+          toolName="Compress Image"
+          {...toolEditorialData["compress-image"]}
+        />
       </section>
 
       <SiteFooter />

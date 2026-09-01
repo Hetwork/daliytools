@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const MAX_FILES = 20;
 const MAX_SIZE = 50 * 1024 * 1024;
@@ -217,12 +219,10 @@ export default function MergePdfContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
-          <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
-          <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
-            Each PDF is read in your browser using pdf-lib, then every page is copied — in the order you set — into a single new document. Nothing is uploaded to any server.
-          </p>
-        </div>
+        <ToolEditorial
+          toolName="Merge PDF"
+          {...toolEditorialData["merge-pdf"]}
+        />
       </section>
       <SiteFooter />
     </main>

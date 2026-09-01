@@ -36,7 +36,7 @@ const FEATURES = [
   {
     num: "04",
     title: "Honest",
-    body: "We spelled our own name wrong and kept it anyway. We're not pretending to be perfect — just useful.",
+    body: "We spelled our own name wrong and kept it anyway. We're not pretending to be perfect, just useful.",
   },
 ];
 
@@ -233,7 +233,6 @@ export default function HomeContent() {
         >
           <Link href="/tools" className="btn btn-primary">
             Browse Tools
-            <span className="btn-arrow">&rarr;</span>
           </Link>
           <Link href="/about" className="btn">
             Why the typo?
@@ -289,16 +288,16 @@ export default function HomeContent() {
           }}
         >
           <div className="reveal-fast">
-            <StatCounter value={15} suffix="+" label="Tools in the pipeline" />
+            <StatCounter value={30} suffix="+" label="Free everyday tools" />
           </div>
           <div className="reveal-fast" style={{ transitionDelay: "0.08s" }}>
-            <StatCounter value={5} label="Categories" delay={0.05} />
+            <StatCounter value={8} label="Tool Categories" delay={0.05} />
           </div>
           <div className="reveal-fast" style={{ transitionDelay: "0.16s" }}>
-            <StatCounter value={0} label="Popups. Ever." delay={0.1} />
+            <StatCounter value={100} suffix="%" label="Free & In-Browser" delay={0.1} />
           </div>
           <div className="reveal-fast" style={{ transitionDelay: "0.24s" }}>
-            <StatCounter value={1} label="Infamous typo" delay={0.15} />
+            <StatCounter value={1} label="Famous typo" delay={0.15} />
           </div>
         </div>
       </section>
@@ -324,7 +323,7 @@ export default function HomeContent() {
               marginBottom: 16,
             }}
           >
-            What&apos;s Coming
+            Featured Daily Tools
           </p>
           <p
             style={{
@@ -335,7 +334,7 @@ export default function HomeContent() {
               maxWidth: 620,
             }}
           >
-            A handful of the tools we&apos;re building right now.
+            Handpicked everyday utilities built for speed, privacy, and simplicity.
           </p>
         </div>
 
@@ -358,7 +357,6 @@ export default function HomeContent() {
         >
           <Link href="/tools" className="btn">
             See all {tools.length} tools
-            <span className="btn-arrow">&rarr;</span>
           </Link>
         </div>
       </section>

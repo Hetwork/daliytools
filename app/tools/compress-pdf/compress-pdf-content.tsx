@@ -510,9 +510,8 @@ export default function CompressPdfContent() {
                           onClick={() => setQuality(q)}
                           style={{
                             padding: "10px 20px",
-                            border: `2px solid ${
-                              quality === q ? "#ec3013" : "#201e1d"
-                            }`,
+                            border: `2px solid ${quality === q ? "#ec3013" : "#201e1d"
+                              }`,
                             background: quality === q ? "#ec3013" : "transparent",
                             color: quality === q ? "#f3f2f2" : "#201e1d",
                             fontWeight: 700,
@@ -798,42 +797,210 @@ export default function CompressPdfContent() {
           )}
         </div>
 
-        {/* how it works */}
+        {/* ── RICH EDITORIAL & SEO CONTENT ── */}
         <div
           className="reveal"
           style={{
             marginTop: "clamp(56px, 8vw, 88px)",
             borderTop: "2px solid #201e1d",
-            paddingTop: 32,
+            paddingTop: 40,
           }}
         >
-          <p
-            style={{
-              fontSize: "clamp(11px, 1.2vw, 12px)",
-              fontWeight: 700,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              opacity: 0.4,
-              marginBottom: 16,
-            }}
-          >
-            How It Works
-          </p>
-          <p
-            style={{
-              fontSize: "clamp(14px, 1.6vw, 17px)",
-              lineHeight: 1.75,
-              opacity: 0.75,
-              maxWidth: 640,
-            }}
-          >
-            We render every page at your chosen quality and re-save it as an
-            optimized image, then rebuild the PDF from those pages. This is
-            what actually shrinks scanned documents and image-heavy
-            files — often dramatically. The trade-off: text on compressed
-            pages is no longer selectable or searchable, since each page
-            becomes a flattened image.
-          </p>
+          {/* How to compress steps */}
+          <div style={{ marginBottom: 48 }}>
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: "#ec3013",
+              }}
+            >
+              Step-by-Step Guide
+            </span>
+            <h2
+              style={{
+                fontSize: "clamp(22px, 3.2vw, 32px)",
+                fontWeight: 800,
+                marginTop: 8,
+                marginBottom: 20,
+              }}
+            >
+              How to Compress a PDF Online for Free
+            </h2>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: 20,
+              }}
+            >
+              <div style={{ padding: "16px 20px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>01</p>
+                <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>Select or Drop PDF</p>
+                <p style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>
+                  Choose any PDF document from your computer, tablet, or phone.
+                </p>
+              </div>
+              <div style={{ padding: "16px 20px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>02</p>
+                <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>Pick Compression Level</p>
+                <p style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>
+                  Choose High (best quality), Balanced (recommended), or Low (smallest size).
+                </p>
+              </div>
+              <div style={{ padding: "16px 20px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>03</p>
+                <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>Download Instantly</p>
+                <p style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>
+                  Get your optimized PDF immediately without waitlists, watermarks, or sign-ups.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Explanation / How it works */}
+          <div style={{ marginBottom: 48, background: "#fff", border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 36px)" }}>
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: "#ec3013",
+              }}
+            >
+              Under the Hood
+            </span>
+            <h2
+              style={{
+                fontSize: "clamp(20px, 2.6vw, 28px)",
+                fontWeight: 800,
+                marginTop: 8,
+                marginBottom: 16,
+              }}
+            >
+              How Client-Side PDF Compression Works
+            </h2>
+            <p
+              style={{
+                fontSize: "clamp(14px, 1.5vw, 16px)",
+                lineHeight: 1.75,
+                opacity: 0.8,
+                marginBottom: 14,
+              }}
+            >
+              Unlike traditional PDF converters that transmit your private files over the internet to remote cloud servers, Daliy.Tools performs all rendering and compression operations directly inside your web browser using modern WebAssembly and HTML5 Canvas technology.
+            </p>
+            <p
+              style={{
+                fontSize: "clamp(14px, 1.5vw, 16px)",
+                lineHeight: 1.75,
+                opacity: 0.8,
+              }}
+            >
+              Each page is analyzed and reconstructed into high-efficiency, compressed raster layers. This eliminates bloated embedded metadata, uncompressed color profiles, and oversized scanned images while preserving clean, legible text for email attachments, government portals, and web publishing.
+            </p>
+          </div>
+
+          {/* Comprehensive FAQ Section */}
+          <div style={{ marginBottom: 48 }}>
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: "#ec3013",
+              }}
+            >
+              Answers to Common Questions
+            </span>
+            <h2
+              style={{
+                fontSize: "clamp(22px, 3.2vw, 32px)",
+                fontWeight: 800,
+                marginTop: 8,
+                marginBottom: 24,
+              }}
+            >
+              Frequently Asked Questions
+            </h2>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: 20,
+              }}
+            >
+              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
+                  Will compressing my PDF reduce text quality?
+                </h3>
+                <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.6 }}>
+                  Our <strong>Balanced</strong> preset keeps text crisp while reducing large image sizes. If you are printing your document or need maximum sharpness, choose the <strong>High</strong> quality setting.
+                </p>
+              </div>
+
+              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
+                  Is my PDF uploaded to any server?
+                </h3>
+                <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.6 }}>
+                  Never. All processing happens entirely inside your local web browser. Your confidential files, contracts, or tax documents never leave your computer or phone.
+                </p>
+              </div>
+
+              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
+                  What is the maximum file size supported?
+                </h3>
+                <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.6 }}>
+                  You can compress PDFs up to 50MB directly in your browser. For optimal performance, modern browsers handle multi-page documents seamlessly within seconds.
+                </p>
+              </div>
+
+              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+                <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
+                  Can I compress password-protected PDF files?
+                </h3>
+                <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.6 }}>
+                  If your PDF is encrypted with a password, please unlock it before dropping it here so the browser can read and compress its pages.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Daily Tools */}
+          <div style={{ borderTop: "1.5px dashed #201e1d", paddingTop: 32 }}>
+            <p
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                opacity: 0.5,
+                marginBottom: 16,
+              }}
+            >
+              Related Daily Utilities
+            </p>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <Link href="/tools/merge-pdf" className="btn" style={{ fontSize: 13 }}>
+                Merge PDF
+              </Link>
+              <Link href="/tools/split-pdf" className="btn" style={{ fontSize: 13 }}>
+                Split PDF
+              </Link>
+              <Link href="/tools/image-to-pdf" className="btn" style={{ fontSize: 13 }}>
+                Image to PDF
+              </Link>
+              <Link href="/tools/resize-image" className="btn" style={{ fontSize: 13 }}>
+                Resize Image
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

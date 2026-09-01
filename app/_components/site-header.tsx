@@ -4,6 +4,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/tools", label: "Tools" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function SiteHeader({ active }: { active?: string }) {
