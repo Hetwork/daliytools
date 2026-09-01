@@ -42,7 +42,7 @@ export default function RemoveBackgroundContent() {
       if (originalUrl) URL.revokeObjectURL(originalUrl);
       if (resultUrl) URL.revokeObjectURL(resultUrl);
     };
-  }, [originalUrl, resultUrl]);
+  }, []);
 
   function handleFile(f: File | null) {
     if (!f) return;

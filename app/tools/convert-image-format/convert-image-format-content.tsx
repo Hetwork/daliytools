@@ -47,7 +47,7 @@ export default function ConvertImageFormatContent() {
       if (originalUrl) URL.revokeObjectURL(originalUrl);
       if (convertedUrl) URL.revokeObjectURL(convertedUrl);
     };
-  }, [originalUrl, convertedUrl]);
+  }, []);
 
   function handleFile(file: File | null) {
     if (!file || !file.type.startsWith("image/")) return;
