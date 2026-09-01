@@ -73,13 +73,6 @@ export default function ResizeImageContent() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    return () => {
-      if (originalUrl) URL.revokeObjectURL(originalUrl);
-      if (resultUrl) URL.revokeObjectURL(resultUrl);
-    };
-  }, [originalUrl, resultUrl]);
-
   function handleFile(f: File | null) {
     if (!f) return;
     if (!ACCEPTED.includes(f.type)) {
@@ -189,6 +182,16 @@ export default function ResizeImageContent() {
     );
   }
 
+  function clearResult() {
+    if (resultUrl) URL.revokeObjectURL(resultUrl);
+    setResultUrl(null);
+    setResultSize(0);
+    setOutW(0);
+    setOutH(0);
+    setStatus("idle");
+    setErrorMsg("");
+  }
+
   function reset() {
     if (originalUrl) URL.revokeObjectURL(originalUrl);
     if (resultUrl) URL.revokeObjectURL(resultUrl);
@@ -200,6 +203,9 @@ export default function ResizeImageContent() {
     setWidth("");
     setHeight("");
     setPercentage("100");
+    setResultSize(0);
+    setOutW(0);
+    setOutH(0);
     setStatus("idle");
     setErrorMsg("");
   }
@@ -394,7 +400,7 @@ export default function ResizeImageContent() {
                 <a href={resultUrl} download={downloadName} className="btn btn-primary">
                   Download {ext.toUpperCase()} <span className="btn-arrow">&darr;</span>
                 </a>
-                <button type="button" onClick={() => { setStatus("idle"); setResultUrl(null); }} className="btn">Resize again</button>
+                <button type="button" onClick={clearResult} className="btn">Resize again</button>
                 <button type="button" onClick={reset} className="ink-hover" style={{ background: "none", border: "none", fontSize: 13, fontWeight: 600, opacity: 0.5, fontFamily: "inherit", cursor: "pointer" }}>New image</button>
               </div>
             </div>
