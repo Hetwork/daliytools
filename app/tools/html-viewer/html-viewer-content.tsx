@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import FullScreenModal from "../../_components/full-screen-modal";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
 
@@ -16,6 +17,7 @@ type View = "split" | "edit" | "preview";
 export default function HtmlViewerContent() {
   const [html, setHtml] = useState(SAMPLE);
   const [view, setView] = useState<View>("split");
+  const [maximizedPanel, setMaximizedPanel] = useState<"editor" | "preview" | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -59,6 +61,9 @@ export default function HtmlViewerContent() {
     minHeight: 380,
     overflow: "hidden",
   };
+
+  const isEditorVisible = view !== "preview" && (maximizedPanel === null || maximizedPanel === "editor");
+  const isPreviewVisible = view !== "edit" && (maximizedPanel === null || maximizedPanel === "preview");
 
   return (
     <main
@@ -152,29 +157,47 @@ export default function HtmlViewerContent() {
             style={{
               display: "flex",
               gap: 16,
-              flexDirection: view === "split" ? "row" : "column",
+              flexDirection: view === "split" && maximizedPanel === null ? "row" : "column",
               minHeight: 400,
             }}
           >
-            {view !== "preview" && (
+            {isEditorVisible && (
               <div style={paneStyle}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, padding: "10px 20px 0", borderBottom: "1px solid rgba(32,30,29,0.12)", paddingBottom: 8, marginBottom: 0 }}>
-                  Editor
-                </p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px" }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
+                    Editor
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setMaximizedPanel((current) => current === "editor" ? null : "editor")}
+                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                  >
+                    Full Screen
+                  </button>
+                </div>
                 <textarea
                   value={html}
                   onChange={(e) => setHtml(e.target.value)}
                   spellCheck={false}
-                  style={editorStyles}
+                  style={{ ...editorStyles, height: "100%", minHeight: 380 }}
                   placeholder="Type or paste HTML here…"
                 />
               </div>
             )}
-            {view !== "edit" && (
+            {isPreviewVisible && (
               <div style={{ ...paneStyle, background: "#fff" }}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, padding: "10px 20px 0", borderBottom: "1px solid rgba(32,30,29,0.12)", paddingBottom: 8, marginBottom: 0 }}>
-                  Preview
-                </p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px" }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
+                    Preview
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setMaximizedPanel((current) => current === "preview" ? null : "preview")}
+                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                  >
+                    Full Screen
+                  </button>
+                </div>
                 <iframe
                   srcDoc={html}
                   sandbox="allow-scripts"
@@ -185,6 +208,30 @@ export default function HtmlViewerContent() {
             )}
           </div>
         </div>
+
+        {maximizedPanel && (
+          <FullScreenModal
+            title={maximizedPanel === "editor" ? "Editor" : "Preview"}
+            onClose={() => setMaximizedPanel(null)}
+          >
+            {maximizedPanel === "editor" ? (
+              <textarea
+                value={html}
+                onChange={(e) => setHtml(e.target.value)}
+                spellCheck={false}
+                style={{ ...editorStyles, height: "100%", border: "none", background: "#f3f2f2", padding: 20 }}
+                placeholder="Type or paste HTML here…"
+              />
+            ) : (
+              <iframe
+                srcDoc={html}
+                sandbox="allow-scripts"
+                title="HTML Preview Modal"
+                style={{ width: "100%", height: "100%", border: "none", background: "#fff" }}
+              />
+            )}
+          </FullScreenModal>
+        )}
 
         <div
           className="reveal"
