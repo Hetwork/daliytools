@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import FullScreenModal from "../../_components/full-screen-modal";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
 
@@ -36,6 +37,7 @@ type View = "split" | "edit" | "preview";
 export default function MarkdownViewerContent() {
   const [markdown, setMarkdown] = useState(SAMPLE);
   const [view, setView] = useState<View>("split");
+  const [maximizedPanel, setMaximizedPanel] = useState<"editor" | "preview" | null>(null);
   const [copied, setCopied] = useState(false);
   const [plugins, setPlugins] = useState<any[]>([]);
 
@@ -71,6 +73,9 @@ export default function MarkdownViewerContent() {
     display: "flex",
     flexDirection: "column",
   };
+
+  const isEditorVisible = view !== "preview" && (maximizedPanel === null || maximizedPanel === "editor");
+  const isPreviewVisible = view !== "edit" && (maximizedPanel === null || maximizedPanel === "preview");
 
   return (
     <main
@@ -160,12 +165,21 @@ export default function MarkdownViewerContent() {
             </button>
           </div>
 
-          <div style={{ display: "flex", gap: 16, flexDirection: view === "split" ? "row" : "column", minHeight: 420 }}>
-            {view !== "preview" && (
+          <div style={{ display: "flex", gap: 16, flexDirection: view === "split" && maximizedPanel === null ? "row" : "column", minHeight: 420 }}>
+            {isEditorVisible && (
               <div style={paneStyle}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, padding: "10px 20px 8px", borderBottom: "1px solid rgba(32,30,29,0.12)", flexShrink: 0 }}>
-                  Markdown
-                </p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px", flexShrink: 0 }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
+                    Markdown
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setMaximizedPanel((current) => current === "editor" ? null : "editor")}
+                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                  >
+                    Full Screen
+                  </button>
+                </div>
                 <textarea
                   value={markdown}
                   onChange={(e) => setMarkdown(e.target.value)}
@@ -187,11 +201,20 @@ export default function MarkdownViewerContent() {
                 />
               </div>
             )}
-            {view !== "edit" && (
+            {isPreviewVisible && (
               <div style={{ ...paneStyle, background: "#fff" }}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, padding: "10px 20px 8px", borderBottom: "1px solid rgba(32,30,29,0.12)", flexShrink: 0 }}>
-                  Preview
-                </p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px", flexShrink: 0 }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
+                    Preview
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setMaximizedPanel((current) => current === "preview" ? null : "preview")}
+                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                  >
+                    Full Screen
+                  </button>
+                </div>
                 <div
                   style={{ flex: 1, padding: "20px 24px", overflowY: "auto", fontSize: 15, lineHeight: 1.7, color: "#201e1d" }}
                   className="md-preview"
@@ -202,6 +225,40 @@ export default function MarkdownViewerContent() {
             )}
           </div>
         </div>
+
+        {maximizedPanel && (
+          <FullScreenModal
+            title={maximizedPanel === "editor" ? "Markdown" : "Preview"}
+            onClose={() => setMaximizedPanel(null)}
+          >
+            {maximizedPanel === "editor" ? (
+              <textarea
+                value={markdown}
+                onChange={(e) => setMarkdown(e.target.value)}
+                spellCheck={false}
+                style={{
+                  flex: 1,
+                  border: "none",
+                  background: "#f3f2f2",
+                  color: "#201e1d",
+                  fontFamily: "monospace",
+                  fontSize: 13,
+                  lineHeight: 1.65,
+                  padding: 20,
+                  resize: "none",
+                  outline: "none",
+                  width: "100%",
+                  height: "100%",
+                }}
+                placeholder="Type Markdown here…"
+              />
+            ) : (
+              <div style={{ flex: 1, padding: "20px 24px", overflowY: "auto", fontSize: 15, lineHeight: 1.7, color: "#201e1d", background: "#fff" }} className="md-preview">
+                <ReactMarkdown remarkPlugins={plugins}>{markdown}</ReactMarkdown>
+              </div>
+            )}
+          </FullScreenModal>
+        )}
 
         <div
           className="reveal"

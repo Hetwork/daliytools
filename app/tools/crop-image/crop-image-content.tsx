@@ -56,15 +56,16 @@ export default function CropImageContent() {
     img.src = url;
   }
 
-  function handleMouseDown(e: React.MouseEvent, type: string) {
+  function handlePointerDown(e: React.PointerEvent<HTMLElement>, type: string) {
     e.preventDefault();
     e.stopPropagation();
     if (type === "move") setIsDragging(true);
     else setIsResizing(type);
     setDragStart({ x: e.clientX, y: e.clientY });
+    e.currentTarget.setPointerCapture?.(e.pointerId);
   }
 
-  function handleMouseMove(e: React.MouseEvent) {
+  function handlePointerMove(e: React.PointerEvent<HTMLElement>) {
     if (!containerRef.current || (!isDragging && !isResizing)) return;
     const rect = containerRef.current.getBoundingClientRect();
     const dx = ((e.clientX - dragStart.x) / rect.width) * 100;
@@ -92,7 +93,7 @@ export default function CropImageContent() {
     setDragStart({ x: e.clientX, y: e.clientY });
   }
 
-  function handleMouseUp() { setIsDragging(false); setIsResizing(null); }
+  function handlePointerUp() { setIsDragging(false); setIsResizing(null); }
 
   function setRatio(ratio: number) {
     setSelectedRatio(ratio);
@@ -215,10 +216,11 @@ export default function CropImageContent() {
               {/* Crop editor */}
               <div
                 ref={containerRef}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                style={{ position: "relative", border: "2px solid #201e1d", background: "#201e1d", userSelect: "none", overflow: "hidden" }}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp}
+                onPointerCancel={handlePointerUp}
+                style={{ position: "relative", border: "2px solid #201e1d", background: "#201e1d", userSelect: "none", overflow: "hidden", touchAction: "none" }}
               >
                 <img
                   ref={imageRef}
@@ -229,7 +231,7 @@ export default function CropImageContent() {
                 />
                 {/* Dark overlay over image except crop area — achieved by crop box shadow */}
                 <div
-                  onMouseDown={(e) => handleMouseDown(e, "move")}
+                  onPointerDown={(e) => handlePointerDown(e, "move")}
                   style={{
                     position: "absolute",
                     left: `${cropArea.x}%`,
@@ -260,8 +262,8 @@ export default function CropImageContent() {
                   ].map(({ s, ...pos }) => (
                     <div
                       key={s}
-                      onMouseDown={(e) => handleMouseDown(e, s)}
-                      style={{ ...handleDotStyle, ...pos }}
+                      onPointerDown={(e) => handlePointerDown(e, s)}
+                      style={{ ...handleDotStyle, ...pos, touchAction: "none" }}
                     />
                   ))}
                 </div>

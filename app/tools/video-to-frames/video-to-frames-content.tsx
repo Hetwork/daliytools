@@ -20,6 +20,7 @@ export default function VideoToFramesContent() {
   const [isExtracting, setIsExtracting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [interval, setIntervalVal] = useState(1);
+  const [errorMsg, setErrorMsg] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -58,38 +59,69 @@ export default function VideoToFramesContent() {
     };
   }
 
+  async function seekVideoToTime(videoEl: HTMLVideoElement, targetTime: number): Promise<void> {
+    if (!Number.isFinite(targetTime)) return;
+    if (Math.abs(videoEl.currentTime - targetTime) < 0.05) return;
+
+    await new Promise<void>((resolve, reject) => {
+      const cleanup = () => {
+        videoEl.removeEventListener("seeked", onSeeked);
+        videoEl.removeEventListener("error", onError);
+      };
+      const onSeeked = () => {
+        cleanup();
+        resolve();
+      };
+      const onError = () => {
+        cleanup();
+        reject(new Error("Video seek failed"));
+      };
+
+      videoEl.addEventListener("seeked", onSeeked, { once: true });
+      videoEl.addEventListener("error", onError, { once: true });
+      videoEl.currentTime = targetTime;
+    });
+  }
+
   async function extractFrames() {
     if (!video || !videoRef.current || !canvasRef.current) return;
     setIsExtracting(true);
     setProgress(0);
+    setErrorMsg("");
     frames.forEach((f) => URL.revokeObjectURL(f.url));
     setFrames([]);
 
     const vid = videoRef.current;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d")!;
+    vid.muted = true;
+    vid.playsInline = true;
+    vid.pause();
 
     const timestamps: number[] = [];
     for (let t = 0; t <= video.duration; t += interval) timestamps.push(t);
-    if (timestamps[timestamps.length - 1] < video.duration - 0.1) timestamps.push(video.duration);
+    if (timestamps.length === 0 || timestamps[timestamps.length - 1] < video.duration - 0.1) timestamps.push(video.duration);
 
     const extracted: ExtractedFrame[] = [];
     for (let i = 0; i < timestamps.length; i++) {
       const t = timestamps[i];
-      await new Promise<void>((res) => {
-        vid.currentTime = t;
-        vid.onseeked = () => {
-          canvas.width = vid.videoWidth;
-          canvas.height = vid.videoHeight;
-          ctx.drawImage(vid, 0, 0);
-          canvas.toBlob((blob) => {
-            if (blob) {
-              extracted.push({ url: URL.createObjectURL(blob), timestamp: t, index: i });
-            }
-            res();
-          }, "image/jpeg", 0.92);
-        };
-      });
+      try {
+        await seekVideoToTime(vid, t);
+        await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+        canvas.width = vid.videoWidth;
+        canvas.height = vid.videoHeight;
+        ctx.drawImage(vid, 0, 0);
+        const blob = await new Promise<Blob | null>((res) => {
+          canvas.toBlob((nextBlob) => res(nextBlob), "image/jpeg", 0.92);
+        });
+        if (blob) {
+          extracted.push({ url: URL.createObjectURL(blob), timestamp: t, index: i });
+        }
+      } catch {
+        setErrorMsg("Frame extraction was interrupted. Please try a smaller interval or a different video.");
+        setIsExtracting(false);
+        return;
+      }
       setProgress(Math.round(((i + 1) / timestamps.length) * 100));
     }
     setFrames(extracted);
