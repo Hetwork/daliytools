@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 type Tab = "base64" | "url" | "html";
 
@@ -133,6 +135,7 @@ export default function Base64ConverterContent() {
             <textarea value={output} onChange={(event) => setOutput(event.target.value)} spellCheck={false} placeholder="Output" style={{ width: "100%", minHeight: 150, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 16, resize: "vertical", outline: "none" }} />
           </div>
         </div>
+        <ToolEditorial toolName="Base64 / URL / HTML Converter" {...toolEditorialData["base64-converter"]} />
       </section>
 
       <SiteFooter />

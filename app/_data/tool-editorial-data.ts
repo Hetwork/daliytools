@@ -737,4 +737,310 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
       { slug: "html-viewer", name: "HTML Viewer" },
     ],
   },
+
+  "age-calculator": {
+    guideTitle: "How to Calculate Your Exact Age",
+    steps: [
+      { num: "01", title: "Enter Birth Date", description: "Choose your date of birth from the calendar." },
+      { num: "02", title: "Set Reference Date", description: "Use today or select another date for an age comparison." },
+      { num: "03", title: "Read the Results", description: "See your exact age plus totals in days, weeks, months, and hours." },
+    ],
+    howItWorks: { title: "Calendar-Accurate Date Arithmetic", description: ["The calculator compares calendar years, months, and days, then calculates total elapsed days from the two selected dates.", "All calculations run in your browser. The dates you enter are not uploaded or stored."] },
+    faqs: [
+      { question: "Can I calculate age on a future date?", answer: "Yes. Turn off the Today option and choose any reference date after the date of birth." },
+      { question: "Does the calculator account for leap years?", answer: "Yes. Date arithmetic uses the calendar rules built into your browser, including leap years and varying month lengths." },
+      { question: "Can I calculate someone else's age?", answer: "Yes. Enter any birth date and reference date to calculate the exact difference." },
+      { question: "Are my dates private?", answer: "Yes. The calculation happens locally in your browser and the dates are never sent to a server." },
+    ],
+    relatedTools: [{ slug: "percentage-calculator", name: "Percentage Calculator" }, { slug: "unit-converter", name: "Unit Converter" }, { slug: "word-counter", name: "Word Counter" }],
+  },
+
+  "audio-cutter": {
+    guideTitle: "How to Trim an Audio File",
+    steps: [
+      { num: "01", title: "Upload Audio", description: "Choose an MP3, WAV, M4A, OGG, or other supported audio file." },
+      { num: "02", title: "Set the Range", description: "Move the start and end handles to select the section you need." },
+      { num: "03", title: "Export the Clip", description: "Preview your selection and download the trimmed audio." },
+    ],
+    howItWorks: { title: "Non-Destructive Browser Audio Editing", description: ["The tool decodes your audio into a browser buffer, selects the requested time range, and encodes a new clip without changing your original file.", "Processing stays on your device. Audio is not uploaded or retained by Daliy.Tools."] },
+    faqs: [
+      { question: "Which audio formats can I trim?", answer: "Common browser-supported formats such as MP3, WAV, M4A, OGG, and AAC work best." },
+      { question: "Will the original audio be changed?", answer: "No. The original file remains untouched, and the tool creates a separate trimmed download." },
+      { question: "Can I preview the selected section?", answer: "Yes. Use the built-in playback controls to check the start and end points before exporting." },
+      { question: "Are my recordings uploaded?", answer: "No. Audio processing takes place locally in browser memory." },
+    ],
+    relatedTools: [{ slug: "video-to-frames", name: "Video to Frames" }, { slug: "screen-recorder", name: "Screen Recorder" }, { slug: "compress-image", name: "Compress Image" }],
+  },
+
+  "base64-converter": {
+    guideTitle: "How to Encode and Decode Base64",
+    steps: [
+      { num: "01", title: "Choose a Mode", description: "Select Base64, URL, or HTML entity encoding and decoding." },
+      { num: "02", title: "Enter Your Value", description: "Paste text, encoded data, or a URL into the input panel." },
+      { num: "03", title: "Copy the Result", description: "Review the converted output and copy it to your clipboard." },
+    ],
+    howItWorks: { title: "Standard Browser Encoding APIs", description: ["The converter applies the relevant UTF-8, Base64, percent-encoding, or HTML entity rules to transform your input into a compatible string.", "Your tokens and text stay in the current browser tab and are never transmitted."] },
+    faqs: [
+      { question: "What can I encode or decode?", answer: "You can convert Base64 strings, URL components, and common HTML entities in either direction." },
+      { question: "Does Base64 encrypt my data?", answer: "No. Base64 is an encoding format, not encryption. Anyone with the encoded value can decode it." },
+      { question: "Can I convert Unicode text?", answer: "Yes. The tool handles regular Unicode text through UTF-8 compatible browser processing." },
+      { question: "Is my input saved?", answer: "No. Conversion happens locally and your input is not stored on a server." },
+    ],
+    relatedTools: [{ slug: "jwt-decoder", name: "JWT Decoder" }, { slug: "json-formatter", name: "JSON Formatter" }, { slug: "html-viewer", name: "HTML Viewer" }],
+  },
+
+  "color-picker": {
+    guideTitle: "How to Pick Colors from an Image",
+    steps: [
+      { num: "01", title: "Upload an Image", description: "Choose a photo, screenshot, or graphic from your device." },
+      { num: "02", title: "Pick a Pixel", description: "Move over the image and select the color you want to inspect." },
+      { num: "03", title: "Copy Color Values", description: "Copy the HEX, RGB, or HSL value for your design or code." },
+    ],
+    howItWorks: { title: "Pixel Sampling on a Local Canvas", description: ["The browser draws your image to a canvas and reads the red, green, and blue values at the selected pixel, then converts them to common color formats.", "The image remains in local browser memory and is not sent to a remote service."] },
+    faqs: [
+      { question: "Which color formats are provided?", answer: "The picker provides HEX, RGB, and HSL values for the selected pixel." },
+      { question: "Can I use screenshots and transparent PNGs?", answer: "Yes. Standard image files, screenshots, and PNG graphics are supported by the browser." },
+      { question: "How accurate are the picked colors?", answer: "Values are read directly from the rendered pixel, subject to the source image and browser color handling." },
+      { question: "Are my images uploaded?", answer: "No. Image sampling is performed locally in your browser." },
+    ],
+    relatedTools: [{ slug: "contrast-checker", name: "Contrast Checker" }, { slug: "convert-image-format", name: "Convert Image Format" }, { slug: "resize-image", name: "Resize Image" }],
+  },
+
+  "compare-files": {
+    guideTitle: "How to Compare Two Text Files",
+    steps: [
+      { num: "01", title: "Add the Files", description: "Paste or load the first and second versions of your text." },
+      { num: "02", title: "Review Differences", description: "Scan the side-by-side comparison for inserted, removed, or changed lines." },
+      { num: "03", title: "Copy What You Need", description: "Use the comparison to verify revisions or combine the correct content." },
+    ],
+    howItWorks: { title: "Line-by-Line Text Comparison", description: ["The comparison splits each input into lines, matches common content, and marks additions and removals so changes are easy to inspect.", "Both inputs remain in your browser tab. The tool does not upload or log your documents."] },
+    faqs: [
+      { question: "What files can I compare?", answer: "You can compare plain text, code, Markdown, JSON, and other text-based content." },
+      { question: "Does comparison change either file?", answer: "No. The tool only displays differences and leaves your original content unchanged." },
+      { question: "Can I compare large documents?", answer: "Yes, although very large files may take longer because the comparison runs in browser memory." },
+      { question: "Is confidential text private?", answer: "Yes. The comparison runs locally and your documents are not sent to a server." },
+    ],
+    relatedTools: [{ slug: "word-counter", name: "Word Counter" }, { slug: "case-converter", name: "Case Converter" }, { slug: "json-formatter", name: "JSON Formatter" }],
+  },
+
+  "contrast-checker": {
+    guideTitle: "How to Check WCAG Color Contrast",
+    steps: [
+      { num: "01", title: "Choose Text Color", description: "Enter or select the foreground color used for your text." },
+      { num: "02", title: "Choose Background", description: "Set the background color behind the text or interface element." },
+      { num: "03", title: "Review Accessibility", description: "Check the contrast ratio and WCAG AA or AAA results." },
+    ],
+    howItWorks: { title: "Relative Luminance and WCAG Ratios", description: ["The checker converts sRGB colors to relative luminance and compares the two values using the WCAG contrast ratio formula.", "All color calculations run locally, so your palette and design details remain in the browser."] },
+    faqs: [
+      { question: "What contrast ratio should normal text meet?", answer: "WCAG AA generally requires a ratio of at least 4.5:1 for normal text and 3:1 for large text." },
+      { question: "What do AA and AAA mean?", answer: "They are WCAG conformance levels. AAA is the stricter target and may require stronger contrast." },
+      { question: "Does the tool check large text?", answer: "Yes. Results distinguish normal and large text thresholds so you can assess both cases." },
+      { question: "Are colors sent to a server?", answer: "No. The ratio and pass or fail results are calculated entirely in your browser." },
+    ],
+    relatedTools: [{ slug: "color-picker", name: "Color Picker" }, { slug: "convert-image-format", name: "Convert Image Format" }, { slug: "resize-image", name: "Resize Image" }],
+  },
+
+  "html-viewer": {
+    guideTitle: "How to Preview HTML in Your Browser",
+    steps: [
+      { num: "01", title: "Paste HTML", description: "Enter markup into the editor, including styles and basic scripts." },
+      { num: "02", title: "Inspect the Preview", description: "See the rendered result update as you edit the HTML." },
+      { num: "03", title: "Refine Your Markup", description: "Use the live preview to test structure, spacing, and content." },
+    ],
+    howItWorks: { title: "Live Document Rendering", description: ["The viewer places your markup into an isolated preview document and refreshes it as the source changes, giving you immediate visual feedback.", "The editor content stays in your browser session. Avoid pasting untrusted scripts when testing unknown code."] },
+    faqs: [
+      { question: "Can I preview CSS with my HTML?", answer: "Yes. Include style elements or inline styles in the markup to preview their effect." },
+      { question: "Does the preview access my files?", answer: "The preview only renders the content you provide and does not upload it to Daliy.Tools." },
+      { question: "Can I use JavaScript in the preview?", answer: "Basic scripts may run in the preview, so only test code you understand and trust." },
+      { question: "Can I use this to publish a webpage?", answer: "It is a testing and preview tool. You still need hosting to publish a page publicly." },
+    ],
+    relatedTools: [{ slug: "markdown-viewer", name: "Markdown Viewer" }, { slug: "base64-converter", name: "Base64 Converter" }, { slug: "json-formatter", name: "JSON Formatter" }],
+  },
+
+  "icon-kitchen": {
+    guideTitle: "How to Create App Icons and Favicons",
+    steps: [
+      { num: "01", title: "Add Source Artwork", description: "Upload a square logo or image for your app icon set." },
+      { num: "02", title: "Configure the Set", description: "Choose backgrounds, padding, and the platforms you want to support." },
+      { num: "03", title: "Download Assets", description: "Generate the required PNG sizes and download the asset package." },
+    ],
+    howItWorks: { title: "Multi-Size Image Export", description: ["The generator scales your source artwork onto platform-specific canvases, applies the selected padding and background, and packages the resulting PNG files.", "Artwork processing happens locally in your browser. Source images are not uploaded or stored."] },
+    faqs: [
+      { question: "Which platforms are supported?", answer: "You can create common Android, iOS, web app, and favicon sizes from one source image." },
+      { question: "Should my source image be square?", answer: "Yes. A square, high-resolution source usually produces the cleanest results across every output size." },
+      { question: "Can I create transparent icons?", answer: "Yes. Use a transparent source and choose the available transparent background option." },
+      { question: "Are source images kept private?", answer: "Yes. Icon generation is performed locally in browser memory." },
+    ],
+    relatedTools: [{ slug: "resize-image", name: "Resize Image" }, { slug: "convert-image-format", name: "Convert Image Format" }, { slug: "compress-image", name: "Compress Image" }],
+  },
+
+  "instagram-post": {
+    guideTitle: "How to Download Public Instagram Posts",
+    steps: [
+      { num: "01", title: "Copy a Public URL", description: "Copy the link to a public Instagram post or carousel." },
+      { num: "02", title: "Paste the Link", description: "Enter the post URL and let the tool retrieve available media." },
+      { num: "03", title: "Save the Media", description: "Review the returned items and download the files you are permitted to use." },
+    ],
+    howItWorks: { title: "URL-Based Media Retrieval", description: ["The downloader sends the public post URL to its retrieval endpoint, which checks the available media and returns download links when the post can be accessed.", "Only use media you own or have permission to download. Public availability does not remove copyright or platform restrictions."] },
+    faqs: [
+      { question: "Can I download private posts?", answer: "No. The tool is intended for publicly accessible posts and cannot bypass private account controls." },
+      { question: "Can I download carousels?", answer: "Yes, when the public post exposes its carousel media to the retrieval service." },
+      { question: "Can I reuse downloaded media commercially?", answer: "Only when you own the content or have permission and comply with Instagram's terms and applicable copyright law." },
+      { question: "Does Daliy.Tools store the downloads?", answer: "The tool does not provide a personal media library. Downloaded files are saved by your browser to your device." },
+    ],
+    relatedTools: [{ slug: "youtube-downloader", name: "YouTube Downloader" }, { slug: "video-to-frames", name: "Video to Frames" }, { slug: "compress-image", name: "Compress Image" }],
+  },
+
+  "jwt-decoder": {
+    guideTitle: "How to Inspect a JWT Token",
+    steps: [
+      { num: "01", title: "Paste the Token", description: "Enter a JSON Web Token into the decoder field." },
+      { num: "02", title: "Inspect Header and Payload", description: "Review the decoded algorithm, claims, timestamps, and other fields." },
+      { num: "03", title: "Check the Context", description: "Use the claims to understand the token, but verify it with the issuing service." },
+    ],
+    howItWorks: { title: "Local JWT Segment Decoding", description: ["A JWT contains Base64URL-encoded header and payload segments. The decoder parses those segments into readable JSON without needing the signing secret.", "Decoding does not validate a signature. Tokens stay in the browser and are not sent to a server."] },
+    faqs: [
+      { question: "Does decoding a JWT verify it?", answer: "No. Decoding only reads the token contents. Signature verification must happen with the issuer's trusted key and rules." },
+      { question: "Can I decode an expired token?", answer: "Yes. The tool can display its expiration claim, but an expired token should not be treated as valid." },
+      { question: "Should I paste production tokens here?", answer: "Use care with sensitive credentials. Although processing is local, avoid exposing active tokens unnecessarily." },
+      { question: "What parts of a JWT are shown?", answer: "The decoder displays the header, payload claims, and readable timestamp values when present." },
+    ],
+    relatedTools: [{ slug: "base64-converter", name: "Base64 Converter" }, { slug: "json-formatter", name: "JSON Formatter" }, { slug: "password-generator", name: "Password Generator" }],
+  },
+
+  "lorem-ipsum-generator": {
+    guideTitle: "How to Generate Placeholder Text",
+    steps: [
+      { num: "01", title: "Choose a Format", description: "Select paragraphs, sentences, or word count for your mock content." },
+      { num: "02", title: "Set the Amount", description: "Choose how much placeholder copy your layout needs." },
+      { num: "03", title: "Copy the Text", description: "Generate the result and copy it into your design or prototype." },
+    ],
+    howItWorks: { title: "Deterministic Placeholder Text Assembly", description: ["The generator selects words from a local Latin-style vocabulary and groups them into sentences or paragraphs according to your requested amount.", "No input is required and generated text remains entirely within your browser session."] },
+    faqs: [
+      { question: "What is Lorem Ipsum used for?", answer: "It fills a design with realistic text-shaped content while typography, spacing, and layout are being tested." },
+      { question: "Can I generate a specific number of paragraphs?", answer: "Yes. Choose the output format and amount before generating your placeholder copy." },
+      { question: "Is the generated text original writing?", answer: "No. It is filler text for prototypes and should be replaced with meaningful content before publication." },
+      { question: "Does the generator require an account?", answer: "No. It runs immediately in your browser without sign-up or server storage." },
+    ],
+    relatedTools: [{ slug: "word-counter", name: "Word Counter" }, { slug: "case-converter", name: "Case Converter" }, { slug: "markdown-viewer", name: "Markdown Viewer" }],
+  },
+
+  "markdown-viewer": {
+    guideTitle: "How to Write and Preview Markdown",
+    steps: [
+      { num: "01", title: "Enter Markdown", description: "Type or paste headings, lists, links, tables, and other Markdown syntax." },
+      { num: "02", title: "Preview the Result", description: "Review the rendered document beside your source as you edit." },
+      { num: "03", title: "Refine and Copy", description: "Adjust the source until the formatted content reads as expected." },
+    ],
+    howItWorks: { title: "Client-Side Markdown Rendering", description: ["The viewer parses Markdown syntax in the browser and renders it into an HTML preview, including common GitHub-Flavored Markdown features.", "Your document stays in the current tab and is not uploaded or logged."] },
+    faqs: [
+      { question: "Does the viewer support GitHub-Flavored Markdown?", answer: "Yes. Common extensions such as tables, task lists, and strikethrough are supported." },
+      { question: "Can I preview code blocks?", answer: "Yes. Fenced code blocks are rendered as formatted blocks in the preview." },
+      { question: "Can I publish the rendered page directly?", answer: "No. This tool provides a preview; you need a publishing workflow or host for a public page." },
+      { question: "Is my Markdown private?", answer: "Yes. Rendering runs locally in your browser without server uploads." },
+    ],
+    relatedTools: [{ slug: "html-viewer", name: "HTML Viewer" }, { slug: "word-counter", name: "Word Counter" }, { slug: "compare-files", name: "Compare Files" }],
+  },
+
+  "screen-recorder": {
+    guideTitle: "How to Record Your Screen",
+    steps: [
+      { num: "01", title: "Choose a Source", description: "Select a browser tab, window, or entire screen when prompted." },
+      { num: "02", title: "Start Recording", description: "Allow optional microphone audio and record your walkthrough or presentation." },
+      { num: "03", title: "Stop and Save", description: "End the recording and download the resulting video file." },
+    ],
+    howItWorks: { title: "Browser Media Capture", description: ["The recorder uses the browser's MediaRecorder API to capture the screen source and optional microphone stream into a downloadable video blob.", "Recording data is assembled in local browser memory. The site does not receive your screen or microphone feed."] },
+    faqs: [
+      { question: "Can I record a browser tab?", answer: "Yes. Choose a tab in the browser's screen-sharing prompt, subject to your browser's permissions." },
+      { question: "Can I include microphone audio?", answer: "Yes. Allow microphone access when starting the recording if you want narration." },
+      { question: "Why do I need to grant screen permission?", answer: "Browsers require explicit permission before a site can capture a screen, window, or tab." },
+      { question: "Is my recording uploaded?", answer: "No. The recording is created locally and downloaded directly to your device." },
+    ],
+    relatedTools: [{ slug: "audio-cutter", name: "Audio Cutter" }, { slug: "video-to-frames", name: "Video to Frames" }, { slug: "youtube-downloader", name: "YouTube Downloader" }],
+  },
+
+  "unit-converter": {
+    guideTitle: "How to Convert Everyday Units",
+    steps: [
+      { num: "01", title: "Choose a Category", description: "Select length, weight, volume, temperature, or another unit group." },
+      { num: "02", title: "Enter a Value", description: "Type the number and choose its original unit." },
+      { num: "03", title: "Read the Conversion", description: "Select the target unit and copy the calculated result." },
+    ],
+    howItWorks: { title: "Reference-Based Unit Conversion", description: ["Each supported unit maps to a common base unit. The calculator converts your input to that base and then into the target unit.", "The arithmetic happens locally and your values are not saved or transmitted."] },
+    faqs: [
+      { question: "Which units can I convert?", answer: "The converter includes common length, weight, volume, temperature, area, and time units." },
+      { question: "Does it convert temperature correctly?", answer: "Yes. Temperature conversions use offset formulas for Celsius, Fahrenheit, and Kelvin rather than simple multiplication." },
+      { question: "How many decimal places are shown?", answer: "Results are formatted for readability while retaining useful precision for everyday calculations." },
+      { question: "Are calculations private?", answer: "Yes. All conversions run in your browser without server requests." },
+    ],
+    relatedTools: [{ slug: "percentage-calculator", name: "Percentage Calculator" }, { slug: "age-calculator", name: "Age Calculator" }, { slug: "word-counter", name: "Word Counter" }],
+  },
+
+  "video-to-frames": {
+    guideTitle: "How to Extract Frames from a Video",
+    steps: [
+      { num: "01", title: "Load a Video", description: "Choose a video file supported by your browser." },
+      { num: "02", title: "Set Frame Timing", description: "Choose a timestamp or interval for the frames you want to capture." },
+      { num: "03", title: "Download Frames", description: "Preview the still images and save the frames you need." },
+    ],
+    howItWorks: { title: "Video Seeking and Canvas Capture", description: ["The browser seeks through the local video element to the requested timestamps, draws each decoded frame to a canvas, and exports still images.", "The video stays on your device and is not uploaded to a processing server."] },
+    faqs: [
+      { question: "Which video formats are supported?", answer: "Support depends on your browser, with common MP4 and WebM files usually working best." },
+      { question: "Can I extract a frame at an exact time?", answer: "Yes. Enter a timestamp or use the available interval controls to select the frame positions." },
+      { question: "What format are frames saved in?", answer: "Extracted frames are saved as image files suitable for previews, thumbnails, or further editing." },
+      { question: "Is my video uploaded?", answer: "No. Frame extraction takes place locally in your browser." },
+    ],
+    relatedTools: [{ slug: "audio-cutter", name: "Audio Cutter" }, { slug: "resize-image", name: "Resize Image" }, { slug: "compress-image", name: "Compress Image" }],
+  },
+
+  "watermark-remover": {
+    guideTitle: "How to Retouch an Image Area",
+    steps: [
+      { num: "01", title: "Upload an Image", description: "Choose the photo or graphic you are authorized to edit." },
+      { num: "02", title: "Paint the Area", description: "Mark the watermark or unwanted region with the brush tool." },
+      { num: "03", title: "Preview and Save", description: "Review the retouched image and download the result." },
+    ],
+    howItWorks: { title: "Local Pixel Retouching", description: ["The editor uses the selected mask to blur, fill, or clone nearby pixels across the marked region, creating a new rendered image.", "Editing happens in browser memory. Only remove marks from images you own or have permission to modify."] },
+    faqs: [
+      { question: "Can this remove every watermark perfectly?", answer: "Results depend on the watermark size, contrast, and surrounding detail. Simple backgrounds are usually easier to retouch." },
+      { question: "What image formats can I edit?", answer: "Common browser-supported formats such as JPG, PNG, and WebP are suitable for editing." },
+      { question: "Can I remove a watermark from someone else's work?", answer: "Only edit and remove marks when you own the image or have explicit permission to do so." },
+      { question: "Are my images uploaded?", answer: "No. Retouching runs locally in your browser." },
+    ],
+    relatedTools: [{ slug: "remove-background", name: "Remove Background" }, { slug: "crop-image", name: "Crop Image" }, { slug: "compress-image", name: "Compress Image" }],
+  },
+
+  "youtube-downloader": {
+    guideTitle: "How to Save Public YouTube Media",
+    steps: [
+      { num: "01", title: "Copy a Public URL", description: "Copy the link to a public video you are allowed to save." },
+      { num: "02", title: "Paste and Check", description: "Enter the URL and review the available media information." },
+      { num: "03", title: "Choose a Format", description: "Select an available video or audio format and download it to your device." },
+    ],
+    howItWorks: { title: "Server-Assisted Format Retrieval", description: ["The downloader requests metadata and available streams for a public video through its retrieval endpoint, then provides the selected file for download.", "Use this only for content you own or have permission to download, and follow YouTube's terms and applicable copyright law."] },
+    faqs: [
+      { question: "Can I download private or restricted videos?", answer: "No. The tool is for publicly accessible videos and cannot bypass account, age, region, or permission restrictions." },
+      { question: "Which output formats are available?", answer: "Available formats depend on the source video and may include MP4 video or audio-only options." },
+      { question: "Can I use downloaded videos commercially?", answer: "Only when you have the necessary rights or permission. Public access does not grant reuse rights." },
+      { question: "Are downloaded files stored in an account?", answer: "No. Files are delivered to your browser for download and are not kept as a personal library." },
+    ],
+    relatedTools: [{ slug: "instagram-post", name: "Instagram Post Downloader" }, { slug: "video-to-frames", name: "Video to Frames" }, { slug: "audio-cutter", name: "Audio Cutter" }],
+  },
+
+  "cron-generator": {
+    guideTitle: "How to Build a Cron Schedule",
+    steps: [
+      { num: "01", title: "Choose the Frequency", description: "Select a minute, hour, day, week, or month schedule." },
+      { num: "02", title: "Set Schedule Values", description: "Choose the exact time, weekday, or interval for your job." },
+      { num: "03", title: "Copy the Expression", description: "Review the human-readable preview and copy the generated cron string." },
+    ],
+    howItWorks: { title: "Cron Field Composition", description: ["The builder combines minute, hour, day-of-month, month, and weekday fields according to standard five-field cron syntax.", "Expressions are generated locally, so your schedules and project details remain private in the browser."] },
+    faqs: [
+      { question: "What does a cron expression describe?", answer: "It describes when a scheduled command should run using fields for time and calendar intervals." },
+      { question: "Does this support standard five-field cron?", answer: "Yes. The generated expressions use the common minute, hour, day, month, and weekday format." },
+      { question: "Can I schedule every few minutes?", answer: "Yes. Use the interval controls to create expressions such as every 5, 10, or 15 minutes." },
+      { question: "Are my schedules stored?", answer: "No. The expression and preview are created locally in your browser." },
+    ],
+    relatedTools: [{ slug: "unit-converter", name: "Unit Converter" }, { slug: "json-formatter", name: "JSON Formatter" }, { slug: "password-generator", name: "Password Generator" }],
+  },
 };

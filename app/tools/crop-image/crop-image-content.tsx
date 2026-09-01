@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface CropArea { x: number; y: number; width: number; height: number }
 interface ImageData { file: File; url: string; naturalWidth: number; naturalHeight: number }
@@ -292,6 +294,7 @@ export default function CropImageContent() {
             mapped back to the image&apos;s natural pixel dimensions using a canvas, and the selected region is exported at full resolution.
           </p>
         </div>
+        <ToolEditorial toolName="Crop Image" {...toolEditorialData["crop-image"]} />
       </section>
 
       <SiteFooter />

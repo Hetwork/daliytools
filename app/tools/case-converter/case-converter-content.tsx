@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 type CaseType =
   | "upper"
@@ -254,6 +256,7 @@ export default function CaseConverterContent() {
             Each case conversion first tokenises your input into words — splitting on spaces, hyphens, underscores, dots, and camelCase boundaries — then joins them with the appropriate separator and applies capitalisation rules. Click any format card to select it and instantly copy the converted result to your clipboard. Everything runs in your browser.
           </p>
         </div>
+        <ToolEditorial toolName="Case Converter" {...toolEditorialData["case-converter"]} />
       </section>
 
       <SiteFooter />

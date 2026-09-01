@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 import { clampRange, formatTime } from "./audio-utils";
 
 interface AudioFileData {
@@ -353,6 +355,7 @@ export default function AudioCutterContent() {
             The tool decodes the uploaded audio in the browser, slices the waveform to the chosen start and end times, and re-encodes it as a WAV with the original sample rate intact. No server uploads, no cloud processing, and no storage beyond your browser session.
           </p>
         </div>
+        <ToolEditorial toolName="Audio Cutter" {...toolEditorialData["audio-cutter"]} />
       </section>
 
       <SiteFooter />

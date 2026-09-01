@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface ColorData { hex: string; rgb: string; hsl: string }
 
@@ -255,6 +257,7 @@ export default function ColorPickerContent() {
             The canvas reads the pixel at that position and converts the RGB values to HEX and HSL. Nothing leaves your browser.
           </p>
         </div>
+        <ToolEditorial toolName="Color Picker" {...toolEditorialData["color-picker"]} />
       </section>
 
       <SiteFooter />

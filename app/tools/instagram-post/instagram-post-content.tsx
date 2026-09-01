@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface PostResult {
   shortcode: string;
@@ -559,6 +561,7 @@ export default function InstagramPostContent() {
             The server fetches the public Instagram page, extracts all image URLs from the embedded page data (supporting carousel posts with multiple photos), and proxies each file download directly to your device. Only public posts can be downloaded. Only use this tool for content you own or have permission to download.
           </p>
         </div>
+        <ToolEditorial toolName="Instagram Post Downloader" {...toolEditorialData["instagram-post"]} />
       </section>
 
       <SiteFooter />

@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const LOWER = "abcdefghijklmnopqrstuvwxyz";
@@ -274,6 +276,7 @@ export default function PasswordGeneratorContent() {
             Every password is created locally in your browser — nothing is ever transmitted.
           </p>
         </div>
+        <ToolEditorial toolName="Password Generator" {...toolEditorialData["password-generator"]} />
       </section>
 
       <SiteFooter />

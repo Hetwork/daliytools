@@ -5,6 +5,8 @@ import Link from "next/link";
 import FullScreenModal from "../../_components/full-screen-modal";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 const SAMPLE = `<h1 style="font-family:sans-serif;color:#201e1d">Hello from the HTML Viewer</h1>
 <p style="font-family:sans-serif;color:#555;line-height:1.6">Edit the code on the left to see your changes live on the right.</p>
@@ -245,6 +247,7 @@ export default function HtmlViewerContent() {
             no uploads. Scripts inside the preview run in a sandboxed context. Switch between Split, Edit, and Preview modes to focus on what you need.
           </p>
         </div>
+        <ToolEditorial toolName="HTML Viewer" {...toolEditorialData["html-viewer"]} />
       </section>
 
       <SiteFooter />

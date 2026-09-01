@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 type DiffType = "equal" | "added" | "removed";
 interface DiffLine { type: DiffType; text: string; leftNum: number | null; rightNum: number | null }
@@ -337,6 +339,7 @@ export default function CompareFilesContent() {
             The diff is computed using the Longest Common Subsequence (LCS) algorithm, the same approach used by Unix <code style={{ fontFamily: "monospace", background: "rgba(32,30,29,0.08)", padding: "1px 5px" }}>diff</code>. Lines present only in A are shown in red, lines present only in B are shown in green, and shared lines are shown as-is. Toggle &ldquo;Show changes only&rdquo; to hide unchanged lines. Nothing leaves your browser.
           </p>
         </div>
+        <ToolEditorial toolName="Compare Two Files" {...toolEditorialData["compare-files"]} />
       </section>
 
       <SiteFooter />

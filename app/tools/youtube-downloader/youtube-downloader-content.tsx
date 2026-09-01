@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 interface Format {
   id: string;
@@ -311,6 +313,7 @@ export default function YouTubeDownloaderContent() {
             The server fetches available video formats directly from YouTube and streams the selected quality to your device. Only public videos can be downloaded. Only use this tool for content you own or have permission to download.
           </p>
         </div>
+        <ToolEditorial toolName="YouTube Video Downloader" {...toolEditorialData["youtube-downloader"]} />
       </section>
 
       <SiteFooter />

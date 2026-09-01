@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolEditorial from "../../_components/tool-editorial";
+import { toolEditorialData } from "../../_data/tool-editorial-data";
 
 type OutputFormat = "webm" | "mp4";
 
@@ -438,6 +440,7 @@ export default function ScreenRecorderContent() {
             This tool uses getDisplayMedia to capture your chosen screen source and MediaRecorder to encode the stream locally in your browser. If microphone is enabled, mic and system audio are mixed in memory and stored only in your active session.
           </p>
         </div>
+        <ToolEditorial toolName="Screen Recorder" {...toolEditorialData["screen-recorder"]} />
       </section>
 
       <SiteFooter />
