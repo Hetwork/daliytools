@@ -4,6 +4,18 @@ import { useEffect, useState } from "react";
 import SiteHeader from "../_components/site-header";
 import SiteFooter from "../_components/site-footer";
 
+const CONTACT_SHEET_URL = process.env.NEXT_PUBLIC_CONTACT_SHEET_URL || "";
+
+async function getUserLocation() {
+  try {
+    const response = await fetch("https://ipapi.co/json/", { cache: "no-store" });
+    if (!response.ok) return {};
+    return await response.json();
+  } catch {
+    return {};
+  }
+}
+
 export default function ContactContent() {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,6 +25,8 @@ export default function ContactContent() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,9 +52,57 @@ export default function ContactContent() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    if (isSubmitting) return;
+
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      const location = await getUserLocation();
+
+      if (!CONTACT_SHEET_URL) {
+        throw new Error("Google Sheets endpoint is not configured. Add NEXT_PUBLIC_CONTACT_SHEET_URL to your environment.");
+      }
+
+      const response = await fetch(CONTACT_SHEET_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          ip: location.ip || "",
+          city: location.city || "",
+          region: location.region || "",
+          country: location.country_name || location.country || "",
+          countryCode: location.country_code || "",
+          postal: location.postal || "",
+          timezone: location.timezone || "",
+          org: location.org || "",
+          latitude: location.latitude || "",
+          longitude: location.longitude || "",
+          userAgent: navigator.userAgent,
+          language: navigator.language,
+          page: "daliytools-contact",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Your message could not be sent.");
+      }
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", subject: "Tool Suggestion", message: "" });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Something went wrong while sending your message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -234,6 +296,7 @@ export default function ContactContent() {
                   type="button"
                   onClick={() => {
                     setSubmitted(false);
+                    setSubmitError("");
                     setFormData({ name: "", email: "", subject: "Tool Suggestion", message: "" });
                   }}
                   className="btn"
@@ -335,12 +398,35 @@ export default function ContactContent() {
                   />
                 </div>
 
+                {submitError ? (
+                  <p
+                    style={{
+                      marginTop: 6,
+                      color: "#b42318",
+                      fontSize: 13,
+                      lineHeight: 1.5,
+                      background: "#fff5f5",
+                      border: "1px solid #f7c7c7",
+                      padding: "10px 12px",
+                    }}
+                  >
+                    {submitError}
+                  </p>
+                ) : null}
+
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{ marginTop: 8, width: "100%", justifyContent: "center" }}
+                  disabled={isSubmitting}
+                  style={{
+                    marginTop: 8,
+                    width: "100%",
+                    justifyContent: "center",
+                    opacity: isSubmitting ? 0.7 : 1,
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
+                  }}
                 >
-                  Submit Message &rarr;
+                  {isSubmitting ? "Sending..." : "Submit Message →"}
                 </button>
               </form>
             )}
