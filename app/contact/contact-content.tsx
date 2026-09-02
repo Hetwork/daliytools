@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import SiteHeader from "../_components/site-header";
 import SiteFooter from "../_components/site-footer";
 
-const CONTACT_SHEET_URL = process.env.NEXT_PUBLIC_CONTACT_SHEET_URL || "";
-
 async function getUserLocation() {
   try {
     const response = await fetch("https://ipapi.co/json/", { cache: "no-store" });
@@ -63,11 +61,7 @@ export default function ContactContent() {
     try {
       const location = await getUserLocation();
 
-      if (!CONTACT_SHEET_URL) {
-        throw new Error("Google Sheets endpoint is not configured. Add NEXT_PUBLIC_CONTACT_SHEET_URL to your environment.");
-      }
-
-      const response = await fetch(CONTACT_SHEET_URL, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,9 +85,10 @@ export default function ContactContent() {
         }),
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || "Your message could not be sent.");
+        throw new Error(result?.message || "Your message could not be sent.");
       }
 
       setSubmitted(true);
