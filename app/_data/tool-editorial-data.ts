@@ -26,6 +26,57 @@ export type ToolEditorialItem = {
 };
 
 export const toolEditorialData: Record<string, ToolEditorialItem> = {
+  "unlock-pdf": {
+    guideTitle: "How to Remove a Password from a PDF",
+    steps: [
+      {
+        num: "01",
+        title: "Choose Your PDF",
+        description: "Upload the password-protected PDF from your device.",
+      },
+      {
+        num: "02",
+        title: "Enter the Password",
+        description: "Type the document password you already know so the file can be opened.",
+      },
+      {
+        num: "03",
+        title: "Download Unlocked PDF",
+        description: "Export a new copy without password protection. Your original stays unchanged.",
+      },
+    ],
+    howItWorks: {
+      title: "Unlock PDFs Privately in Your Browser",
+      description: [
+        "The document is opened with your password using PDF.js, then each page is written into a new PDF without encryption. This makes the downloaded copy accessible without a password.",
+        "Everything happens in your browser. Your PDF and password are never uploaded or stored by Daliy.Tools.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Do I need to know the PDF password?",
+        answer: "Yes. This tool is for removing protection from documents you are authorized to access. It cannot bypass an unknown password.",
+      },
+      {
+        question: "Will my original PDF be changed?",
+        answer: "No. The tool creates a separate unlocked copy and leaves the original file on your device untouched.",
+      },
+      {
+        question: "Will selectable text and links be preserved?",
+        answer: "The unlocked copy is rendered page by page for reliable browser-only processing, so text selection, links, forms, and bookmarks are not preserved.",
+      },
+      {
+        question: "Are my PDF and password uploaded?",
+        answer: "No. The file and password stay in your browser while the new PDF is generated.",
+      },
+    ],
+    relatedTools: [
+      { slug: "compress-pdf", name: "Compress PDF" },
+      { slug: "split-pdf", name: "Split PDF" },
+      { slug: "merge-pdf", name: "Merge PDF" },
+    ],
+  },
+
   "image-to-pdf": {
     guideTitle: "How to Convert Images into a PDF",
     steps: [
