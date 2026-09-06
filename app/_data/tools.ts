@@ -26,6 +26,13 @@ export const tools: Tool[] = [
     live: true,
   },
   {
+    slug: "unlock-pdf",
+    name: "Unlock PDF",
+    category: "PDF Tools",
+    description: "Remove a PDF password when you know it.",
+    live: true,
+  },
+  {
     slug: "image-to-pdf",
     name: "Image to PDF",
     category: "PDF Tools",
