@@ -117,6 +117,13 @@ export const tools: Tool[] = [
     live: true,
   },
   {
+    slug: "video-to-audio",
+    name: "Video to Audio",
+    category: "Media Tools",
+    description: "Extract high-quality MP3 or lossless WAV audio from any video.",
+    live: true,
+  },
+  {
     slug: "screen-recorder",
     name: "Screen Recorder",
     category: "Media Tools",

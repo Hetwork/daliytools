@@ -146,6 +146,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.daliy.tools/tools/video-to-audio</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.daliy.tools/tools/video-to-frames</loc>
     <lastmod>2026-08-19</lastmod>
     <priority>0.7</priority>
