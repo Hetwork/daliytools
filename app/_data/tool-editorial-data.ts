@@ -1,4 +1,4 @@
-﻿export type StepItem = {
+export type StepItem = {
   num: string;
   title: string;
   description: string;
@@ -1093,5 +1093,70 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
       { question: "Are my schedules stored?", answer: "No. The expression and preview are created locally in your browser." },
     ],
     relatedTools: [{ slug: "unit-converter", name: "Unit Converter" }, { slug: "json-formatter", name: "JSON Formatter" }, { slug: "password-generator", name: "Password Generator" }],
+  },
+
+  "video-to-audio": {
+    guideTitle: "How to Extract Audio from Video Online",
+    steps: [
+      {
+        num: "01",
+        title: "Upload Your Video",
+        description: "Drag and drop or select any MP4, WebM, MOV, MKV, or AVI file from your device.",
+      },
+      {
+        num: "02",
+        title: "Choose Format & Quality",
+        description: "Select MP3 with bitrates up to 320 kbps for small files, or choose lossless uncompressed 16-bit WAV PCM.",
+      },
+      {
+        num: "03",
+        title: "Customize Audio (Optional)",
+        description: "Adjust volume gain, select stereo or mono channels, and optionally trim a specific timestamp range.",
+      },
+      {
+        num: "04",
+        title: "Extract & Download",
+        description: "Click 'Extract Audio', preview the sound in the player, and download your finished audio file instantly.",
+      },
+    ],
+    howItWorks: {
+      title: "Client-Side Video Demuxing & PCM Audio Extraction",
+      description: [
+        "When you select a video, your browser parses the container using the native Web Audio API to isolate and decode the audio stream into raw PCM floating-point samples. The tool then encodes the samples into a high-grade MP3 or lossless 16-bit RIFF/WAVE file entirely within your local browser session.",
+        "Everything executes 100% on your device without server uploads. Your videos remain completely private, and processing is nearly instantaneous with zero bandwidth constraints.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Does extracting audio upload my video to any server?",
+        answer: "No. All demuxing, decoding, and encoding happen directly inside your web browser. Your video never leaves your computer or phone.",
+      },
+      {
+        question: "What is the difference between MP3 and WAV export?",
+        answer: "MP3 produces compact, universally compatible files ideal for sharing, streaming, podcasts, and mobile devices. WAV produces uncompressed 16-bit PCM lossless studio-quality audio with zero compression artifacts.",
+      },
+      {
+        question: "What video file formats are supported?",
+        answer: "The tool supports MP4, WebM, MOV, MKV, AVI, and other standard video containers that have an embedded audio track.",
+      },
+      {
+        question: "Can I extract audio from a specific part of a video?",
+        answer: "Yes. Toggle the 'Enable Trim' option to select custom start and end times, allowing you to extract just a highlight, song snippet, or sound effect.",
+      },
+      {
+        question: "Can I boost the audio volume if the video sound is too quiet?",
+        answer: "Yes. The volume booster control allows you to amplify quiet audio tracks up to 200% (+6 dB) or reduce loud clips.",
+      },
+      {
+        question: "Is there a limit on video length or file size?",
+        answer: "Because extraction is executed locally in your browser without network transfers, there are no artificial file size caps. As long as your browser has sufficient memory, you can extract audio from videos of any length.",
+      },
+    ],
+    relatedTools: [
+      { slug: "audio-cutter", name: "Audio Cutter" },
+      { slug: "video-to-frames", name: "Video to Frames" },
+      { slug: "screen-recorder", name: "Screen Recorder" },
+      { slug: "youtube-downloader", name: "YouTube Downloader" },
+    ],
   },
 };

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { clampRange, formatTime } from "./audio-utils.ts";
+import { clampRange, formatTime } from "./audio-utils";
 
 test("formatTime converts seconds into a readable mm:ss format", () => {
   assert.equal(formatTime(0), "0:00");
