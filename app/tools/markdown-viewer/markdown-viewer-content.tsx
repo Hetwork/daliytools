@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import FullScreenModal from "../../_components/full-screen-modal";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -91,6 +92,9 @@ export default function MarkdownViewerContent() {
       }}
     >
       <SiteHeader active="Tools" />
+
+      <div className="tool-ad-layout">
+        <ToolAdRail />
 
       <section
         style={{
@@ -295,6 +299,9 @@ export default function MarkdownViewerContent() {
 
         <ToolEditorial toolName="Markdown Viewer" {...toolEditorialData["markdown-viewer"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

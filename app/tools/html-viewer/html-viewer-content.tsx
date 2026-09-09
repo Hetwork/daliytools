@@ -1,10 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import FullScreenModal from "../../_components/full-screen-modal";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -79,6 +80,9 @@ export default function HtmlViewerContent() {
       }}
     >
       <SiteHeader active="Tools" />
+
+      <div className="tool-ad-layout">
+        <ToolAdRail />
 
       <section
         style={{
@@ -249,6 +253,9 @@ export default function HtmlViewerContent() {
         </div>
         <ToolEditorial toolName="HTML Viewer" {...toolEditorialData["html-viewer"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -141,6 +142,9 @@ export default function CropImageContent() {
       style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
+
+      <div className="tool-ad-layout">
+        <ToolAdRail />
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
       <section
@@ -296,6 +300,9 @@ export default function CropImageContent() {
         </div>
         <ToolEditorial toolName="Crop Image" {...toolEditorialData["crop-image"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

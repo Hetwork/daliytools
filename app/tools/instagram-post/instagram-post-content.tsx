@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -274,9 +275,11 @@ export default function InstagramPostContent() {
         />
       )}
 
-      <section
-        style={{ maxWidth: 900, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}
-      >
+      <div className="tool-ad-layout">
+        <ToolAdRail />
+        <section
+          style={{ maxWidth: 900, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}
+        >
         <p className="reveal-fast" style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", opacity: 0.45, marginBottom: 28 }}>
           <Link href="/tools" className="ink-hover">All Tools</Link> / Social Media / Instagram Post Downloader
         </p>
@@ -562,7 +565,9 @@ export default function InstagramPostContent() {
           </p>
         </div>
         <ToolEditorial toolName="Instagram Post Downloader" {...toolEditorialData["instagram-post"]} />
-      </section>
+        </section>
+        <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

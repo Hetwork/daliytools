@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -115,6 +116,9 @@ export default function ColorPickerContent() {
       }}
     >
       <SiteHeader active="Tools" />
+
+      <div className="tool-ad-layout">
+        <ToolAdRail />
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
       <section
@@ -259,6 +263,9 @@ export default function ColorPickerContent() {
         </div>
         <ToolEditorial toolName="Color Picker" {...toolEditorialData["color-picker"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

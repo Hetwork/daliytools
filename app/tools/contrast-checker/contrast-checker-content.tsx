@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -90,6 +91,9 @@ export default function ContrastCheckerContent() {
     <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
+      <div className="tool-ad-layout">
+        <ToolAdRail />
+
       <section style={{ maxWidth: 980, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
         <p className="reveal-fast" style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", opacity: 0.45, marginBottom: 28 }}>
           <Link href="/tools" className="ink-hover">All Tools</Link> / Developer Tools / WCAG Contrast Checker
@@ -153,6 +157,9 @@ export default function ContrastCheckerContent() {
         </div>
         <ToolEditorial toolName="WCAG Contrast Checker" {...toolEditorialData["contrast-checker"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

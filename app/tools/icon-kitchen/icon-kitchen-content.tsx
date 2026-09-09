@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 import {
@@ -202,6 +203,9 @@ export default function IconKitchenContent() {
       }}
     >
       <SiteHeader active="Tools" />
+
+      <div className="tool-ad-layout">
+        <ToolAdRail />
 
       <section
         style={{
@@ -1210,6 +1214,9 @@ export default function IconKitchenContent() {
         </div>
         <ToolEditorial toolName="Icon Kitchen" {...toolEditorialData["icon-kitchen"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

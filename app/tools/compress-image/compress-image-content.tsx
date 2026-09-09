@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -139,6 +140,9 @@ export default function CompressImageContent() {
     >
       <SiteHeader active="Tools" />
 
+      <div className="tool-ad-layout">
+        <ToolAdRail />
+
       <section
         style={{ maxWidth: 900, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}
       >
@@ -264,6 +268,9 @@ export default function CompressImageContent() {
           {...toolEditorialData["compress-image"]}
         />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

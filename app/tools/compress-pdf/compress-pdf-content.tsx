@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 
 const MAX_SIZE = 50 * 1024 * 1024;
 
@@ -289,17 +290,19 @@ export default function CompressPdfContent() {
     >
       <SiteHeader active="Tools" />
 
-      <section
-        style={{
-          maxWidth: 900,
-          margin: "0 auto",
-          padding: "0 32px",
-          paddingTop: "clamp(32px, 6vw, 64px)",
-          paddingBottom: "clamp(48px, 8vw, 96px)",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
+      <div className="tool-ad-layout">
+        <ToolAdRail />
+        <section
+          style={{
+            maxWidth: 900,
+            margin: "0 auto",
+            padding: "0 32px",
+            paddingTop: "clamp(32px, 6vw, 64px)",
+            paddingBottom: "clamp(48px, 8vw, 96px)",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
         {/* breadcrumb */}
         <p
           className="reveal-fast"
@@ -1002,7 +1005,9 @@ export default function CompressPdfContent() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+        <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>

@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolAdRail from "../../_components/tool-ad-rail";
 import ToolEditorial from "../../_components/tool-editorial";
 import { toolEditorialData } from "../../_data/tool-editorial-data";
 
@@ -163,6 +164,9 @@ export default function VideoToFramesContent() {
       style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
+
+      <div className="tool-ad-layout">
+        <ToolAdRail />
       <video ref={videoRef} src={video?.url} style={{ display: "none" }} />
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
@@ -291,6 +295,9 @@ export default function VideoToFramesContent() {
         </div>
         <ToolEditorial toolName="Video to Frames" {...toolEditorialData["video-to-frames"]} />
       </section>
+
+              <ToolAdRail />
+      </div>
 
       <SiteFooter />
     </main>
