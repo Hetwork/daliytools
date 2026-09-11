@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PercentageCalculatorContent from "./percentage-calculator-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Percentage Calculator Online — Free Percentage Increase & Discount Math | Daliy.Tools",
@@ -24,59 +25,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Percentage Calculator - Daliy.Tools",
-      "url": "https://daliy.tools/tools/percentage-calculator",
-      "description":
-        "Free mathematical calculator to solve percentage increases, discounts, and fractions.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do I calculate a percentage discount?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Multiply the original price by the discount percentage and divide by 100, then subtract that amount from the original price.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Can I calculate percentage increase or decrease?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Yes. Enter your original value and new value to calculate the exact percentage change automatically.",
-          },
-        },
-      ],
-    },
-  ],
+  ...createToolMetadata("percentage-calculator"),
 };
 
 export default function PercentageCalculatorPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <PercentageCalculatorContent />
-    </>
-  );
+  return <PercentageCalculatorContent />;
 }

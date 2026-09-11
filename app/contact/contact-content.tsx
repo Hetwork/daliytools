@@ -229,7 +229,7 @@ export default function ContactContent() {
                 className="btn btn-primary"
                 style={{ fontSize: 13, padding: "10px 18px" }}
               >
-                Send Email &rarr;
+                Send Email
               </a>
               <button
                 type="button"
@@ -421,7 +421,7 @@ export default function ContactContent() {
                     cursor: isSubmitting ? "not-allowed" : "pointer",
                   }}
                 >
-                  {isSubmitting ? "Sending..." : "Submit Message →"}
+                  {isSubmitting ? "Sending..." : "Submit Message"}
                 </button>
               </form>
             )}
@@ -429,19 +429,48 @@ export default function ContactContent() {
         </div>
 
         {/* Contact FAQ */}
-        <div style={{ marginTop: 64, borderTop: "2px solid #201e1d", paddingTop: 40 }}>
-          <h2 style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 800 }}>
+        <div
+          style={{
+            marginTop: 64,
+            borderTop: "2px solid #201e1d",
+            paddingTop: 40,
+          }}
+        >
+          <span
+            style={{
+              fontSize: 12,
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.14em",
+              color: "#ec3013",
+            }}
+          >
+            Answers to Common Questions
+          </span>
+          <h2
+            style={{
+              fontSize: "clamp(22px, 3.2vw, 32px)",
+              fontWeight: 800,
+              marginTop: 8,
+              marginBottom: 24,
+            }}
+          >
             Frequently Asked Questions
           </h2>
           <div
             style={{
-              marginTop: 24,
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: 24,
+              gap: 20,
             }}
           >
-            <div style={{ padding: "20px 0" }}>
+            <div
+              style={{
+                padding: "20px 24px",
+                background: "#fff",
+                border: "1.5px solid #201e1d",
+              }}
+            >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                 How quickly do you reply?
               </h3>
@@ -450,7 +479,13 @@ export default function ContactContent() {
               </p>
             </div>
 
-            <div style={{ padding: "20px 0" }}>
+            <div
+              style={{
+                padding: "20px 24px",
+                background: "#fff",
+                border: "1.5px solid #201e1d",
+              }}
+            >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                 Can I request a custom daily tool?
               </h3>
@@ -459,7 +494,13 @@ export default function ContactContent() {
               </p>
             </div>
 
-            <div style={{ padding: "20px 0" }}>
+            <div
+              style={{
+                padding: "20px 24px",
+                background: "#fff",
+                border: "1.5px solid #201e1d",
+              }}
+            >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                 Do you charge for tool suggestions?
               </h3>
@@ -468,7 +509,13 @@ export default function ContactContent() {
               </p>
             </div>
 
-            <div style={{ padding: "20px 0" }}>
+            <div
+              style={{
+                padding: "20px 24px",
+                background: "#fff",
+                border: "1.5px solid #201e1d",
+              }}
+            >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                 How do you handle my privacy when I contact you?
               </h3>

@@ -43,12 +43,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const toolRoutes: MetadataRoute.Sitemap = tools.map((tool) => ({
-    url: `${baseUrl}/tools/${tool.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
+  const toolRoutes: MetadataRoute.Sitemap = tools
+    .filter((tool) => tool.live)
+    .map((tool) => ({
+      url: `${baseUrl}/tools/${tool.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
 
   return [...staticRoutes, ...toolRoutes];
 }

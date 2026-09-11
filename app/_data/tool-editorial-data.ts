@@ -128,6 +128,60 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
     ],
   },
 
+  "pdf-to-image": {
+    guideTitle: "How to Convert PDF Pages into Images",
+    steps: [
+      { num: "01", title: "Choose Your PDF", description: "Upload the document you want to turn into images." },
+      { num: "02", title: "Pick Pages & Format", description: "Export every page or select a range as PNG, JPG, or WebP." },
+      { num: "03", title: "Download Images", description: "Download individual pages or bundle the complete result as a ZIP." },
+    ],
+    howItWorks: {
+      title: "PDF Rendering That Stays Private",
+      description: [
+        "PDF.js renders each selected page to a high-resolution canvas in your browser, then encodes it in the format you choose.",
+        "Your document stays on your device throughout the conversion. Nothing is uploaded or stored by Daliy.Tools.",
+      ],
+    },
+    faqs: [
+      { question: "Which image formats are supported?", answer: "You can export pages as PNG, JPG, or WebP images." },
+      { question: "Can I convert only a few pages?", answer: "Yes. Enter individual pages or ranges such as 1-3, 5 to export only those pages." },
+      { question: "Can I download all pages together?", answer: "Yes. Use Download ZIP to bundle all rendered pages into one archive." },
+      { question: "Are my PDFs uploaded?", answer: "No. Rendering happens entirely in your browser and your file never leaves your device." },
+    ],
+    relatedTools: [
+      { slug: "image-to-pdf", name: "Image to PDF" },
+      { slug: "split-pdf", name: "Split PDF" },
+      { slug: "compress-pdf", name: "Compress PDF" },
+    ],
+  },
+
+  "number-pdf": {
+    guideTitle: "How to Add Numbers and Stamps to a PDF",
+    steps: [
+      { num: "01", title: "Upload a PDF", description: "Choose the document you want to mark up." },
+      { num: "02", title: "Customize the Stamp", description: "Choose a position, label, size, opacity, and optional custom text." },
+      { num: "03", title: "Create & Download", description: "Generate a new stamped PDF while leaving your original untouched." },
+    ],
+    howItWorks: {
+      title: "Simple Browser-Based PDF Stamping",
+      description: [
+        "pdf-lib writes text directly into each page of a new in-memory PDF, including page counts and custom labels.",
+        "The entire operation runs locally. Your documents are never sent to a server or third-party storage.",
+      ],
+    },
+    faqs: [
+      { question: "Can I add only custom text?", answer: "Yes. Turn off page numbers and enter custom text to create a standalone stamp." },
+      { question: "Can I choose where the text appears?", answer: "Yes. Place it in any top or bottom corner, or center it on the page." },
+      { question: "Will my original PDF change?", answer: "No. The tool creates a separate stamped copy and leaves your source file unchanged." },
+      { question: "Are files uploaded?", answer: "No. Numbering and stamping happen entirely inside your browser." },
+    ],
+    relatedTools: [
+      { slug: "pdf-to-image", name: "PDF to Image" },
+      { slug: "split-pdf", name: "Split PDF" },
+      { slug: "merge-pdf", name: "Merge PDF" },
+    ],
+  },
+
   "merge-pdf": {
     guideTitle: "How to Combine Multiple PDF Files",
     steps: [

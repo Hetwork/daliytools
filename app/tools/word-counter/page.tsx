@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import WordCounterContent from "./word-counter-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Word Counter Online — Free Character & Reading Time Counter | Daliy.Tools",
@@ -24,59 +25,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Word Counter - Daliy.Tools",
-      "url": "https://daliy.tools/tools/word-counter",
-      "description":
-        "Free tool to count words, characters, sentences, and estimated reading time.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How is reading time calculated?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Reading time is calculated using a standard rate of 225 words per minute for silent adult reading.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Is my text saved or logged anywhere?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "No. All text parsing runs locally in your browser memory and is never transmitted over the internet.",
-          },
-        },
-      ],
-    },
-  ],
+  ...createToolMetadata("word-counter"),
 };
 
 export default function WordCounterPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <WordCounterContent />
-    </>
-  );
+  return <WordCounterContent />;
 }

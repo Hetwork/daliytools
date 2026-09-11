@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import QrCodeGeneratorContent from "./qr-code-generator-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Free QR Code Generator — Create Custom QR Codes | Daliy.Tools",
@@ -24,59 +25,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "QR Code Generator - Daliy.Tools",
-      "url": "https://daliy.tools/tools/qr-code-generator",
-      "description":
-        "Free tool to generate high-resolution QR codes directly in the web browser.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Do these QR codes ever expire?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "No. Daliy.Tools generates static, direct QR codes that contain your exact data without intermediate redirects, so they work forever.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Can I use the generated QR codes for commercial projects?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Yes. All QR codes generated here are 100% free for both personal and commercial use without attribution required.",
-          },
-        },
-      ],
-    },
-  ],
+  ...createToolMetadata("qr-code-generator"),
 };
 
 export default function QrCodeGeneratorPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <QrCodeGeneratorContent />
-    </>
-  );
+  return <QrCodeGeneratorContent />;
 }

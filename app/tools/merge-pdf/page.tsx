@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MergePdfContent from "./merge-pdf-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Merge PDF Files Online — Free, Fast & Private | Daliy.Tools",
@@ -24,59 +25,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Merge PDF - Daliy.Tools",
-      "url": "https://daliy.tools/tools/merge-pdf",
-      "description":
-        "Free utility to combine multiple PDF files into a single document in the browser.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Does merging PDFs reduce document quality?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "No. Merging preserves the original vector text, high-resolution graphics, and fonts without compression artifacts.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Are my files uploaded to a remote server?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "No. Merging is performed 100% in your local browser using client-side WebAssembly.",
-          },
-        },
-      ],
-    },
-  ],
+  ...createToolMetadata("merge-pdf"),
 };
 
 export default function MergePdfPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <MergePdfContent />
-    </>
-  );
+  return <MergePdfContent />;
 }

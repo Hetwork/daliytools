@@ -22,7 +22,7 @@ const sections = [
   },
   {
     heading: "User-Provided Content",
-    body: `Some tools may allow you to upload or paste content for processing. We do not store, share, or claim ownership of any content you provide. All processing happens on our servers solely to deliver the requested tool output and is discarded immediately after.`,
+    body: `Some tools may allow you to upload or paste content for processing. Depending on the tool, processing may happen entirely in your browser, on our servers, or through a third-party API. The applicable tool page should describe its processing method and any relevant limitations. We do not claim ownership of your content. Do not submit confidential or sensitive information unless you understand how the selected tool processes it. Any content sent to a server or third-party provider may be subject to that provider's terms, privacy policy, and retention practices.`,
   },
   {
     heading: "Disclaimer of Warranties",
@@ -84,17 +84,18 @@ export default function TermsOfUsePage() {
           >
             daliy<span style={{ color: "#ec3013" }}>.</span>tools
           </Link>
-          <span
+          <h1
             style={{
               fontSize: "clamp(10px, 1.2vw, 12px)",
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               opacity: 0.4,
+              margin: 0,
             }}
           >
             Terms of Use
-          </span>
+          </h1>
         </div>
         <div style={{ height: 12, background: "#201e1d", marginTop: 28 }} />
       </section>
@@ -123,16 +124,16 @@ export default function TermsOfUsePage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
           {sections.map((s) => (
             <div key={s.heading}>
-              <p
+              <h2
                 style={{
                   fontSize: "clamp(18px, 2.5vw, 26px)",
                   fontWeight: 800,
                   letterSpacing: "-0.01em",
-                  marginBottom: 14,
+                  margin: "0 0 14px",
                 }}
               >
                 {s.heading}
-              </p>
+              </h2>
               <p
                 style={{
                   fontSize: "clamp(14px, 1.6vw, 17px)",

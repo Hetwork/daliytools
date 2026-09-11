@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import { tools } from "../_data/tools";
 
 export type StepItem = {
   num: string;
@@ -28,6 +29,87 @@ export type ToolEditorialProps = {
   relatedTools: RelatedTool[];
 };
 
+function ToolStructuredData({
+  toolName,
+  faqs,
+}: Pick<ToolEditorialProps, "toolName" | "faqs">) {
+  const tool = tools.find(
+    (item) => item.name.toLowerCase() === toolName.toLowerCase()
+  );
+  const slug = tool?.slug ?? toolName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const category = tool?.category ?? "Online Tools";
+  const url = `https://daliy.tools/tools/${slug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": `${toolName} - Daliy.Tools`,
+        "url": url,
+        "description": tool?.description ?? `Free online ${toolName.toLowerCase()} tool.`,
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+        },
+      },
+      ...(faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "mainEntity": faqs.map((faq) => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer,
+                },
+              })),
+            },
+          ]
+        : []),
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://daliy.tools",
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tools",
+            "item": "https://daliy.tools/tools",
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": category,
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": toolName,
+            "item": url,
+          },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default function ToolEditorial({
   toolName,
   guideTitle,
@@ -37,14 +119,16 @@ export default function ToolEditorial({
   relatedTools,
 }: ToolEditorialProps) {
   return (
-    <div
-      className="reveal"
-      style={{
-        marginTop: "clamp(56px, 8vw, 88px)",
-        borderTop: "2px solid #201e1d",
-        paddingTop: 40,
-      }}
-    >
+    <>
+      <ToolStructuredData toolName={toolName} faqs={faqs} />
+      <div
+        className="reveal"
+        style={{
+          marginTop: "clamp(56px, 8vw, 88px)",
+          borderTop: "2px solid #201e1d",
+          paddingTop: 40,
+        }}
+      >
       {/* ── STEP-BY-STEP GUIDE ── */}
       {steps && steps.length > 0 && (
         <div style={{ marginBottom: 48 }}>
@@ -229,6 +313,7 @@ export default function ToolEditorial({
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }

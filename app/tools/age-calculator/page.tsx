@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import AgeCalculatorContent from "./age-calculator-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Age Calculator — Free & Private : Daliy.Tools",
   description: "Find the exact age between two dates — years, months, and days. Runs entirely in your browser.",
+  ...createToolMetadata("age-calculator"),
 };
 
 export default function AgeCalculatorPage() {

@@ -14,7 +14,15 @@ const sections = [
   },
   {
     heading: "Information We Collect",
-    body: `We do not ask you to create an account, and we do not knowingly collect personally identifiable information. When you visit the site, standard server logs and third-party analytics may record your IP address, browser type, referring URL, and pages visited. This data is used only in aggregate to understand traffic patterns.`,
+    body: `You can use our tools without creating an account. Some tools process your files or text locally in your browser, while tools that use a server or third-party API may transmit the information needed to provide the requested result. If you contact us, we collect the name, email address, subject, and message that you submit. The contact form may also send your IP address, approximate location, browser user agent, browser language, timezone, organization, and submission time. We use this information to respond to you, investigate support requests, prevent abuse, and operate the site.`,
+  },
+  {
+    heading: "Third-Party Processors and Storage",
+    body: `The contact form uses ipapi.co to look up location information associated with the submitting IP address. Contact submissions are sent through our contact API to the Google Sheets or connected automation endpoint configured by the site operator, where they are stored for support and record-keeping. Google AdSense and its advertising partners may process device and browsing information through cookies and similar technologies to deliver and measure advertisements. We do not sell contact information. Tool data sent to a server or third-party API is handled by that service according to its applicable terms and privacy policy.`,
+  },
+  {
+    heading: "Retention and Deletion",
+    body: `We do not currently promise a fixed number of days for retaining contact messages and related metadata. They are retained only for as long as reasonably necessary to respond to requests, maintain support records, resolve disputes, and meet legal or security requirements. We review stored contact information periodically and delete it when it is no longer needed. You may request access to or deletion of your contact submission by emailing daliytools0312@gmail.com. Some information may need to be retained where required by law or needed to protect the site. Files processed locally in your browser remain under your control; server-based tools and third-party services may have their own retention rules.`,
   },
   {
     heading: "Cookies",
@@ -76,17 +84,18 @@ export default function PrivacyPolicyPage() {
           >
             daliy<span style={{ color: "#ec3013" }}>.</span>tools
           </Link>
-          <span
+          <h1
             style={{
               fontSize: "clamp(10px, 1.2vw, 12px)",
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               opacity: 0.4,
+              margin: 0,
             }}
           >
             Privacy Policy
-          </span>
+          </h1>
         </div>
         <div style={{ height: 12, background: "#201e1d", marginTop: 28 }} />
       </section>
@@ -115,16 +124,16 @@ export default function PrivacyPolicyPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
           {sections.map((s) => (
             <div key={s.heading}>
-              <p
+              <h2
                 style={{
                   fontSize: "clamp(18px, 2.5vw, 26px)",
                   fontWeight: 800,
                   letterSpacing: "-0.01em",
-                  marginBottom: 14,
+                  margin: "0 0 14px",
                 }}
               >
                 {s.heading}
-              </p>
+              </h2>
               <p
                 style={{
                   fontSize: "clamp(14px, 1.6vw, 17px)",

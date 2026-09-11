@@ -1,8 +1,17 @@
+export type ToolSeo = {
+  title: string;
+  description: string;
+  keywords: string[];
+  openGraphTitle?: string;
+  openGraphDescription?: string;
+};
+
 export type Tool = {
   slug: string;
   name: string;
   category: string;
   description: string;
+  seo?: ToolSeo;
   live?: boolean;
 };
 
@@ -17,7 +26,7 @@ export const categories = [
   "Social Media",
 ] as const;
 
-export const tools: Tool[] = [
+const baseTools: Tool[] = [
   {
     slug: "compress-pdf",
     name: "Compress PDF",
@@ -37,6 +46,20 @@ export const tools: Tool[] = [
     name: "Image to PDF",
     category: "PDF Tools",
     description: "Combine one or more images into a single PDF.",
+    live: true,
+  },
+  {
+    slug: "pdf-to-image",
+    name: "PDF to Image",
+    category: "PDF Tools",
+    description: "Export PDF pages as PNG, JPG, or WebP images.",
+    live: true,
+  },
+  {
+    slug: "number-pdf",
+    name: "Number & Stamp PDF",
+    category: "PDF Tools",
+    description: "Add page numbers, headers, footers, and custom stamps.",
     live: true,
   },
   {
@@ -79,6 +102,22 @@ export const tools: Tool[] = [
     name: "Compress Image",
     category: "Image Tools",
     description: "Reduce image file size while keeping it sharp.",
+    seo: {
+      title: "Compress Image Online — Free Image Optimizer & Reducer",
+      description:
+      "Reduce JPG, PNG, and WebP image file sizes online for free without losing quality. 100% private in-browser compression with zero uploads.",
+      keywords: [
+        "compress image",
+        "image compressor online",
+        "reduce photo size",
+        "shrink jpg",
+        "png compressor",
+        "daily tools compress image",
+      ],
+      openGraphTitle: "Compress Image Online — Free & Private | Daliy.Tools",
+      openGraphDescription:
+        "Compress and optimize images directly in your browser. Save up to 80% file size without losing sharpness.",
+    },
     live: true,
   },
   {
@@ -264,6 +303,227 @@ export const tools: Tool[] = [
     live: true,
   },
 ];
+
+const createSeo = (
+  title: string,
+  description: string,
+  keywords: string[],
+  openGraphDescription = description
+): ToolSeo => ({
+  title,
+  description,
+  keywords,
+  openGraphTitle: `${title} | Daliy.Tools`,
+  openGraphDescription,
+});
+
+const seoBySlug: Record<string, ToolSeo> = {
+  "compress-pdf": createSeo(
+    "Compress PDF Online — Free, Fast & 100% Private",
+    "Compress and shrink PDF file size online for free without losing quality. 100% private in-browser processing — no file uploads, no limits, no watermarks.",
+    ["compress pdf", "reduce pdf size online", "free pdf compressor", "shrink pdf file size", "private pdf compressor", "daily tools pdf"]
+  ),
+  "unlock-pdf": createSeo(
+    "Unlock PDF Online — Remove Password Protection Privately",
+    "Remove password protection from a PDF when you know the password. Create an unlocked PDF in your browser without uploading your file.",
+    ["unlock pdf", "remove pdf password", "decrypt pdf online", "password remover pdf", "private pdf unlocker"],
+    "Create an unlocked copy of a password-protected PDF in your browser. No uploads and no password bypassing."
+  ),
+  "image-to-pdf": createSeo(
+    "Image to PDF Converter Online — Free & 100% Private",
+    "Convert JPG, PNG, and WebP images to PDF online for free. Reorder pages, adjust margins, and download your clean PDF without server uploads.",
+    ["image to pdf", "jpg to pdf", "png to pdf", "convert photos to pdf", "free image to pdf converter", "combine pictures into pdf"],
+    "Combine photos and images into a single PDF document in your browser. Fast, free, and completely private."
+  ),
+  "pdf-to-image": createSeo(
+    "PDF to Image Converter Online — Free & Private",
+    "Convert PDF pages to PNG, JPG, or WebP images in your browser. Select pages, download individual images, or export everything as a ZIP.",
+    ["pdf to image", "pdf to jpg", "pdf to png", "convert pdf pages", "pdf page image converter"],
+    "Convert PDF pages to images locally in your browser."
+  ),
+  "number-pdf": createSeo(
+    "Number & Stamp PDF Online — Free & Private",
+    "Add page numbers, headers, footers, and custom text stamps to PDF files in your browser. No uploads, accounts, or watermarks.",
+    ["number pdf", "add page numbers to pdf", "stamp pdf", "pdf header footer", "pdf page numberer"],
+    "Add page numbers and custom stamps to PDF files locally in your browser."
+  ),
+  "merge-pdf": createSeo(
+    "Merge PDF Files Online — Free, Fast & Private",
+    "Combine multiple PDF documents into one single file online for free. Arrange page order with zero file uploads and in-browser privacy.",
+    ["merge pdf", "combine pdf files", "join pdfs online", "free pdf merger", "merge multiple pdf documents", "daily tools merge pdf"],
+    "Join multiple PDF files into one clean document directly in your browser. Fast, free, and private."
+  ),
+  "split-pdf": createSeo(
+    "Split PDF Online — Free, Fast & Private",
+    "Extract pages, separate single pages, or split PDF documents into separate files online for free. Private in-browser tool with zero server uploads.",
+    ["split pdf", "extract pdf pages", "separate pdf pages online", "free pdf splitter", "cut pdf pages", "daily tools split pdf"],
+    "Separate and extract pages from any PDF document safely in your browser."
+  ),
+  "resize-image": createSeo(
+    "Resize Image Online — Free Image Resizer & Scaler",
+    "Resize images to exact pixel dimensions, aspect ratios, or percentages for free. Fast browser-based image resizer with no file uploads.",
+    ["resize image", "image resizer online", "scale photo size", "change image dimensions", "free image resizer", "bulk resize images"],
+    "Resize JPG, PNG, and WebP images to exact pixels or aspect ratios without losing clarity."
+  ),
+  "remove-background": createSeo(
+    "Remove Background — Free & Private",
+    "Remove image backgrounds instantly using AI. Processing runs in your browser with no image uploads or sign-up required.",
+    ["remove background", "background remover", "remove image background", "transparent background maker", "free background remover"]
+  ),
+  "convert-image-format": createSeo(
+    "Convert Image Format — Free & Private",
+    "Convert images between JPEG, PNG, WebP, and AVIF formats directly in your browser without uploading files.",
+    ["convert image format", "jpg to png", "png to jpg", "webp converter", "avif converter", "image format converter"]
+  ),
+  "compress-image": createSeo(
+    "Compress Image Online — Free Image Optimizer & Reducer",
+    "Reduce JPG, PNG, and WebP image file sizes online for free without losing quality. 100% private in-browser compression with zero uploads.",
+    ["compress image", "image compressor online", "reduce photo size", "shrink jpg", "png compressor", "daily tools compress image"],
+    "Compress and optimize images directly in your browser. Save up to 80% file size without losing sharpness."
+  ),
+  "crop-image": createSeo(
+    "Crop Image — Free & Private",
+    "Trim your photo to a custom area or preset aspect ratio with an easy drag-to-crop image editor in your browser.",
+    ["crop image", "crop photo online", "image cropper", "photo crop tool", "free image cropper"]
+  ),
+  "color-picker": createSeo(
+    "Color Picker — Free & Private",
+    "Extract colors from any image and get HEX, RGB, and HSL values instantly. Images stay in your browser.",
+    ["color picker", "image color picker", "pick color from image", "hex color picker", "rgb color picker"]
+  ),
+  "watermark-remover": createSeo(
+    "Watermark Remover — Free & Private",
+    "Select an area of your image and blur, fill, or clone it out with a browser-based watermark editing tool.",
+    ["watermark remover", "remove watermark from image", "image watermark eraser", "free watermark remover"]
+  ),
+  "video-to-frames": createSeo(
+    "Video to Frames — Free & Private",
+    "Extract individual frames from a video at any interval and download them as images or a ZIP archive.",
+    ["video to frames", "extract video frames", "video frame extractor", "save video frames", "video screenshots"]
+  ),
+  "audio-cutter": createSeo(
+    "Audio Cutter — Free & Private",
+    "Trim audio files with start and end selection, live playback, and WAV export directly in your browser.",
+    ["audio cutter", "cut audio online", "trim audio", "audio trimmer", "free audio cutter"]
+  ),
+  "video-to-audio": createSeo(
+    "Video to Audio Converter — Extract MP3 & WAV",
+    "Extract audio from video files online for free. Convert MP4, WebM, and MOV to MP3 or lossless WAV in your browser.",
+    ["video to audio", "extract audio from video", "video to mp3", "convert video to audio", "mp4 to mp3 online", "video to wav converter"],
+    "Extract audio from your videos securely in your browser. Convert common video files to MP3 and WAV."
+  ),
+  "screen-recorder": createSeo(
+    "Screen Recorder — Free & Private",
+    "Record your screen, window, or browser tab with optional microphone audio and download the recording without uploads.",
+    ["screen recorder", "screen recording online", "record browser tab", "free screen recorder", "screen capture tool"]
+  ),
+  "word-counter": createSeo(
+    "Word Counter Online — Free Character & Reading Time Counter",
+    "Count words, characters, sentences, paragraphs, and reading time in real time with private browser-based text analysis.",
+    ["word counter", "character counter", "count words online", "free word counter tool", "reading time calculator", "daily tools word counter"],
+    "Instant word, character, sentence, and reading-time counter."
+  ),
+  "case-converter": createSeo(
+    "Case Converter — Free & Private",
+    "Convert text between UPPER, lower, Title Case, camelCase, snake_case, and more directly in your browser.",
+    ["case converter", "uppercase lowercase converter", "title case converter", "camel case converter", "text case changer"]
+  ),
+  "compare-files": createSeo(
+    "Compare Two Files — Free & Private",
+    "Spot differences between two documents with line-by-line diff highlighting directly in your browser.",
+    ["compare files", "file diff tool", "compare text files", "document comparison", "online diff checker"]
+  ),
+  "qr-code-generator": createSeo(
+    "Free QR Code Generator — Create Custom QR Codes",
+    "Generate custom QR codes for URLs, Wi-Fi networks, text, contacts, and emails for free with instant download.",
+    ["qr code generator", "create qr code online", "free qr maker", "wifi qr code generator", "custom qr code generator", "daily tools qr code"],
+    "Generate custom QR codes instantly for links, Wi-Fi, and text. No sign-up or expired links."
+  ),
+  "password-generator": createSeo(
+    "Password Generator — Free & Private",
+    "Create strong, random passwords in one click. Password generation runs in your browser and nothing is uploaded.",
+    ["password generator", "strong password generator", "random password maker", "secure password generator", "free password tool"]
+  ),
+  "icon-kitchen": createSeo(
+    "Icon Kitchen — App Icon & Favicon Generator",
+    "Generate Android adaptive icons, iOS AppIcon sets, and web favicons in all required sizes and formats.",
+    ["app icon generator", "favicon generator", "android icon generator", "ios app icon generator", "web icon maker"]
+  ),
+  "lorem-ipsum-generator": createSeo(
+    "Lorem Ipsum Generator — Free & Private",
+    "Generate placeholder text for mockups, prototypes, and design layouts with a simple browser-based generator.",
+    ["lorem ipsum generator", "placeholder text generator", "dummy text generator", "design filler text"]
+  ),
+  "percentage-calculator": createSeo(
+    "Percentage Calculator Online — Free Percentage Increase & Discount Math",
+    "Calculate percentage increase, discount savings, percentage difference, and fraction ratios with instant results.",
+    ["percentage calculator", "calculate percentage online", "percentage increase calculator", "discount calculator", "percent difference calculator", "daily tools percentage calculator"],
+    "Calculate percentage discounts, increases, and ratios instantly with zero mental math."
+  ),
+  "unit-converter": createSeo(
+    "Unit Converter — Free & Private",
+    "Convert length, weight, volume, temperature, and more in seconds with a fast everyday unit conversion tool.",
+    ["unit converter", "measurement converter", "length converter", "weight converter", "temperature converter"]
+  ),
+  "age-calculator": createSeo(
+    "Age Calculator — Free & Private",
+    "Find the exact age between two dates in years, months, and days with a simple date calculator.",
+    ["age calculator", "calculate age online", "date of birth calculator", "exact age calculator", "birthday calculator"]
+  ),
+  "json-formatter": createSeo(
+    "JSON Formatter & Validator Online — Free & Private",
+    "Beautify, format, validate, and minify JSON data online for free. Fix syntax errors with private in-browser parsing.",
+    ["json formatter", "json validator", "beautify json online", "json minifier", "format json code", "daily tools json formatter"],
+    "Clean, format, and validate messy JSON data with zero data transmission."
+  ),
+  "html-viewer": createSeo(
+    "HTML Viewer — Free & Live Preview",
+    "Paste HTML and see it rendered live in a preview pane. No uploads and browser-based previewing.",
+    ["html viewer", "html preview", "render html online", "html tester", "live html editor"]
+  ),
+  "markdown-viewer": createSeo(
+    "Markdown Viewer — Free & Live Preview",
+    "Edit and preview Markdown side by side in real time with support for GFM tables, code blocks, and more.",
+    ["markdown viewer", "markdown preview", "markdown editor online", "github markdown preview", "gfm viewer"]
+  ),
+  "jwt-decoder": createSeo(
+    "JWT Decoder — Free & Private",
+    "Decode JWT headers and payloads instantly with readable claim timestamps. No server requests are required.",
+    ["jwt decoder", "decode jwt online", "jwt token viewer", "jwt debugger", "json web token decoder"]
+  ),
+  "cron-generator": createSeo(
+    "Cron Generator — Free & Private",
+    "Build cron expressions with a visual editor, human-friendly explanations, and previews of upcoming run times.",
+    ["cron generator", "cron expression builder", "cron schedule generator", "crontab generator", "cron syntax helper"]
+  ),
+  "base64-converter": createSeo(
+    "Base64 / URL / HTML Converter — Free & Private",
+    "Encode and decode Base64, URL-encoded strings, and HTML entities entirely in your browser.",
+    ["base64 converter", "base64 encoder decoder", "url encoder decoder", "html entity encoder", "developer text converter"]
+  ),
+  "contrast-checker": createSeo(
+    "WCAG Contrast Checker — Free & Private",
+    "Check text and background color pairs against WCAG AA and AAA requirements with live previews.",
+    ["wcag contrast checker", "color contrast checker", "accessibility checker", "wcag aa checker", "wcag aaa checker"]
+  ),
+  "instagram-post": createSeo(
+    "Instagram Post Downloader",
+    "Download public Instagram posts and carousels at full quality by pasting a supported post URL. Server processing is required.",
+    ["instagram post downloader", "download instagram carousel", "instagram media downloader", "save instagram post"],
+    "Download public Instagram posts and carousels from a supported URL."
+  ),
+  "youtube-downloader": createSeo(
+    "YouTube Video Downloader",
+    "Download public YouTube videos as MP4 or audio-only M4A when permitted. Server processing is required and no sign-up is needed.",
+    ["youtube downloader", "download youtube video", "youtube to mp4", "youtube audio downloader", "youtube m4a downloader"],
+    "Download public YouTube videos in supported formats when permitted."
+  ),
+};
+
+export const tools: Tool[] = baseTools.map((tool) => ({
+  ...tool,
+  seo: seoBySlug[tool.slug],
+}));
 
 export const featuredSlugs = [
   "compress-pdf",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonFormatterContent from "./json-formatter-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "JSON Formatter & Validator Online — Free & Private | Daliy.Tools",
@@ -24,59 +25,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "JSON Formatter - Daliy.Tools",
-      "url": "https://daliy.tools/tools/json-formatter",
-      "description":
-        "Free developer tool to format, validate, and minify JSON data.",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Does this tool detect JSON syntax errors?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Yes. If your JSON has syntax issues (like missing quotes or trailing commas), it highlights the exact line and error description.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Is my confidential JSON data private?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Completely private. Everything runs locally in your browser so API tokens and user records remain safe.",
-          },
-        },
-      ],
-    },
-  ],
+  ...createToolMetadata("json-formatter"),
 };
 
 export default function JsonFormatterPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <JsonFormatterContent />
-    </>
-  );
+  return <JsonFormatterContent />;
 }

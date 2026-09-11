@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ImageToPdfContent from "./image-to-pdf-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Image to PDF Converter Online — Free & 100% Private | Daliy.Tools",
@@ -25,68 +26,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Image to PDF Converter - Daliy.Tools",
-      "url": "https://daliy.tools/tools/image-to-pdf",
-      "description":
-        "Convert JPG, PNG, and WebP images into a single PDF document securely in the browser.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What image formats can I convert to PDF?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "You can convert JPG, JPEG, PNG, WebP, GIF, and BMP files into a single PDF file.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Can I reorder pages before downloading the PDF?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Yes. Drag and drop your image thumbnails to arrange them in the exact order you want them to appear in the final PDF.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Are my images uploaded to any cloud server?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "No. Everything is converted locally in your browser. Your images never leave your computer or phone.",
-          },
-        },
-      ],
-    },
-  ],
+  ...createToolMetadata("image-to-pdf"),
 };
 
 export default function ImageToPdfPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ImageToPdfContent />
-    </>
-  );
+  return <ImageToPdfContent />;
 }

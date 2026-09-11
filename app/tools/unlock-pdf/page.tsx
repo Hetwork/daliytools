@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import UnlockPdfContent from "./unlock-pdf-content";
+import { createToolMetadata } from "../../_lib/tool-metadata";
 
 export const metadata: Metadata = {
   title: "Unlock PDF Online — Remove Password Protection Privately | Daliy.Tools",
@@ -21,28 +22,9 @@ export const metadata: Metadata = {
     siteName: "Daliy.Tools",
     type: "website",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "Unlock PDF - Daliy.Tools",
-  url: "https://daliy.tools/tools/unlock-pdf",
-  description:
-    "A browser-based PDF password removal tool for documents the user is authorized to access.",
-  applicationCategory: "UtilityApplication",
-  operatingSystem: "All",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  ...createToolMetadata("unlock-pdf"),
 };
 
 export default function UnlockPdfPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <UnlockPdfContent />
-    </>
-  );
+  return <UnlockPdfContent />;
 }

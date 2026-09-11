@@ -236,7 +236,7 @@ export default function AboutContent() {
               We thought there had to be a better way.
               <br />
               <span style={{ color: "#ec3013" }}>
-                So we started building one.
+                So we built one.
               </span>
             </p>
             <div
@@ -249,9 +249,9 @@ export default function AboutContent() {
             >
               {[
                 "One simple website.",
-                "Hundreds of genuinely useful tools.",
+                "Free tools for everyday tasks.",
+                "PDFs, images, text, media, and developer utilities.",
                 "Fast.",
-                "Free whenever possible.",
                 "No unnecessary complexity.",
               ].map((line, i) => (
                 <p
