@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
-import Script from "next/script";
+import AdsenseLoader from "./_components/adsense-loader";
+import CookieConsent from "./_components/cookie-consent";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -75,13 +76,11 @@ export default function RootLayout({
       className={`${archivo.variable} h-full`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col">{children}</body>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5099034972283695"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
+      <body className="min-h-full flex flex-col">
+        {children}
+        <CookieConsent />
+        <AdsenseLoader />
+      </body>
     </html>
   );
 }

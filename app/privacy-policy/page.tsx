@@ -26,7 +26,7 @@ const sections = [
   },
   {
     heading: "Cookies",
-    body: `We use cookies solely through third-party services described below. You can control cookies through your browser settings. Disabling cookies may affect how ads are displayed but will not prevent you from using our tools.`,
+    body: `We use a local browser preference named daliy-cookie-consent to remember whether you accepted or declined this notice. We also use cookies and similar technologies through third-party services described below, including advertising services. You can control cookies through your browser settings. Disabling cookies may affect how ads are displayed but will not prevent you from using our tools.`,
   },
   {
     heading: "Google AdSense & Advertising",
