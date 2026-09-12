@@ -79,17 +79,7 @@ export default function SiteFooter() {
               <Link
                 key={link.href}
                 href={link.href}
-                style={{
-                  fontSize: 12,
-                  opacity: 0.3,
-                  fontWeight: 500,
-                  letterSpacing: "0.06em",
-                  textDecoration: "none",
-                  color: "#f3f2f2",
-                  transition: "opacity 0.2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.3")}
+                className="site-footer-link"
               >
                 {link.label}
               </Link>
