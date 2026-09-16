@@ -1,5 +1,6 @@
-﻿import { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
 import { tools } from "./_data/tools";
+import { blogs } from "./_data/blogs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://daliy.tools";
@@ -13,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/tools`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blogs`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.9,
@@ -52,5 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }));
 
-  return [...staticRoutes, ...toolRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = blogs.map((post) => ({
+    url: `${baseUrl}/blogs/${post.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...blogRoutes];
 }
