@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { tools } from "../_data/tools";
 
 export type StepItem = {
@@ -90,6 +90,7 @@ function ToolStructuredData({
             "@type": "ListItem",
             "position": 3,
             "name": category,
+            "item": `https://daliy.tools/tools?category=${encodeURIComponent(category)}`,
           },
           {
             "@type": "ListItem",
