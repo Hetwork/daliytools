@@ -106,7 +106,7 @@ export default function PercentageCalculatorContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -119,7 +119,7 @@ export default function PercentageCalculatorContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Percentage Calculator</h1>
@@ -142,9 +142,9 @@ export default function PercentageCalculatorContent() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "14px 20px",
-                  border: `2px solid ${mode === key ? "#201e1d" : "#c8c6c5"}`,
-                  background: mode === key ? "#201e1d" : "transparent",
-                  color: mode === key ? "#f3f2f2" : "#201e1d",
+                  border: `2px solid ${mode === key ? "var(--border)" : "#c8c6c5"}`,
+                  background: mode === key ? "var(--solid)" : "transparent",
+                  color: mode === key ? "var(--on-solid)" : "var(--ink)",
                   fontFamily: "var(--font-archivo)",
                   fontWeight: 700,
                   fontSize: "clamp(13px, 1.5vw, 15px)",
@@ -162,7 +162,7 @@ export default function PercentageCalculatorContent() {
           </div>
 
           {/* Inputs */}
-          <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", display: "flex", flexDirection: "column", gap: 20 }}>
+          <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", display: "flex", flexDirection: "column", gap: 20 }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div>
                 <label style={{ display: "block", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45, marginBottom: 8 }}>
@@ -175,9 +175,9 @@ export default function PercentageCalculatorContent() {
                   placeholder="0"
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
-                    color: "#201e1d",
+                    color: "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontSize: 18,
                     fontWeight: 700,
@@ -197,9 +197,9 @@ export default function PercentageCalculatorContent() {
                   placeholder="0"
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
-                    color: "#201e1d",
+                    color: "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontSize: 18,
                     fontWeight: 700,
@@ -212,10 +212,10 @@ export default function PercentageCalculatorContent() {
 
             {/* Result */}
             {result && a && b && (
-              <div style={{ borderTop: "2px solid #201e1d", paddingTop: 20, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+              <div style={{ borderTop: "2px solid var(--border)", paddingTop: 20, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                 <div>
                   <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, marginBottom: 6 }}>Result</p>
-                  <p style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#ec3013" }}>
+                  <p style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, letterSpacing: "-0.02em", color: "var(--red)" }}>
                     {result.result}
                   </p>
                   <p style={{ fontSize: 14, opacity: 0.55, marginTop: 4 }}>{result.explanation}</p>

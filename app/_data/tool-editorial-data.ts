@@ -351,20 +351,20 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
       {
         num: "03",
         title: "Download Compressed File",
-        description: "Save your lightweight photo with up to 80% reduced file weight.",
+        description: "Download a JPEG copy, compare its actual size, and inspect fine details before replacing the original.",
       },
     ],
     howItWorks: {
-      title: "Smart Lossy and Lossless Compression",
+      title: "JPEG Compression in Your Browser",
       description: [
-        "The compressor strips unnecessary EXIF metadata, color profiles, and redundant color data while optimizing discrete cosine transform (DCT) matrices for JPEG and WebP images.",
+        "The compressor draws the selected image onto a canvas at its original pixel dimensions, fills transparent areas with white, and exports a JPEG using the quality slider. This is lossy encoding; PNG and WebP inputs are also converted to JPEG.",
         "Your files remain completely private on your machine without server roundtrips.",
       ],
     },
     faqs: [
       {
         question: "How much file size can I save?",
-        answer: "Most high-resolution photos can be compressed by 50% to 85% with virtually unnoticeable loss in visual quality.",
+        answer: "Savings depend on the original format, detail, and quality setting. A small or already optimized image can become larger. Compare the output size and inspect text and edges before using it.",
       },
       {
         question: "Does image compression remove EXIF location data?",
@@ -376,7 +376,7 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
       },
       {
         question: "Are PNG transparent backgrounds preserved?",
-        answer: "Yes, transparent PNG and WebP graphics retain their transparency after compression.",
+        answer: "No. This tool exports JPEG, which cannot preserve transparency. Transparent areas become white. Use Convert Image Format or Resize Image with PNG or supported WebP output for transparent graphics.",
       },
     ],
     relatedTools: [
@@ -409,13 +409,13 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
       title: "Instant Multi-Format Transcoding",
       description: [
         "Using native browser Canvas encoding APIs, the tool decodes incoming raster image data and re-encodes it into the target container format with customized compression parameters.",
-        "Because it runs directly on your CPU/GPU in browser memory, conversions take milliseconds.",
+        "Conversion happens in browser memory. Speed and supported output encoders depend on your browser and image dimensions. Animated inputs are exported as a still image, not an animation.",
       ],
     },
     faqs: [
       {
         question: "Why should I convert JPG to WebP?",
-        answer: "WebP files are typically 25% to 35% smaller than comparable JPEGs while maintaining equal image clarity, making websites load significantly faster.",
+        answer: "WebP can reduce file size for some images. Compare the actual output size and clarity, and confirm your destination accepts WebP; savings are not guaranteed.",
       },
       {
         question: "Can I convert transparent PNGs to JPG?",
@@ -427,7 +427,7 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
       },
       {
         question: "Can I convert large photos?",
-        answer: "Yes, files up to 50MB can be transcoded directly on your device.",
+        answer: "There is no fixed 50 MB guarantee for this converter. Large pixel dimensions can exceed available browser memory even when the source file is small. Try a smaller image if conversion fails.",
       },
     ],
     relatedTools: [
@@ -814,14 +814,14 @@ export const toolEditorialData: Record<string, ToolEditorialItem> = {
     howItWorks: {
       title: "Syntax Validation and Tree Parsing",
       description: [
-        "Our formatter uses native JSON parsing algorithms to validate syntax tokens, pinpoint line numbers for missing commas or unmatched brackets, and output cleanly indented structures.",
+        "The formatter uses JSON.parse to check syntax and JSON.stringify to output two-space indentation or compact JSON. It reports a general syntax error, not an exact line number. Duplicate keys collapse and integers beyond JavaScript safe precision can change.",
         "Your payloads and API keys are never transmitted to any external server.",
       ],
     },
     faqs: [
       {
         question: "Does this tool detect JSON syntax errors?",
-        answer: "Yes. If your JSON has syntax issues (like missing quotes or trailing commas), it highlights the exact line and error description.",
+        answer: "Yes. Invalid JSON produces a general error message. It does not highlight an exact line or check your API schema. Look for missing quotes, trailing commas, and unmatched brackets.",
       },
       {
         question: "Can I minify JSON for web APIs?",

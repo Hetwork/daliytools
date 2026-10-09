@@ -138,7 +138,7 @@ export default function YouTubeDownloaderContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -151,7 +151,7 @@ export default function YouTubeDownloaderContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>YouTube Video Downloader</h1>
           <p style={{ marginTop: 18, fontSize: "clamp(15px, 1.8vw, 19px)", lineHeight: 1.7, opacity: 0.7, maxWidth: 560 }}>
@@ -165,12 +165,12 @@ export default function YouTubeDownloaderContent() {
               className="fade-in-up"
               style={{
                 marginBottom: 16,
-                border: "2px solid #ec3013",
-                background: "rgba(236,48,19,0.06)",
+                border: "2px solid var(--red)",
+                background: "rgba(var(--accent-rgb), 0.06)",
                 padding: "12px 14px",
               }}
             >
-              <p style={{ fontSize: 13, color: "#201e1d", fontWeight: 600, lineHeight: 1.55 }}>{setupWarning}</p>
+              <p style={{ fontSize: 13, color: "var(--ink)", fontWeight: 600, lineHeight: 1.55 }}>{setupWarning}</p>
             </div>
           )}
 
@@ -184,9 +184,9 @@ export default function YouTubeDownloaderContent() {
                 style={{
                   flex: 1,
                   minWidth: 260,
-                  border: `2px solid ${error ? "#ec3013" : "#201e1d"}`,
+                  border: `2px solid ${error ? "var(--red)" : "var(--border)"}`,
                   background: "transparent",
-                  color: "#201e1d",
+                  color: "var(--ink)",
                   fontFamily: "var(--font-archivo)",
                   fontSize: 15,
                   fontWeight: 500,
@@ -198,7 +198,7 @@ export default function YouTubeDownloaderContent() {
                 {loading ? "Fetching…" : "Fetch Video"}
               </button>
             </div>
-            {error && <p style={{ marginTop: 8, fontSize: 13, color: "#ec3013", fontWeight: 600 }}>{error}</p>}
+            {error && <p style={{ marginTop: 8, fontSize: 13, color: "var(--red)", fontWeight: 600 }}>{error}</p>}
           </form>
 
           {loading && (
@@ -209,14 +209,14 @@ export default function YouTubeDownloaderContent() {
           )}
 
           {info && (
-            <div className="fade-in-up" style={{ marginTop: 32, border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 36px)" }}>
+            <div className="fade-in-up" style={{ marginTop: 32, border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 36px)" }}>
               {/* Video preview */}
               <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginBottom: 28 }}>
                 {info.thumbnail && (
                   <img
                     src={info.thumbnail}
                     alt="Video thumbnail"
-                    style={{ width: 160, height: 90, objectFit: "cover", border: "2px solid #201e1d", flexShrink: 0 }}
+                    style={{ width: 160, height: 90, objectFit: "cover", border: "2px solid var(--border)", flexShrink: 0 }}
                   />
                 )}
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -241,9 +241,9 @@ export default function YouTubeDownloaderContent() {
                         alignItems: "center",
                         gap: 12,
                         padding: "12px 16px",
-                        border: `2px solid ${selectedId === f.id ? "#201e1d" : "#c8c6c4"}`,
-                        background: selectedId === f.id ? "#201e1d" : "transparent",
-                        color: selectedId === f.id ? "#f3f2f2" : "#201e1d",
+                        border: `2px solid ${selectedId === f.id ? "var(--border)" : "#c8c6c4"}`,
+                        background: selectedId === f.id ? "var(--solid)" : "transparent",
+                        color: selectedId === f.id ? "var(--on-solid)" : "var(--ink)",
                         cursor: "pointer",
                         fontFamily: "var(--font-archivo)",
                       }}
@@ -277,9 +277,9 @@ export default function YouTubeDownloaderContent() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "16px 22px",
-                  border: "2px solid #201e1d",
-                  background: "#201e1d",
-                  color: "#f3f2f2",
+                  border: "2px solid var(--border)",
+                  background: "var(--solid)",
+                  color: "var(--on-solid)",
                   fontFamily: "var(--font-archivo)",
                   fontWeight: 700,
                   fontSize: 15,
@@ -307,7 +307,7 @@ export default function YouTubeDownloaderContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             The server fetches available video formats directly from YouTube and streams the selected quality to your device. Only public videos can be downloaded. Only use this tool for content you own or have permission to download.

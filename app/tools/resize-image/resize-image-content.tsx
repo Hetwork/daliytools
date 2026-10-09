@@ -216,7 +216,7 @@ export default function ResizeImageContent() {
   const downloadName = file ? file.name.replace(/\.[^.]+$/, "") + `_${outW}x${outH}.${ext}` : `resized.${ext}`;
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
       <section style={{ maxWidth: 900, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
@@ -226,7 +226,7 @@ export default function ResizeImageContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Resize Image</h1>
@@ -247,9 +247,9 @@ export default function ResizeImageContent() {
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
               onDragLeave={(e) => { e.preventDefault(); setIsDragging(false); }}
               className="fade-in-up"
-              style={{ border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`, background: isDragging ? "rgba(236,48,19,0.05)" : "transparent", padding: "clamp(48px, 8vw, 80px) 24px", textAlign: "center", transition: "border-color 0.25s, background 0.25s", cursor: "pointer" }}
+              style={{ border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`, background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent", padding: "clamp(48px, 8vw, 80px) 24px", textAlign: "center", transition: "border-color 0.25s, background 0.25s", cursor: "pointer" }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, letterSpacing: "0.06em" }}>IMG</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, letterSpacing: "0.06em" }}>IMG</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
               <p style={{ fontSize: 14, opacity: 0.55 }}>or click to browse — JPG, PNG, WebP · up to 30 MB</p>
               <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -260,9 +260,9 @@ export default function ResizeImageContent() {
           {file && originalUrl && status !== "done" && (
             <div className="fade-in-up">
               {/* Preview */}
-              <div style={{ position: "relative", marginBottom: 28, textAlign: "center", background: "#e8e6e6", border: "2px solid #201e1d" }}>
+              <div style={{ position: "relative", marginBottom: 28, textAlign: "center", background: "#e8e6e6", border: "2px solid var(--border)" }}>
                 <img src={originalUrl} alt="Original" style={{ maxWidth: "100%", maxHeight: 300, objectFit: "contain", display: "block", margin: "0 auto" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 8, background: "#201e1d", color: "#f3f2f2", fontSize: 10, fontWeight: 800, padding: "3px 8px", letterSpacing: "0.08em" }}>
+                <div style={{ position: "absolute", bottom: 8, left: 8, background: "var(--solid)", color: "var(--on-solid)", fontSize: 10, fontWeight: 800, padding: "3px 8px", letterSpacing: "0.08em" }}>
                   {origW} × {origH} · {formatBytes(file.size)}
                 </div>
               </div>
@@ -273,7 +273,7 @@ export default function ResizeImageContent() {
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   {(["custom", "percentage", "preset"] as Mode[]).map((m) => (
                     <button key={m} type="button" onClick={() => setMode(m)}
-                      style={{ padding: "9px 18px", border: `2px solid ${mode === m ? "#ec3013" : "#201e1d"}`, background: mode === m ? "#ec3013" : "transparent", color: mode === m ? "#f3f2f2" : "#201e1d", fontWeight: 700, fontSize: 13, textTransform: "capitalize", letterSpacing: "0.04em", fontFamily: "var(--font-archivo)", transition: "background 0.2s, border-color 0.2s, color 0.2s", cursor: "pointer" }}>
+                      style={{ padding: "9px 18px", border: `2px solid ${mode === m ? "var(--red)" : "var(--border)"}`, background: mode === m ? "var(--red)" : "transparent", color: mode === m ? "var(--on-solid)" : "var(--ink)", fontWeight: 700, fontSize: 13, textTransform: "capitalize", letterSpacing: "0.04em", fontFamily: "var(--font-archivo)", transition: "background 0.2s, border-color 0.2s, color 0.2s", cursor: "pointer" }}>
                       {m}
                     </button>
                   ))}
@@ -287,17 +287,17 @@ export default function ResizeImageContent() {
                     <div>
                       <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.5, display: "block", marginBottom: 6 }}>Width (px)</label>
                       <input type="number" min={1} max={8000} value={width} onChange={(e) => onWidthChange(e.target.value)}
-                        style={{ width: 120, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "var(--font-archivo)", fontSize: 15, fontWeight: 600, padding: "10px 12px", outline: "none" }} />
+                        style={{ width: 120, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontFamily: "var(--font-archivo)", fontSize: 15, fontWeight: 600, padding: "10px 12px", outline: "none" }} />
                     </div>
                     <span style={{ fontSize: 20, opacity: 0.4, marginTop: 20 }}>×</span>
                     <div>
                       <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.5, display: "block", marginBottom: 6 }}>Height (px)</label>
                       <input type="number" min={1} max={8000} value={height} onChange={(e) => onHeightChange(e.target.value)}
-                        style={{ width: 120, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "var(--font-archivo)", fontSize: 15, fontWeight: 600, padding: "10px 12px", outline: "none" }} />
+                        style={{ width: 120, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontFamily: "var(--font-archivo)", fontSize: 15, fontWeight: 600, padding: "10px 12px", outline: "none" }} />
                     </div>
                     <div style={{ marginTop: 22 }}>
                       <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", userSelect: "none" }}>
-                        <input type="checkbox" checked={lockAspect} onChange={(e) => setLockAspect(e.target.checked)} style={{ width: 16, height: 16, accentColor: "#ec3013" }} />
+                        <input type="checkbox" checked={lockAspect} onChange={(e) => setLockAspect(e.target.checked)} style={{ width: 16, height: 16, accentColor: "var(--red)" }} />
                         <span style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Lock aspect ratio</span>
                       </label>
                     </div>
@@ -311,7 +311,7 @@ export default function ResizeImageContent() {
                   <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.5, display: "block", marginBottom: 6 }}>Scale (%)</label>
                   <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                     <input type="number" min={1} max={400} value={percentage} onChange={(e) => setPercentage(e.target.value)}
-                      style={{ width: 100, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "var(--font-archivo)", fontSize: 15, fontWeight: 600, padding: "10px 12px", outline: "none" }} />
+                      style={{ width: 100, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontFamily: "var(--font-archivo)", fontSize: 15, fontWeight: 600, padding: "10px 12px", outline: "none" }} />
                     {origW > 0 && (
                       <span style={{ fontSize: 13, opacity: 0.5 }}>
                         → {Math.round(origW * parseFloat(percentage || "0") / 100)} × {Math.round(origH * parseFloat(percentage || "0") / 100)} px
@@ -321,7 +321,7 @@ export default function ResizeImageContent() {
                   <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
                     {[25, 50, 75, 150, 200].map((p) => (
                       <button key={p} type="button" onClick={() => setPercentage(String(p))}
-                        style={{ padding: "6px 12px", border: `1px solid ${percentage === String(p) ? "#ec3013" : "#201e1d"}`, background: percentage === String(p) ? "#ec3013" : "transparent", color: percentage === String(p) ? "#f3f2f2" : "#201e1d", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-archivo)", cursor: "pointer" }}>
+                        style={{ padding: "6px 12px", border: `1px solid ${percentage === String(p) ? "var(--red)" : "var(--border)"}`, background: percentage === String(p) ? "var(--red)" : "transparent", color: percentage === String(p) ? "var(--on-solid)" : "var(--ink)", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-archivo)", cursor: "pointer" }}>
                         {p}%
                       </button>
                     ))}
@@ -335,7 +335,7 @@ export default function ResizeImageContent() {
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.5, marginBottom: 10 }}>Select preset</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     {PRESETS.map((p) => (
-                      <label key={p.label} style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 16px", border: `2px solid ${preset.label === p.label ? "#201e1d" : "#c8c6c4"}`, background: preset.label === p.label ? "#201e1d" : "transparent", color: preset.label === p.label ? "#f3f2f2" : "#201e1d", cursor: "pointer", fontFamily: "var(--font-archivo)" }}>
+                      <label key={p.label} style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 16px", border: `2px solid ${preset.label === p.label ? "var(--border)" : "#c8c6c4"}`, background: preset.label === p.label ? "var(--solid)" : "transparent", color: preset.label === p.label ? "var(--on-solid)" : "var(--ink)", cursor: "pointer", fontFamily: "var(--font-archivo)" }}>
                         <input type="radio" name="preset" checked={preset.label === p.label} onChange={() => setPreset(p)} style={{ display: "none" }} />
                         <span style={{ fontSize: 13, fontWeight: 700 }}>{p.label}</span>
                         <span style={{ fontSize: 12, opacity: 0.5, marginLeft: "auto" }}>{p.w} × {p.h}</span>
@@ -351,7 +351,7 @@ export default function ResizeImageContent() {
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   {([["image/png", "PNG"], ["image/jpeg", "JPG"], ["image/webp", "WebP"]] as [Format, string][]).map(([val, label]) => (
                     <button key={val} type="button" onClick={() => setFormat(val)}
-                      style={{ padding: "9px 18px", border: `2px solid ${format === val ? "#201e1d" : "#c8c6c4"}`, background: format === val ? "#201e1d" : "transparent", color: format === val ? "#f3f2f2" : "#201e1d", fontWeight: 700, fontSize: 13, fontFamily: "var(--font-archivo)", transition: "background 0.2s, border-color 0.2s, color 0.2s", cursor: "pointer" }}>
+                      style={{ padding: "9px 18px", border: `2px solid ${format === val ? "var(--border)" : "#c8c6c4"}`, background: format === val ? "var(--solid)" : "transparent", color: format === val ? "var(--on-solid)" : "var(--ink)", fontWeight: 700, fontSize: 13, fontFamily: "var(--font-archivo)", transition: "background 0.2s, border-color 0.2s, color 0.2s", cursor: "pointer" }}>
                       {label}
                     </button>
                   ))}
@@ -363,11 +363,11 @@ export default function ResizeImageContent() {
                 <div style={{ marginBottom: 24 }}>
                   <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Quality — {quality}%</p>
                   <input type="range" min={10} max={100} step={1} value={quality} onChange={(e) => setQuality(Number(e.target.value))}
-                    style={{ width: "100%", maxWidth: 320, accentColor: "#ec3013" }} />
+                    style={{ width: "100%", maxWidth: 320, accentColor: "var(--red)" }} />
                 </div>
               )}
 
-              {errorMsg && <p style={{ fontSize: 13, color: "#ec3013", fontWeight: 600, marginBottom: 16 }}>{errorMsg}</p>}
+              {errorMsg && <p style={{ fontSize: 13, color: "var(--red)", fontWeight: 600, marginBottom: 16 }}>{errorMsg}</p>}
 
               <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
                 <button type="button" onClick={resize} className="btn btn-primary">Resize Image</button>
@@ -383,7 +383,7 @@ export default function ResizeImageContent() {
                 {/* Original */}
                 <div style={{ flex: 1, minWidth: 200 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.4, marginBottom: 8 }}>Original</p>
-                  <div style={{ background: "#e8e6e6", border: "2px solid #201e1d", display: "flex", alignItems: "center", justifyContent: "center", height: 180 }}>
+                  <div style={{ background: "#e8e6e6", border: "2px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center", height: 180 }}>
                     {originalUrl && <img src={originalUrl} alt="Original" style={{ maxWidth: "100%", maxHeight: 176, objectFit: "contain", display: "block" }} />}
                   </div>
                   <p style={{ fontSize: 12, opacity: 0.5, marginTop: 6 }}>{origW} × {origH} · {file ? formatBytes(file.size) : ""}</p>
@@ -391,7 +391,7 @@ export default function ResizeImageContent() {
                 {/* Result */}
                 <div style={{ flex: 1, minWidth: 200 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.4, marginBottom: 8 }}>Resized</p>
-                  <div style={{ background: "#e8e6e6", border: "2px solid #ec3013", display: "flex", alignItems: "center", justifyContent: "center", height: 180 }}>
+                  <div style={{ background: "#e8e6e6", border: "2px solid var(--red)", display: "flex", alignItems: "center", justifyContent: "center", height: 180 }}>
                     <img src={resultUrl} alt="Resized" style={{ maxWidth: "100%", maxHeight: 176, objectFit: "contain", display: "block" }} />
                   </div>
                   <p style={{ fontSize: 12, opacity: 0.5, marginTop: 6 }}>{outW} × {outH} · {formatBytes(resultSize)}</p>
@@ -409,7 +409,7 @@ export default function ResizeImageContent() {
           )}
 
           {status === "error" && (
-            <div className="fade-in-up" style={{ borderLeft: "4px solid #ec3013", paddingLeft: 24 }}>
+            <div className="fade-in-up" style={{ borderLeft: "4px solid var(--red)", paddingLeft: 24 }}>
               <p style={{ fontWeight: 700, fontSize: "clamp(17px, 2vw, 20px)", marginBottom: 8 }}>Something went wrong</p>
               <p style={{ opacity: 0.7, fontSize: 15, lineHeight: 1.6, marginBottom: 20 }}>{errorMsg}</p>
               <button type="button" onClick={reset} className="btn">Try again</button>

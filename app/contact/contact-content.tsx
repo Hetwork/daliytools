@@ -104,8 +104,8 @@ export default function ContactContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -148,7 +148,7 @@ export default function ContactContent() {
             maxWidth: 700,
           }}
         >
-          Get in touch with us<span style={{ color: "#ec3013" }}>.</span>
+          Get in touch with us<span style={{ color: "var(--red)" }}>.</span>
         </h1>
 
         <p
@@ -175,8 +175,8 @@ export default function ContactContent() {
           {/* Direct Email Card */}
           <div
             style={{
-              border: "2px solid #201e1d",
-              background: "#fff",
+              border: "2px solid var(--border)",
+              background: "var(--surface)",
               padding: "clamp(24px, 4vw, 36px)",
               display: "flex",
               flexDirection: "column",
@@ -190,7 +190,7 @@ export default function ContactContent() {
                   fontWeight: 700,
                   textTransform: "uppercase",
                   letterSpacing: "0.1em",
-                  color: "#ec3013",
+                  color: "var(--red)",
                 }}
               >
                 Direct Email
@@ -212,8 +212,8 @@ export default function ContactContent() {
                 style={{
                   marginTop: 20,
                   padding: "12px 16px",
-                  background: "#f3f2f2",
-                  border: "1px dashed #201e1d",
+                  background: "var(--bg)",
+                  border: "1px dashed var(--border)",
                   fontSize: 15,
                   fontWeight: 600,
                   wordBreak: "break-all",
@@ -245,8 +245,8 @@ export default function ContactContent() {
           {/* Quick Contact Form */}
           <div
             style={{
-              border: "2px solid #201e1d",
-              background: "#fff",
+              border: "2px solid var(--border)",
+              background: "var(--surface)",
               padding: "clamp(24px, 4vw, 36px)",
             }}
           >
@@ -256,7 +256,7 @@ export default function ContactContent() {
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
-                color: "#ec3013",
+                color: "var(--red)",
               }}
             >
               Quick Form
@@ -276,12 +276,12 @@ export default function ContactContent() {
               <div
                 style={{
                   padding: 24,
-                  background: "#f3f2f2",
-                  border: "2px solid #201e1d",
+                  background: "var(--bg)",
+                  border: "2px solid var(--border)",
                   marginTop: 16,
                 }}
               >
-                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "var(--red)" }}>
                   Thank you for reaching out!
                 </p>
                 <p style={{ marginTop: 8, opacity: 0.8, fontSize: 14, lineHeight: 1.6 }}>
@@ -316,7 +316,7 @@ export default function ContactContent() {
                     style={{
                       width: "100%",
                       padding: "10px 12px",
-                      border: "1.5px solid #201e1d",
+                      border: "1.5px solid var(--border)",
                       background: "#fdfdfd",
                       fontFamily: "inherit",
                       fontSize: 14,
@@ -338,7 +338,7 @@ export default function ContactContent() {
                     style={{
                       width: "100%",
                       padding: "10px 12px",
-                      border: "1.5px solid #201e1d",
+                      border: "1.5px solid var(--border)",
                       background: "#fdfdfd",
                       fontFamily: "inherit",
                       fontSize: 14,
@@ -357,7 +357,7 @@ export default function ContactContent() {
                     style={{
                       width: "100%",
                       padding: "10px 12px",
-                      border: "1.5px solid #201e1d",
+                      border: "1.5px solid var(--border)",
                       background: "#fdfdfd",
                       fontFamily: "inherit",
                       fontSize: 14,
@@ -384,7 +384,7 @@ export default function ContactContent() {
                     style={{
                       width: "100%",
                       padding: "10px 12px",
-                      border: "1.5px solid #201e1d",
+                      border: "1.5px solid var(--border)",
                       background: "#fdfdfd",
                       fontFamily: "inherit",
                       fontSize: 14,
@@ -432,7 +432,7 @@ export default function ContactContent() {
         <div
           style={{
             marginTop: 64,
-            borderTop: "2px solid #201e1d",
+            borderTop: "2px solid var(--border)",
             paddingTop: 40,
           }}
         >
@@ -442,7 +442,7 @@ export default function ContactContent() {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.14em",
-              color: "#ec3013",
+              color: "var(--red)",
             }}
           >
             Answers to Common Questions
@@ -467,8 +467,8 @@ export default function ContactContent() {
             <div
               style={{
                 padding: "20px 24px",
-                background: "#fff",
-                border: "1.5px solid #201e1d",
+                background: "var(--surface)",
+                border: "1.5px solid var(--border)",
               }}
             >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
@@ -482,8 +482,8 @@ export default function ContactContent() {
             <div
               style={{
                 padding: "20px 24px",
-                background: "#fff",
-                border: "1.5px solid #201e1d",
+                background: "var(--surface)",
+                border: "1.5px solid var(--border)",
               }}
             >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
@@ -497,8 +497,8 @@ export default function ContactContent() {
             <div
               style={{
                 padding: "20px 24px",
-                background: "#fff",
-                border: "1.5px solid #201e1d",
+                background: "var(--surface)",
+                border: "1.5px solid var(--border)",
               }}
             >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
@@ -512,8 +512,8 @@ export default function ContactContent() {
             <div
               style={{
                 padding: "20px 24px",
-                background: "#fff",
-                border: "1.5px solid #201e1d",
+                background: "var(--surface)",
+                border: "1.5px solid var(--border)",
               }}
             >
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>

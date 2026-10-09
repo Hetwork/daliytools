@@ -48,7 +48,7 @@ export default function HtmlViewerContent() {
     minHeight: 380,
     border: "none",
     background: "transparent",
-    color: "#201e1d",
+    color: "var(--ink)",
     fontFamily: "monospace",
     fontSize: 13,
     lineHeight: 1.65,
@@ -58,7 +58,7 @@ export default function HtmlViewerContent() {
   };
 
   const paneStyle: React.CSSProperties = {
-    border: "2px solid #201e1d",
+    border: "2px solid var(--border)",
     flex: 1,
     minHeight: 380,
     overflow: "hidden",
@@ -71,8 +71,8 @@ export default function HtmlViewerContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -100,7 +100,7 @@ export default function HtmlViewerContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>
               Live
             </span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>
@@ -124,9 +124,9 @@ export default function HtmlViewerContent() {
                 onClick={() => setView(v)}
                 style={{
                   padding: "8px 18px",
-                  border: `2px solid ${view === v ? "#ec3013" : "#201e1d"}`,
-                  background: view === v ? "#ec3013" : "transparent",
-                  color: view === v ? "#f3f2f2" : "#201e1d",
+                  border: `2px solid ${view === v ? "var(--red)" : "var(--border)"}`,
+                  background: view === v ? "var(--red)" : "transparent",
+                  color: view === v ? "var(--on-solid)" : "var(--ink)",
                   fontWeight: 700,
                   fontSize: 12,
                   textTransform: "uppercase",
@@ -141,7 +141,7 @@ export default function HtmlViewerContent() {
             <button
               type="button"
               onClick={copy}
-              style={{ padding: "8px 18px", border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-archivo)", marginLeft: "auto" }}
+              style={{ padding: "8px 18px", border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-archivo)", marginLeft: "auto" }}
             >
               {copied ? "Copied!" : "Copy HTML"}
             </button>
@@ -165,14 +165,14 @@ export default function HtmlViewerContent() {
           >
             {isEditorVisible && (
               <div style={paneStyle}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(var(--ink-rgb), 0.12)", padding: "10px 20px 8px" }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
                     Editor
                   </p>
                   <button
                     type="button"
                     onClick={() => setMaximizedPanel((current) => current === "editor" ? null : "editor")}
-                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                    style={{ background: "transparent", border: "1px solid var(--border)", color: "var(--ink)", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
                   >
                     Full Screen
                   </button>
@@ -187,15 +187,15 @@ export default function HtmlViewerContent() {
               </div>
             )}
             {isPreviewVisible && (
-              <div style={{ ...paneStyle, background: "#fff" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px" }}>
+              <div style={{ ...paneStyle, background: "var(--surface)" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(var(--ink-rgb), 0.12)", padding: "10px 20px 8px" }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
                     Preview
                   </p>
                   <button
                     type="button"
                     onClick={() => setMaximizedPanel((current) => current === "preview" ? null : "preview")}
-                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                    style={{ background: "transparent", border: "1px solid var(--border)", color: "var(--ink)", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
                   >
                     Full Screen
                   </button>
@@ -221,7 +221,7 @@ export default function HtmlViewerContent() {
                 value={html}
                 onChange={(e) => setHtml(e.target.value)}
                 spellCheck={false}
-                style={{ ...editorStyles, height: "100%", border: "none", background: "#f3f2f2", padding: 20 }}
+                style={{ ...editorStyles, height: "100%", border: "none", background: "var(--bg)", padding: 20 }}
                 placeholder="Type or paste HTML here…"
               />
             ) : (
@@ -229,7 +229,7 @@ export default function HtmlViewerContent() {
                 srcDoc={html}
                 sandbox="allow-scripts"
                 title="HTML Preview Modal"
-                style={{ width: "100%", height: "100%", border: "none", background: "#fff" }}
+                style={{ width: "100%", height: "100%", border: "none", background: "var(--surface)" }}
               />
             )}
           </FullScreenModal>
@@ -237,7 +237,7 @@ export default function HtmlViewerContent() {
 
         <div
           className="reveal"
-          style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}
+          style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}
         >
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>
             How It Works

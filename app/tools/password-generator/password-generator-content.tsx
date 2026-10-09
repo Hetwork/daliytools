@@ -97,7 +97,7 @@ export default function PasswordGeneratorContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -110,7 +110,7 @@ export default function PasswordGeneratorContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Password Generator</h1>
@@ -122,7 +122,7 @@ export default function PasswordGeneratorContent() {
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }} className="fade-in-up">
 
           {/* Password display */}
-          <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 24 }}>
+          <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 24 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <p
                 style={{
@@ -154,15 +154,15 @@ export default function PasswordGeneratorContent() {
                   disabled={noneSelected}
                   style={{
                     padding: "10px 18px",
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
                     fontFamily: "var(--font-archivo)",
                     fontWeight: 700,
                     fontSize: 13,
                     transition: "background 0.15s ease, color 0.15s ease",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "#201e1d"; e.currentTarget.style.color = "#f3f2f2"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#201e1d"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "var(--solid)"; e.currentTarget.style.color = "var(--on-solid)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--ink)"; }}
                 >
                   Regenerate ↺
                 </button>
@@ -184,18 +184,18 @@ export default function PasswordGeneratorContent() {
           </div>
 
           {/* Settings */}
-          <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", display: "flex", flexDirection: "column", gap: 24 }}>
 
             {/* Length */}
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                 <label style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45 }}>Length</label>
-                <span style={{ fontSize: 14, fontWeight: 800, color: "#ec3013" }}>{length}</span>
+                <span style={{ fontSize: 14, fontWeight: 800, color: "var(--red)" }}>{length}</span>
               </div>
               <input
                 type="range" min={6} max={64} step={1} value={length}
                 onChange={(e) => setLength(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "#ec3013" }}
+                style={{ width: "100%", accentColor: "var(--red)" }}
               />
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, opacity: 0.4, marginTop: 4 }}>
                 <span>6</span><span>64</span>
@@ -221,9 +221,9 @@ export default function PasswordGeneratorContent() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       padding: "12px 16px",
-                      border: `2px solid ${value ? "#201e1d" : "#c8c6c5"}`,
-                      background: value ? "#201e1d" : "transparent",
-                      color: value ? "#f3f2f2" : "#201e1d",
+                      border: `2px solid ${value ? "var(--border)" : "#c8c6c5"}`,
+                      background: value ? "var(--solid)" : "transparent",
+                      color: value ? "var(--on-solid)" : "var(--ink)",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 600,
                       fontSize: 13,
@@ -238,7 +238,7 @@ export default function PasswordGeneratorContent() {
                 ))}
               </div>
               {noneSelected && (
-                <p style={{ marginTop: 10, fontSize: 13, color: "#ec3013", fontWeight: 600 }}>Select at least one character set.</p>
+                <p style={{ marginTop: 10, fontSize: 13, color: "var(--red)", fontWeight: 600 }}>Select at least one character set.</p>
               )}
             </div>
           </div>
@@ -269,10 +269,10 @@ export default function PasswordGeneratorContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
-            Passwords are generated using <code style={{ fontFamily: "monospace", background: "rgba(32,30,29,0.08)", padding: "1px 5px" }}>Math.random()</code> to sample characters from your selected sets, with a guaranteed character from each active set shuffled into the final result.
+            Passwords are generated using <code style={{ fontFamily: "monospace", background: "rgba(var(--ink-rgb), 0.08)", padding: "1px 5px" }}>Math.random()</code> to sample characters from your selected sets, with a guaranteed character from each active set shuffled into the final result.
             Every password is created locally in your browser — nothing is ever transmitted.
           </p>
         </div>

@@ -126,7 +126,7 @@ export default function UnitConverterContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -139,7 +139,7 @@ export default function UnitConverterContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Unit Converter</h1>
@@ -159,9 +159,9 @@ export default function UnitConverterContent() {
                 onClick={() => switchCategory(cat)}
                 style={{
                   padding: "9px 18px",
-                  border: "2px solid #201e1d",
-                  background: category === cat ? "#201e1d" : "transparent",
-                  color: category === cat ? "#f3f2f2" : "#201e1d",
+                  border: "2px solid var(--border)",
+                  background: category === cat ? "var(--solid)" : "transparent",
+                  color: category === cat ? "var(--on-solid)" : "var(--ink)",
                   fontFamily: "var(--font-archivo)",
                   fontWeight: 700,
                   fontSize: 13,
@@ -174,7 +174,7 @@ export default function UnitConverterContent() {
           </div>
 
           {/* Converter panel */}
-          <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 32px)" }}>
+          <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 32px)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 16, alignItems: "end" }}>
 
               {/* From */}
@@ -185,9 +185,9 @@ export default function UnitConverterContent() {
                   onChange={(e) => setFromIdx(Number(e.target.value))}
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
-                    background: "#f3f2f2",
-                    color: "#201e1d",
+                    border: "2px solid var(--border)",
+                    background: "var(--bg)",
+                    color: "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontWeight: 600,
                     fontSize: 14,
@@ -208,9 +208,9 @@ export default function UnitConverterContent() {
                   placeholder="Enter value"
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
-                    color: "#201e1d",
+                    color: "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontSize: 22,
                     fontWeight: 800,
@@ -229,7 +229,7 @@ export default function UnitConverterContent() {
                   style={{
                     width: 44,
                     height: 44,
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
                     fontFamily: "var(--font-archivo)",
                     fontWeight: 800,
@@ -239,8 +239,8 @@ export default function UnitConverterContent() {
                     justifyContent: "center",
                     transition: "background 0.15s ease, color 0.15s ease",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "#201e1d"; e.currentTarget.style.color = "#f3f2f2"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#201e1d"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "var(--solid)"; e.currentTarget.style.color = "var(--on-solid)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--ink)"; }}
                 >
                   ⇄
                 </button>
@@ -254,9 +254,9 @@ export default function UnitConverterContent() {
                   onChange={(e) => setToIdx(Number(e.target.value))}
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
-                    background: "#f3f2f2",
-                    color: "#201e1d",
+                    border: "2px solid var(--border)",
+                    background: "var(--bg)",
+                    color: "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontWeight: 600,
                     fontSize: 14,
@@ -272,8 +272,8 @@ export default function UnitConverterContent() {
                 </select>
                 <div style={{
                   width: "100%",
-                  border: "2px solid #201e1d",
-                  background: "rgba(32,30,29,0.04)",
+                  border: "2px solid var(--border)",
+                  background: "rgba(var(--ink-rgb), 0.04)",
                   fontSize: 22,
                   fontWeight: 800,
                   padding: "14px 18px",
@@ -283,7 +283,7 @@ export default function UnitConverterContent() {
                   justifyContent: "space-between",
                   gap: 8,
                 }}>
-                  <span style={{ color: resultStr ? "#ec3013" : "#c8c6c5" }}>
+                  <span style={{ color: resultStr ? "var(--red)" : "#c8c6c5" }}>
                     {resultStr || "—"}
                   </span>
                   {resultStr && (
@@ -297,15 +297,15 @@ export default function UnitConverterContent() {
 
             {/* Formula row */}
             {resultStr && fromVal && (
-              <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(32,30,29,0.12)", fontSize: 14, opacity: 0.55, fontWeight: 500 }}>
-                {fromVal} {fromUnit.label} = <strong style={{ color: "#201e1d", opacity: 1 }}>{resultStr} {toUnit.label}</strong>
+              <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(var(--ink-rgb), 0.12)", fontSize: 14, opacity: 0.55, fontWeight: 500 }}>
+                {fromVal} {fromUnit.label} = <strong style={{ color: "var(--ink)", opacity: 1 }}>{resultStr} {toUnit.label}</strong>
               </div>
             )}
           </div>
 
           {/* Quick reference table */}
           {fromVal && resultStr && (
-            <div style={{ marginTop: 20, border: "2px solid #201e1d", padding: "clamp(16px, 2.5vw, 24px)" }}>
+            <div style={{ marginTop: 20, border: "2px solid var(--border)", padding: "clamp(16px, 2.5vw, 24px)" }}>
               <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, marginBottom: 14 }}>
                 Quick reference — 1 {fromUnit.label} =
               </p>
@@ -315,7 +315,7 @@ export default function UnitConverterContent() {
                   .map((u) => {
                     const val = u.fromBase(fromUnit.toBase(1));
                     return (
-                      <div key={u.label} style={{ display: "flex", justifyContent: "space-between", gap: 8, padding: "8px 0", borderBottom: "1px solid rgba(32,30,29,0.1)" }}>
+                      <div key={u.label} style={{ display: "flex", justifyContent: "space-between", gap: 8, padding: "8px 0", borderBottom: "1px solid rgba(var(--ink-rgb), 0.1)" }}>
                         <span style={{ fontSize: 13, opacity: 0.55 }}>{u.label}</span>
                         <span style={{ fontSize: 13, fontWeight: 700 }}>{fmtResult(val)}</span>
                       </div>
@@ -326,7 +326,7 @@ export default function UnitConverterContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             Each unit is defined by a pair of functions to and from a base unit (meters for length, kilograms for weight, etc.).

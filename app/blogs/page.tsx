@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BlogsContent from "./blogs-content";
 
 export const metadata: Metadata = {
-  title: "Blog & Productivity Guides — Everyday Digital Utilities | Daliy.Tools",
+  title: "Practical PDF, Image & Developer Guides",
   description:
     "Explore practical guides, online tool roundups, and time-saving workflows to boost your daily productivity. Fast, actionable, and 100% free.",
   alternates: {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blog & Productivity Guides | Daliy.Tools",
     description:
-      "Actionable guides, online tool roundups, and smart workflows to save hours on everyday digital tasks.",
+      "Practical workflows with worked examples, output checks, and tool limitations for PDFs, images, and JSON.",
     url: "https://daliy.tools/blogs",
     siteName: "Daliy.Tools",
     type: "website",

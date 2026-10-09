@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import AdsenseLoader from "./_components/adsense-loader";
 import CookieConsent from "./_components/cookie-consent";
+import SiteEffects from "./_components/site-effects";
 import "./globals.css";
+import "./design.css";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Daliy.Tools — Everyday Tools, Actually Simple",
     description:
-      "Free, private online tools for daily tasks. No file uploads to servers, no popups, no accounts needed.",
+      "Free tools for PDFs, images, text, and code. Many run locally in your browser; server-based tools explain their processing.",
     url: "https://daliy.tools",
     siteName: "Daliy.Tools",
     locale: "en_US",
@@ -73,10 +75,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${archivo.variable} h-full`}
       data-scroll-behavior="smooth"
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "(function(){var t;try{t=localStorage.getItem('daliy-theme')}catch(e){}document.documentElement.dataset.theme=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'})()" }} />
+      </head>
       <body className="min-h-full flex flex-col">
+        <SiteEffects />
         {children}
         <CookieConsent />
         <AdsenseLoader />

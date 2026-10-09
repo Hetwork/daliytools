@@ -122,7 +122,7 @@ export default function RemoveBackgroundContent() {
   const isProcessing = status === "loading-model" || status === "processing";
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
       <section style={{ maxWidth: 900, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
@@ -132,7 +132,7 @@ export default function RemoveBackgroundContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>AI runs in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Remove Background</h1>
@@ -152,9 +152,9 @@ export default function RemoveBackgroundContent() {
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
               onDragLeave={(e) => { e.preventDefault(); setIsDragging(false); }}
               className="fade-in-up"
-              style={{ border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`, background: isDragging ? "rgba(236,48,19,0.05)" : "transparent", padding: "clamp(48px, 8vw, 80px) 24px", textAlign: "center", transition: "border-color 0.25s, background 0.25s", cursor: "pointer" }}
+              style={{ border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`, background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent", padding: "clamp(48px, 8vw, 80px) 24px", textAlign: "center", transition: "border-color 0.25s, background 0.25s", cursor: "pointer" }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, letterSpacing: "0.06em" }}>IMG</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, letterSpacing: "0.06em" }}>IMG</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
               <p style={{ fontSize: 14, opacity: 0.55 }}>or click to browse — JPG, PNG, WebP · up to 20 MB</p>
               <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -165,8 +165,8 @@ export default function RemoveBackgroundContent() {
           {file && originalUrl && status === "idle" && (
             <div className="fade-in-up">
               <div style={{ position: "relative", marginBottom: 20 }}>
-                <img src={originalUrl} alt="Original" style={{ width: "100%", maxHeight: 480, objectFit: "contain", border: "2px solid #201e1d", display: "block" }} />
-                <div style={{ position: "absolute", top: 10, left: 10, background: "#201e1d", color: "#f3f2f2", fontSize: 10, fontWeight: 800, padding: "4px 10px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Original</div>
+                <img src={originalUrl} alt="Original" style={{ width: "100%", maxHeight: 480, objectFit: "contain", border: "2px solid var(--border)", display: "block" }} />
+                <div style={{ position: "absolute", top: 10, left: 10, background: "var(--solid)", color: "var(--on-solid)", fontSize: 10, fontWeight: 800, padding: "4px 10px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Original</div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
                 <button type="button" onClick={process} className="btn btn-primary">Remove Background</button>
@@ -180,7 +180,7 @@ export default function RemoveBackgroundContent() {
           {isProcessing && (
             <div className="fade-in-up">
               {originalUrl && (
-                <img src={originalUrl} alt="Original" style={{ width: "100%", maxHeight: 480, objectFit: "contain", border: "2px solid #201e1d", display: "block", marginBottom: 20, opacity: 0.5 }} />
+                <img src={originalUrl} alt="Original" style={{ width: "100%", maxHeight: 480, objectFit: "contain", border: "2px solid var(--border)", display: "block", marginBottom: 20, opacity: 0.5 }} />
               )}
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="pulse-dot" />
@@ -200,20 +200,20 @@ export default function RemoveBackgroundContent() {
                 {(["result", "original"] as const).map((v) => (
                   <button
                     key={v} type="button" onClick={() => setView(v)}
-                    style={{ padding: "10px 20px", border: "2px solid #201e1d", borderBottom: view === v ? `2px solid #f3f2f2` : "2px solid #201e1d", background: view === v ? "#201e1d" : "transparent", color: view === v ? "#f3f2f2" : "#201e1d", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-archivo)", marginBottom: view === v ? -2 : 0, position: "relative", zIndex: view === v ? 1 : 0, cursor: "pointer" }}
+                    style={{ padding: "10px 20px", border: "2px solid var(--border)", borderBottom: view === v ? "2px solid var(--bg)" : "2px solid var(--border)", background: view === v ? "var(--solid)" : "transparent", color: view === v ? "var(--on-solid)" : "var(--ink)", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-archivo)", marginBottom: view === v ? -2 : 0, position: "relative", zIndex: view === v ? 1 : 0, cursor: "pointer" }}
                   >{v === "result" ? "Result" : "Original"}</button>
                 ))}
               </div>
 
               {/* Image display */}
-              <div style={{ border: "2px solid #201e1d", borderTop: "none", position: "relative" }}>
+              <div style={{ border: "2px solid var(--border)", borderTop: "none", position: "relative" }}>
                 {view === "result" ? (
                   /* Checkerboard background to show transparency */
                   <div style={{
                     backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
                     backgroundSize: "20px 20px",
                     backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-                    backgroundColor: "#fff",
+                    backgroundColor: "var(--surface)",
                   }}>
                     <img src={resultUrl} alt="Background removed" style={{ width: "100%", maxHeight: 480, objectFit: "contain", display: "block" }} />
                   </div>
@@ -236,7 +236,7 @@ export default function RemoveBackgroundContent() {
           )}
 
           {status === "error" && (
-            <div className="fade-in-up" style={{ borderLeft: "4px solid #ec3013", paddingLeft: 24 }}>
+            <div className="fade-in-up" style={{ borderLeft: "4px solid var(--red)", paddingLeft: 24 }}>
               <p style={{ fontWeight: 700, fontSize: "clamp(17px, 2vw, 20px)", marginBottom: 8 }}>Something went wrong</p>
               <p style={{ opacity: 0.7, fontSize: 15, lineHeight: 1.6, marginBottom: 20, maxWidth: 480 }}>{errorMsg}</p>
               <button type="button" onClick={reset} className="btn">Try again</button>
@@ -244,7 +244,7 @@ export default function RemoveBackgroundContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             The AI model (by img.ly) is downloaded once from a CDN and cached in your browser. After that, all processing happens locally using ONNX Runtime — your images never leave your device. The result is exported as a transparent PNG.

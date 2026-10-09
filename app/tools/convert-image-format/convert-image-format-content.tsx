@@ -28,6 +28,7 @@ export default function ConvertImageFormatContent() {
   const [convertedSize, setConvertedSize] = useState<number | null>(null);
   const [targetFormat, setTargetFormat] = useState(FORMATS[1]);
   const [isConverting, setIsConverting] = useState(false);
+  const [error, setError] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -44,12 +45,13 @@ export default function ConvertImageFormatContent() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    return () => {
-      if (originalUrl) URL.revokeObjectURL(originalUrl);
-      if (convertedUrl) URL.revokeObjectURL(convertedUrl);
-    };
-  }, []);
+  useEffect(() => () => {
+    if (originalUrl) URL.revokeObjectURL(originalUrl);
+  }, [originalUrl]);
+
+  useEffect(() => () => {
+    if (convertedUrl) URL.revokeObjectURL(convertedUrl);
+  }, [convertedUrl]);
 
   function handleFile(file: File | null) {
     if (!file || !file.type.startsWith("image/")) return;
@@ -64,6 +66,10 @@ export default function ConvertImageFormatContent() {
   async function convert() {
     if (!originalFile || !originalUrl) return;
     setIsConverting(true);
+    setError("");
+    if (convertedUrl) URL.revokeObjectURL(convertedUrl);
+    setConvertedUrl(null);
+    setConvertedSize(null);
     try {
       const img = new Image();
       await new Promise<void>((res, rej) => {
@@ -74,17 +80,25 @@ export default function ConvertImageFormatContent() {
       const canvas = document.createElement("canvas");
       canvas.width = img.naturalWidth;
       canvas.height = img.naturalHeight;
-      const ctx = canvas.getContext("2d")!;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Image conversion is not available in this browser.");
+      if (targetFormat.value === "image/jpeg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
       ctx.drawImage(img, 0, 0);
-      await new Promise<void>((res) => {
+      await new Promise<void>((res, reject) => {
         canvas.toBlob((blob) => {
-          if (!blob) return res();
+          if (!blob) return reject(new Error("The image could not be encoded. Try a smaller image."));
+          if (blob.type !== targetFormat.value) return reject(new Error(`${targetFormat.label} export is not supported by this browser. Choose PNG, JPEG, or WebP.`));
           if (convertedUrl) URL.revokeObjectURL(convertedUrl);
           setConvertedUrl(URL.createObjectURL(blob));
           setConvertedSize(blob.size);
           res();
         }, targetFormat.value, 0.92);
       });
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "The image could not be read. Try a JPG, PNG, or WebP file.");
     } finally {
       setIsConverting(false);
     }
@@ -101,6 +115,7 @@ export default function ConvertImageFormatContent() {
   function reset() {
     if (originalUrl) URL.revokeObjectURL(originalUrl);
     if (convertedUrl) URL.revokeObjectURL(convertedUrl);
+    setError("");
     setOriginalUrl(null);
     setOriginalFile(null);
     setConvertedUrl(null);
@@ -110,7 +125,7 @@ export default function ConvertImageFormatContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -123,16 +138,17 @@ export default function ConvertImageFormatContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Convert Image Format</h1>
           <p style={{ marginTop: 18, fontSize: "clamp(15px, 1.8vw, 19px)", lineHeight: 1.7, opacity: 0.7, maxWidth: 560 }}>
-            Switch between JPEG, PNG, WebP, and AVIF in seconds. No uploads — everything stays in your browser.
+            Convert to JPEG, PNG, or browser-supported WebP and AVIF. Animated images become still images. No uploads — everything stays in your browser.
           </p>
         </div>
 
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }}>
+          {error && <p role="alert" className="tool-output-note">{error}</p>}
           {!originalFile && (
             <div
               role="button"
@@ -144,14 +160,14 @@ export default function ConvertImageFormatContent() {
               onDragLeave={() => setIsDragging(false)}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`,
-                background: isDragging ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`,
+                background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
               }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
               <p style={{ fontSize: "clamp(13px, 1.5vw, 15px)", opacity: 0.55 }}>or click to browse</p>
               <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -161,14 +177,14 @@ export default function ConvertImageFormatContent() {
           {originalFile && (
             <div className="fade-in-up">
               {/* File info */}
-              <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
-                  <div style={{ width: 48, height: 48, border: "2px solid #201e1d", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, flexShrink: 0 }}>IMG</div>
+                  <div style={{ width: 48, height: 48, border: "2px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, flexShrink: 0 }}>IMG</div>
                   <div style={{ flex: 1 }}>
                     <p style={{ fontWeight: 700, fontSize: 16, wordBreak: "break-all" }}>{originalFile.name}</p>
                     <p style={{ opacity: 0.5, fontSize: 13, marginTop: 2 }}>{formatBytes(originalFile.size)}</p>
                   </div>
-                  <button type="button" onClick={reset} className="ink-hover" style={{ background: "none", border: "none", fontSize: 13, fontWeight: 600, opacity: 0.45, fontFamily: "inherit" }}>Remove</button>
+                  <button type="button" onClick={reset} disabled={isConverting} className="ink-hover" style={{ background: "none", border: "none", fontSize: 13, fontWeight: 600, opacity: 0.45, fontFamily: "inherit" }}>Remove</button>
                 </div>
 
                 <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Convert to</p>
@@ -177,12 +193,13 @@ export default function ConvertImageFormatContent() {
                     <button
                       key={fmt.value}
                       type="button"
-                      onClick={() => { setTargetFormat(fmt); setConvertedUrl(null); setConvertedSize(null); }}
+                      disabled={isConverting}
+                      onClick={() => { if (convertedUrl) URL.revokeObjectURL(convertedUrl); setTargetFormat(fmt); setConvertedUrl(null); setConvertedSize(null); setError(""); }}
                       style={{
                         padding: "10px 18px",
-                        border: `2px solid ${targetFormat.value === fmt.value ? "#ec3013" : "#201e1d"}`,
-                        background: targetFormat.value === fmt.value ? "#ec3013" : "transparent",
-                        color: targetFormat.value === fmt.value ? "#f3f2f2" : "#201e1d",
+                        border: `2px solid ${targetFormat.value === fmt.value ? "var(--red)" : "var(--border)"}`,
+                        background: targetFormat.value === fmt.value ? "var(--red)" : "transparent",
+                        color: targetFormat.value === fmt.value ? "var(--on-solid)" : "var(--ink)",
                         fontWeight: 700,
                         fontSize: 13,
                         textTransform: "uppercase",
@@ -205,7 +222,7 @@ export default function ConvertImageFormatContent() {
               </div>
 
               {convertedUrl && convertedSize !== null && (
-                <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)" }}>
+                <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)" }}>
                   <p style={{ fontSize: "clamp(11px, 1.3vw, 13px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.45, marginBottom: 16 }}>Done</p>
                   <div style={{ display: "flex", gap: 32, flexWrap: "wrap", marginBottom: 20 }}>
                     <div>
@@ -215,7 +232,7 @@ export default function ConvertImageFormatContent() {
                     <div style={{ fontSize: 24, fontWeight: 800, opacity: 0.3, alignSelf: "center" }}>→</div>
                     <div>
                       <p style={{ fontSize: 11, fontWeight: 700, opacity: 0.4, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>{targetFormat.label}</p>
-                      <p style={{ fontSize: 18, fontWeight: 800, color: "#ec3013" }}>{formatBytes(convertedSize)}</p>
+                      <p style={{ fontSize: 18, fontWeight: 800, color: "var(--red)" }}>{formatBytes(convertedSize)}</p>
                     </div>
                   </div>
                   <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -230,7 +247,7 @@ export default function ConvertImageFormatContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             Your image is drawn onto a canvas and re-encoded using the browser&apos;s built-in codec for the chosen format.

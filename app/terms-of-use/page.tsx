@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import SiteHeader from "../_components/site-header";
+import SiteFooter from "../_components/site-footer";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -54,52 +55,13 @@ export default function TermsOfUsePage() {
   return (
     <main
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
       }}
     >
-      {/* Header */}
-      <section
-        style={{
-          maxWidth: 900,
-          margin: "0 auto",
-          padding: "0 32px",
-          paddingTop: "clamp(48px, 10vw, 80px)",
-        }}
-      >
-        <div style={{ height: 12, background: "#201e1d", marginBottom: 28 }} />
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-          <Link
-            href="/"
-            style={{
-              fontSize: "clamp(28px, 5vw, 52px)",
-              fontWeight: 800,
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
-              textDecoration: "none",
-              color: "inherit",
-            }}
-          >
-            daliy<span style={{ color: "#ec3013" }}>.</span>tools
-          </Link>
-          <h1
-            style={{
-              fontSize: "clamp(10px, 1.2vw, 12px)",
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              opacity: 0.4,
-              margin: 0,
-            }}
-          >
-            Terms of Use
-          </h1>
-        </div>
-        <div style={{ height: 12, background: "#201e1d", marginTop: 28 }} />
-      </section>
-
+      <SiteHeader />
       {/* Content */}
       <section
         style={{
@@ -150,57 +112,7 @@ export default function TermsOfUsePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer
-        style={{
-          background: "#201e1d",
-          color: "#f3f2f2",
-          padding: "clamp(32px, 5vw, 56px) 32px",
-        }}
-      >
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: 12,
-            }}
-          >
-            <Link
-              href="/"
-              style={{
-                fontSize: 12,
-                opacity: 0.3,
-                fontWeight: 500,
-                letterSpacing: "0.06em",
-                textDecoration: "none",
-                color: "inherit",
-              }}
-            >
-              ← Back to daliy.tools
-            </Link>
-            <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
-              <Link
-                href="/privacy-policy"
-                style={{ fontSize: 12, opacity: 0.3, fontWeight: 500, letterSpacing: "0.06em", textDecoration: "none", color: "#f3f2f2" }}
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms-of-use"
-                style={{ fontSize: 12, opacity: 0.5, fontWeight: 600, letterSpacing: "0.06em", textDecoration: "none", color: "#f3f2f2" }}
-              >
-                Terms of Use
-              </Link>
-              <p style={{ fontSize: 12, opacity: 0.3, fontWeight: 500 }}>
-                © {new Date().getFullYear()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

@@ -31,7 +31,7 @@ const baseTools: Tool[] = [
     slug: "compress-pdf",
     name: "Compress PDF",
     category: "PDF Tools",
-    description: "Shrink file size without losing quality.",
+    description: "Reduce scanned PDFs to smaller image-only copies.",
     live: true,
   },
   {
@@ -105,7 +105,7 @@ const baseTools: Tool[] = [
     seo: {
       title: "Compress Image Online — Free Image Optimizer & Reducer",
       description:
-      "Reduce JPG, PNG, and WebP image file sizes online for free without losing quality. 100% private in-browser compression with zero uploads.",
+      "Compress JPG, PNG, and WebP images to JPEG locally with adjustable quality. Transparent areas become white; compare size and detail before downloading.",
       keywords: [
         "compress image",
         "image compressor online",
@@ -116,7 +116,7 @@ const baseTools: Tool[] = [
       ],
       openGraphTitle: "Compress Image Online — Free & Private | Daliy.Tools",
       openGraphDescription:
-        "Compress and optimize images directly in your browser. Save up to 80% file size without losing sharpness.",
+        "Export a JPEG copy with adjustable quality in your browser. Compare output size and detail; transparent areas become white.",
     },
     live: true,
   },
@@ -320,7 +320,7 @@ const createSeo = (
 const seoBySlug: Record<string, ToolSeo> = {
   "compress-pdf": createSeo(
     "Compress PDF Online — Free, Fast & 100% Private",
-    "Compress and shrink PDF file size online for free without losing quality. 100% private in-browser processing — no file uploads, no limits, no watermarks.",
+    "Compress scanned PDFs up to 50 MB locally. Choose page resolution and JPEG quality; output is image-only and does not preserve searchable text or forms.",
     ["compress pdf", "reduce pdf size online", "free pdf compressor", "shrink pdf file size", "private pdf compressor", "daily tools pdf"]
   ),
   "unlock-pdf": createSeo(
@@ -372,14 +372,14 @@ const seoBySlug: Record<string, ToolSeo> = {
   ),
   "convert-image-format": createSeo(
     "Convert Image Format — Free & Private",
-    "Convert images between JPEG, PNG, WebP, and AVIF formats directly in your browser without uploading files.",
+    "Convert still images to JPEG, PNG, or browser-supported WebP and AVIF locally. Unsupported output encoders are reported before downloading.",
     ["convert image format", "jpg to png", "png to jpg", "webp converter", "avif converter", "image format converter"]
   ),
   "compress-image": createSeo(
     "Compress Image Online — Free Image Optimizer & Reducer",
-    "Reduce JPG, PNG, and WebP image file sizes online for free without losing quality. 100% private in-browser compression with zero uploads.",
+    "Compress JPG, PNG, and WebP images to JPEG locally with adjustable quality. Transparent areas become white; compare size and detail before downloading.",
     ["compress image", "image compressor online", "reduce photo size", "shrink jpg", "png compressor", "daily tools compress image"],
-    "Compress and optimize images directly in your browser. Save up to 80% file size without losing sharpness."
+    "Export a JPEG copy with adjustable quality in your browser. Compare output size and detail; transparent areas become white."
   ),
   "crop-image": createSeo(
     "Crop Image — Free & Private",

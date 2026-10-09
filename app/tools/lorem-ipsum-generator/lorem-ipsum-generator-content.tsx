@@ -111,7 +111,7 @@ export default function LoremIpsumGeneratorContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -124,7 +124,7 @@ export default function LoremIpsumGeneratorContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Lorem Ipsum Generator</h1>
@@ -136,7 +136,7 @@ export default function LoremIpsumGeneratorContent() {
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }} className="fade-in-up">
 
           {/* Controls */}
-          <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20, display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20, display: "flex", flexDirection: "column", gap: 24 }}>
 
             {/* Output type */}
             <div>
@@ -149,9 +149,9 @@ export default function LoremIpsumGeneratorContent() {
                     onClick={() => { setOutputType(type); setCount(type === "words" ? 50 : type === "sentences" ? 5 : 3); }}
                     style={{
                       padding: "10px 20px",
-                      border: "2px solid #201e1d",
-                      background: outputType === type ? "#201e1d" : "transparent",
-                      color: outputType === type ? "#f3f2f2" : "#201e1d",
+                      border: "2px solid var(--border)",
+                      background: outputType === type ? "var(--solid)" : "transparent",
+                      color: outputType === type ? "var(--on-solid)" : "var(--ink)",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 700,
                       fontSize: 13,
@@ -171,12 +171,12 @@ export default function LoremIpsumGeneratorContent() {
                 <label style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45 }}>
                   Number of {unitLabel}
                 </label>
-                <span style={{ fontSize: 14, fontWeight: 800, color: "#ec3013" }}>{count}</span>
+                <span style={{ fontSize: 14, fontWeight: 800, color: "var(--red)" }}>{count}</span>
               </div>
               <input
                 type="range" min={1} max={maxCount} step={1} value={count}
                 onChange={(e) => setCount(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "#ec3013" }}
+                style={{ width: "100%", accentColor: "var(--red)" }}
               />
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, opacity: 0.4, marginTop: 4 }}>
                 <span>1</span><span>{maxCount}</span>
@@ -191,7 +191,7 @@ export default function LoremIpsumGeneratorContent() {
                 style={{
                   width: 40,
                   height: 22,
-                  background: startWithLorem ? "#ec3013" : "#c8c6c5",
+                  background: startWithLorem ? "var(--red)" : "#c8c6c5",
                   border: "none",
                   borderRadius: 11,
                   position: "relative",
@@ -206,7 +206,7 @@ export default function LoremIpsumGeneratorContent() {
                   left: startWithLorem ? 20 : 2,
                   width: 18,
                   height: 18,
-                  background: "#f3f2f2",
+                  background: "var(--bg)",
                   borderRadius: "50%",
                   transition: "left 0.2s ease",
                 }} />
@@ -221,7 +221,7 @@ export default function LoremIpsumGeneratorContent() {
 
           {/* Output */}
           {output && (
-            <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)" }}>
+            <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, gap: 12, flexWrap: "wrap" }}>
                 <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.4 }}>
                   {output.split(/\s+/).length} words · {output.length} characters
@@ -235,15 +235,15 @@ export default function LoremIpsumGeneratorContent() {
                     onClick={generate}
                     style={{
                       padding: "8px 16px",
-                      border: "2px solid #201e1d",
+                      border: "2px solid var(--border)",
                       background: "transparent",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 700,
                       fontSize: 12,
                       transition: "background 0.15s ease, color 0.15s ease",
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = "#201e1d"; e.currentTarget.style.color = "#f3f2f2"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#201e1d"; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "var(--solid)"; e.currentTarget.style.color = "var(--on-solid)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--ink)"; }}
                   >
                     Regenerate ↺
                   </button>
@@ -264,7 +264,7 @@ export default function LoremIpsumGeneratorContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             Text is assembled from a bank of classic Lorem Ipsum vocabulary shuffled into random sentences and paragraphs.

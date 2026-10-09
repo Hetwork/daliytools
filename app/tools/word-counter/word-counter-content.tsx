@@ -74,7 +74,7 @@ export default function WordCounterContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -87,7 +87,7 @@ export default function WordCounterContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Word Counter</h1>
@@ -104,12 +104,12 @@ export default function WordCounterContent() {
               <div
                 key={label}
                 style={{
-                  border: "2px solid #201e1d",
+                  border: "2px solid var(--border)",
                   padding: "clamp(12px, 2vw, 18px) clamp(14px, 2.5vw, 22px)",
-                  background: "#f3f2f2",
+                  background: "var(--bg)",
                 }}
               >
-                <p style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#ec3013" }}>{value}</p>
+                <p style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 800, letterSpacing: "-0.02em", color: "var(--red)" }}>{value}</p>
                 <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45, marginTop: 2 }}>{label}</p>
               </div>
             ))}
@@ -121,7 +121,7 @@ export default function WordCounterContent() {
               { label: "Read time", value: fmtTime(stats.readTimeSec), sub: `@ ${WORDS_PER_MINUTE} wpm` },
               { label: "Speak time", value: fmtTime(stats.speakTimeSec), sub: `@ ${CHARS_PER_MINUTE} cpm` },
             ].map(({ label, value, sub }) => (
-              <div key={label} style={{ border: "2px solid #201e1d", padding: "12px 22px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+              <div key={label} style={{ border: "2px solid var(--border)", padding: "12px 22px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
                 <div>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4 }}>{label}</p>
                   <p style={{ fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 800 }}>{value}</p>
@@ -139,9 +139,9 @@ export default function WordCounterContent() {
             rows={14}
             style={{
               width: "100%",
-              border: "2px solid #201e1d",
+              border: "2px solid var(--border)",
               background: "transparent",
-              color: "#201e1d",
+              color: "var(--ink)",
               fontFamily: "var(--font-archivo)",
               fontSize: "clamp(14px, 1.6vw, 16px)",
               fontWeight: 400,
@@ -161,7 +161,7 @@ export default function WordCounterContent() {
               disabled={!text}
               style={{
                 padding: "9px 18px",
-                border: "2px solid #201e1d",
+                border: "2px solid var(--border)",
                 background: "transparent",
                 fontFamily: "var(--font-archivo)",
                 fontWeight: 700,
@@ -169,8 +169,8 @@ export default function WordCounterContent() {
                 opacity: text ? 1 : 0.35,
                 transition: "background 0.15s ease, color 0.15s ease",
               }}
-              onMouseEnter={(e) => { if (text) { e.currentTarget.style.background = "#201e1d"; e.currentTarget.style.color = "#f3f2f2"; } }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#201e1d"; }}
+              onMouseEnter={(e) => { if (text) { e.currentTarget.style.background = "var(--solid)"; e.currentTarget.style.color = "var(--on-solid)"; } }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--ink)"; }}
             >
               Clear
             </button>
@@ -187,7 +187,7 @@ export default function WordCounterContent() {
 
           {/* Top words */}
           {stats.topWords.length > 0 && (
-            <div style={{ marginTop: 28, borderTop: "2px solid #201e1d", paddingTop: 20 }}>
+            <div style={{ marginTop: 28, borderTop: "2px solid var(--border)", paddingTop: 20 }}>
               <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, marginBottom: 14 }}>
                 Most frequent words
               </p>
@@ -199,12 +199,12 @@ export default function WordCounterContent() {
                       display: "flex",
                       alignItems: "center",
                       gap: 8,
-                      border: "2px solid #201e1d",
+                      border: "2px solid var(--border)",
                       padding: "6px 14px",
                     }}
                   >
                     <span style={{ fontWeight: 700, fontSize: 14 }}>{word}</span>
-                    <span style={{ fontSize: 12, fontWeight: 800, color: "#ec3013" }}>{count}</span>
+                    <span style={{ fontSize: 12, fontWeight: 800, color: "var(--red)" }}>{count}</span>
                   </div>
                 ))}
               </div>

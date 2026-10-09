@@ -20,17 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "Article Not Found | Daliy.Tools",
+      title: "Article Not Found",
     };
   }
 
   const url = `https://daliy.tools/blogs/${post.slug}`;
-  const imageUrl = post.image.startsWith("http")
-    ? post.image
-    : `https://daliy.tools${post.image}`;
+  const imageUrl = post.image ? (post.image.startsWith("http") ? post.image : `https://daliy.tools${post.image}`) : undefined;
 
   return {
-    title: `${post.title} — Free Online Guide | Daliy.Tools`,
+    title: post.title,
     description: post.excerpt,
     keywords: [
       "daily tools",
@@ -49,19 +47,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "Daliy.Tools",
       type: "article",
       publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt || post.publishedAt,
       authors: [post.author.name],
-      images: [
-        {
-          url: imageUrl,
-          alt: post.title,
-        },
-      ],
+      images: imageUrl ? [{ url: imageUrl, alt: post.imageAlt || post.title }] : undefined,
     },
     twitter: {
-      card: "summary_large_image",
+      card: imageUrl ? "summary_large_image" : "summary",
       title: `${post.title} | Daliy.Tools Blog`,
       description: post.excerpt,
-      images: [imageUrl],
+      images: imageUrl ? [imageUrl] : undefined,
     },
   };
 }
@@ -81,14 +75,13 @@ export default async function BlogPostPage({ params }: Props) {
         "@type": "BlogPosting",
         "headline": post.title,
         "description": post.excerpt,
-        "image": post.image.startsWith("http")
-          ? post.image
-          : `https://daliy.tools${post.image}`,
+        "image": post.image ? (post.image.startsWith("http") ? post.image : `https://daliy.tools${post.image}`) : undefined,
         "datePublished": post.publishedAt,
-        "dateModified": post.publishedAt,
+        "dateModified": post.updatedAt || post.publishedAt,
         "author": {
           "@type": "Organization",
           "name": post.author.name,
+          "url": "https://daliy.tools/about",
         },
         "publisher": {
           "@type": "Organization",

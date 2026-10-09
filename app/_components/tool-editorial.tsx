@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { tools } from "../_data/tools";
+import ToolGuideLinks from "./tool-guide-links";
 
 export type StepItem = {
   num: string;
@@ -122,11 +123,12 @@ export default function ToolEditorial({
   return (
     <>
       <ToolStructuredData toolName={toolName} faqs={faqs} />
+      <ToolGuideLinks slug={tools.find(tool => tool.name.toLowerCase() === toolName.toLowerCase())?.slug ?? ""} />
       <div
         className="reveal"
         style={{
           marginTop: "clamp(56px, 8vw, 88px)",
-          borderTop: "2px solid #201e1d",
+          borderTop: "2px solid var(--border)",
           paddingTop: 40,
         }}
       >
@@ -139,7 +141,7 @@ export default function ToolEditorial({
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.14em",
-              color: "#ec3013",
+              color: "var(--red)",
             }}
           >
             Step-by-Step Guide
@@ -166,11 +168,11 @@ export default function ToolEditorial({
                 key={step.num}
                 style={{
                   padding: "16px 20px",
-                  background: "#fff",
-                  border: "1.5px solid #201e1d",
+                  background: "var(--surface)",
+                  border: "1.5px solid var(--border)",
                 }}
               >
-                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "var(--red)" }}>
                   {step.num}
                 </p>
                 <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>
@@ -190,8 +192,8 @@ export default function ToolEditorial({
         <div
           style={{
             marginBottom: 48,
-            background: "#fff",
-            border: "2px solid #201e1d",
+            background: "var(--surface)",
+            border: "2px solid var(--border)",
             padding: "clamp(24px, 4vw, 36px)",
           }}
         >
@@ -201,7 +203,7 @@ export default function ToolEditorial({
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.14em",
-              color: "#ec3013",
+              color: "var(--red)",
             }}
           >
             Under the Hood
@@ -242,7 +244,7 @@ export default function ToolEditorial({
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.14em",
-              color: "#ec3013",
+              color: "var(--red)",
             }}
           >
             Answers to Common Questions
@@ -269,8 +271,8 @@ export default function ToolEditorial({
                 key={i}
                 style={{
                   padding: "20px 24px",
-                  background: "#fff",
-                  border: "1.5px solid #201e1d",
+                  background: "var(--surface)",
+                  border: "1.5px solid var(--border)",
                 }}
               >
                 <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
@@ -287,7 +289,7 @@ export default function ToolEditorial({
 
       {/* ── RELATED TOOLS ── */}
       {relatedTools && relatedTools.length > 0 && (
-        <div style={{ borderTop: "1.5px dashed #201e1d", paddingTop: 32 }}>
+        <div style={{ borderTop: "1.5px dashed var(--border)", paddingTop: 32 }}>
           <p
             style={{
               fontSize: 12,

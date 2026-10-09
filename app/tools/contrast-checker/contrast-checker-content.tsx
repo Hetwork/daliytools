@@ -87,7 +87,7 @@ export default function ContrastCheckerContent() {
   }, [foreground, background]);
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
       <section style={{ maxWidth: 980, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
@@ -97,7 +97,7 @@ export default function ContrastCheckerContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>WCAG 2.1 AA and AAA checks</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>WCAG Contrast Checker</h1>
@@ -107,48 +107,48 @@ export default function ContrastCheckerContent() {
         </div>
 
         <div className="fade-in-up" style={{ marginTop: "clamp(36px, 6vw, 56px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
-          <div style={{ border: "2px solid #201e1d", padding: 16 }}>
+          <div style={{ border: "2px solid var(--border)", padding: 16 }}>
             <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Foreground</p>
             <div style={{ display: "flex", gap: 10 }}>
-              <input type="color" value={normalizeHex(foreground) || "#000000"} onChange={(event) => setForeground(event.target.value)} style={{ width: 56, height: 44, border: "2px solid #201e1d", background: "none" }} />
-              <input value={foreground} onChange={(event) => setForeground(event.target.value)} placeholder="#201e1d" style={{ flex: 1, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }} />
+              <input type="color" value={normalizeHex(foreground) || "#000000"} onChange={(event) => setForeground(event.target.value)} style={{ width: 56, height: 44, border: "2px solid var(--border)", background: "none" }} />
+              <input value={foreground} onChange={(event) => setForeground(event.target.value)} placeholder="#201e1d" style={{ flex: 1, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }} />
             </div>
           </div>
 
-          <div style={{ border: "2px solid #201e1d", padding: 16 }}>
+          <div style={{ border: "2px solid var(--border)", padding: 16 }}>
             <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Background</p>
             <div style={{ display: "flex", gap: 10 }}>
-              <input type="color" value={normalizeHex(background) || "#ffffff"} onChange={(event) => setBackground(event.target.value)} style={{ width: 56, height: 44, border: "2px solid #201e1d", background: "none" }} />
-              <input value={background} onChange={(event) => setBackground(event.target.value)} placeholder="#f3f2f2" style={{ flex: 1, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }} />
+              <input type="color" value={normalizeHex(background) || "#ffffff"} onChange={(event) => setBackground(event.target.value)} style={{ width: 56, height: 44, border: "2px solid var(--border)", background: "none" }} />
+              <input value={background} onChange={(event) => setBackground(event.target.value)} placeholder="#f3f2f2" style={{ flex: 1, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }} />
             </div>
           </div>
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid #201e1d", background: normalizeHex(background) || "#f3f2f2", padding: "clamp(20px, 3vw, 30px)" }}>
+        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid var(--border)", background: normalizeHex(background) || "var(--bg)", padding: "clamp(20px, 3vw, 30px)" }}>
           <textarea
             value={previewText}
             onChange={(event) => setPreviewText(event.target.value)}
-            style={{ width: "100%", minHeight: 100, border: "2px solid #201e1d", background: "transparent", color: normalizeHex(foreground) || "#201e1d", padding: 14, fontFamily: "inherit", fontSize: 20, lineHeight: 1.45 }}
+            style={{ width: "100%", minHeight: 100, border: "2px solid var(--border)", background: "transparent", color: normalizeHex(foreground) || "var(--ink)", padding: 14, fontFamily: "inherit", fontSize: 20, lineHeight: 1.45 }}
           />
-          <p style={{ marginTop: 10, color: normalizeHex(foreground) || "#201e1d", opacity: 0.75 }}>
+          <p style={{ marginTop: 10, color: normalizeHex(foreground) || "var(--ink)", opacity: 0.75 }}>
             Large text preview 18px+ with your selected pair.
           </p>
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid #201e1d", padding: 16 }}>
+        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid var(--border)", padding: 16 }}>
           <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 12 }}>Results</p>
           {analysis.valid ? (
             <>
               <p style={{ fontSize: 20, fontWeight: 800, marginBottom: 14 }}>Contrast Ratio: {analysis.ratio.toFixed(2)}:1</p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 10 }}>
-                <div style={{ border: "1px solid #201e1d", padding: 10 }}><strong>AA Normal</strong>: {passBadge(analysis.aaNormal)}</div>
-                <div style={{ border: "1px solid #201e1d", padding: 10 }}><strong>AA Large</strong>: {passBadge(analysis.aaLarge)}</div>
-                <div style={{ border: "1px solid #201e1d", padding: 10 }}><strong>AAA Normal</strong>: {passBadge(analysis.aaaNormal)}</div>
-                <div style={{ border: "1px solid #201e1d", padding: 10 }}><strong>AAA Large</strong>: {passBadge(analysis.aaaLarge)}</div>
+                <div style={{ border: "1px solid var(--border)", padding: 10 }}><strong>AA Normal</strong>: {passBadge(analysis.aaNormal)}</div>
+                <div style={{ border: "1px solid var(--border)", padding: 10 }}><strong>AA Large</strong>: {passBadge(analysis.aaLarge)}</div>
+                <div style={{ border: "1px solid var(--border)", padding: 10 }}><strong>AAA Normal</strong>: {passBadge(analysis.aaaNormal)}</div>
+                <div style={{ border: "1px solid var(--border)", padding: 10 }}><strong>AAA Large</strong>: {passBadge(analysis.aaaLarge)}</div>
               </div>
             </>
           ) : (
-            <p style={{ color: "#ec3013", fontWeight: 600 }}>Enter valid HEX colors, for example #111111 and #ffffff.</p>
+            <p style={{ color: "var(--red)", fontWeight: 600 }}>Enter valid HEX colors, for example #111111 and #ffffff.</p>
           )}
         </div>
         <ToolEditorial toolName="WCAG Contrast Checker" {...toolEditorialData["contrast-checker"]} />

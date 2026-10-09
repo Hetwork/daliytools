@@ -115,7 +115,7 @@ export default function JwtDecoderContent() {
   }
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
       <section style={{ maxWidth: 980, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
@@ -125,7 +125,7 @@ export default function JwtDecoderContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Private decode only, no signature verification</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>JWT Token Decoder</h1>
@@ -140,11 +140,11 @@ export default function JwtDecoderContent() {
             onChange={(event) => setToken(event.target.value)}
             spellCheck={false}
             placeholder="Paste JWT token here"
-            style={{ width: "100%", minHeight: 120, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 18, outline: "none", resize: "vertical" }}
+            style={{ width: "100%", minHeight: 120, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 18, outline: "none", resize: "vertical" }}
           />
 
           {result.error && (
-            <p style={{ marginTop: 10, color: "#ec3013", fontSize: 13, fontWeight: 600 }}>{result.error}</p>
+            <p style={{ marginTop: 10, color: "var(--red)", fontSize: 13, fontWeight: 600 }}>{result.error}</p>
           )}
 
           <div style={{ marginTop: 16, display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -155,17 +155,17 @@ export default function JwtDecoderContent() {
         </div>
 
         <div className="fade-in-up" style={{ marginTop: 22, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
-          <div style={{ border: "2px solid #201e1d", padding: 16 }}>
+          <div style={{ border: "2px solid var(--border)", padding: 16 }}>
             <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Header</p>
             <pre style={{ margin: 0, whiteSpace: "pre-wrap", fontFamily: "monospace", fontSize: 12, lineHeight: 1.6 }}>{result.header ? JSON.stringify(result.header, null, 2) : "-"}</pre>
           </div>
-          <div style={{ border: "2px solid #201e1d", padding: 16 }}>
+          <div style={{ border: "2px solid var(--border)", padding: 16 }}>
             <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Payload</p>
             <pre style={{ margin: 0, whiteSpace: "pre-wrap", fontFamily: "monospace", fontSize: 12, lineHeight: 1.6 }}>{result.payload ? JSON.stringify(result.payload, null, 2) : "-"}</pre>
           </div>
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid #201e1d", padding: 16 }}>
+        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid var(--border)", padding: 16 }}>
           <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Token Details</p>
           <p style={{ fontSize: 13, opacity: 0.75, marginBottom: 8 }}>Signature length: {result.signature.length} chars</p>
           {payloadDates.length === 0 ? (

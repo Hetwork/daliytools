@@ -61,6 +61,8 @@ export default function CompressImageContent() {
           canvas.height = img.height;
           const ctx = canvas.getContext("2d");
           if (!ctx) return reject(new Error("Canvas not available"));
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(img, 0, 0);
           canvas.toBlob(
             (blob) => {
@@ -135,7 +137,7 @@ export default function CompressImageContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -148,12 +150,12 @@ export default function CompressImageContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Compress Image</h1>
           <p style={{ marginTop: 18, fontSize: "clamp(15px, 1.8vw, 19px)", lineHeight: 1.7, opacity: 0.7, maxWidth: 560 }}>
-            Reduce image file size with a quality slider. Supports JPG, PNG, and WebP. Your file never leaves this tab.
+            Export a JPEG copy using a quality slider. Transparent areas become white; pixel dimensions stay the same. Supports JPG, PNG, and WebP. Your file never leaves this tab.
           </p>
         </div>
 
@@ -169,14 +171,14 @@ export default function CompressImageContent() {
               onDragLeave={() => setIsDragging(false)}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`,
-                background: isDragging ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`,
+                background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
               }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
               <p style={{ fontSize: "clamp(13px, 1.5vw, 15px)", opacity: 0.55 }}>or click to browse — JPG, PNG, WebP</p>
               <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -186,9 +188,9 @@ export default function CompressImageContent() {
           {image && (
             <div className="fade-in-up">
               {/* File info + controls */}
-              <div style={{ border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 32px)", marginBottom: 20 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 32px)", marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
-                  <div style={{ width: 48, height: 48, border: "2px solid #201e1d", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, flexShrink: 0 }}>IMG</div>
+                  <div style={{ width: 48, height: 48, border: "2px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, flexShrink: 0 }}>IMG</div>
                   <div>
                     <p style={{ fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 17px)", wordBreak: "break-all" }}>{image.original.name}</p>
                     <p style={{ opacity: 0.5, fontSize: 13, marginTop: 2 }}>{formatBytes(image.originalSize)}</p>
@@ -198,7 +200,7 @@ export default function CompressImageContent() {
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                     <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45 }}>Quality</p>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "#ec3013" }}>{quality}%</p>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--red)" }}>{quality}%</p>
                   </div>
                   <input
                     type="range"
@@ -206,7 +208,7 @@ export default function CompressImageContent() {
                     max={100}
                     value={quality}
                     onChange={(e) => handleQualityChange(Number(e.target.value))}
-                    style={{ width: "100%", accentColor: "#ec3013", cursor: "pointer" }}
+                    style={{ width: "100%", accentColor: "var(--red)", cursor: "pointer" }}
                   />
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, opacity: 0.4, marginTop: 4 }}>
                     <span>Smallest</span>
@@ -217,17 +219,17 @@ export default function CompressImageContent() {
 
               {/* Result */}
               {isCompressing && (
-                <div style={{ border: "2px solid #201e1d", padding: 24, display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ border: "2px solid var(--border)", padding: 24, display: "flex", alignItems: "center", gap: 12 }}>
                   <span className="pulse-dot" />
                   <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", opacity: 0.6 }}>Compressing&hellip;</span>
                 </div>
               )}
 
               {!isCompressing && image.compressedSize !== null && (
-                <div style={{ border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 36px)" }}>
+                <div style={{ border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 36px)" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
                     <p style={{ fontSize: "clamp(11px, 1.3vw, 13px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.45 }}>Result</p>
-                    <p style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, color: "#ec3013", lineHeight: 1, letterSpacing: "-0.02em" }}>{savings}% smaller</p>
+                    <p style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, color: "var(--red)", lineHeight: 1, letterSpacing: "-0.02em" }}>{savings}% smaller</p>
                   </div>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 24 }}>
@@ -236,14 +238,14 @@ export default function CompressImageContent() {
                         <span style={{ opacity: 0.5 }}>Original</span>
                         <span>{formatBytes(image.originalSize)}</span>
                       </div>
-                      <div style={{ height: 10, background: "#201e1d" }} />
+                      <div style={{ height: 10, background: "var(--solid)" }} />
                     </div>
                     <div>
                       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
                         <span style={{ opacity: 0.5 }}>Compressed</span>
                         <span>{formatBytes(image.compressedSize!)}</span>
                       </div>
-                      <div style={{ height: 10, background: "#ec3013", width: `${Math.min(100, Math.round((image.compressedSize! / image.originalSize) * 100))}%`, transition: "width 0.6s cubic-bezier(0.22,1,0.36,1)" }} />
+                      <div style={{ height: 10, background: "var(--red)", width: `${Math.min(100, Math.round((image.compressedSize! / image.originalSize) * 100))}%`, transition: "width 0.6s cubic-bezier(0.22,1,0.36,1)" }} />
                     </div>
                   </div>
 

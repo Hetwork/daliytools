@@ -269,8 +269,8 @@ export default function VideoToAudioContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -315,8 +315,8 @@ export default function VideoToAudioContent() {
                 fontSize: "clamp(11px, 1.4vw, 13px)",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
-                color: "#f3f2f2",
-                background: "#ec3013",
+                color: "var(--on-solid)",
+                background: "var(--red)",
                 padding: "6px 14px",
                 textTransform: "uppercase",
               }}
@@ -369,8 +369,8 @@ export default function VideoToAudioContent() {
             className="reveal-fast"
             style={{
               background: "#ffebe8",
-              border: "1px solid #ec3013",
-              color: "#ec3013",
+              border: "1px solid var(--red)",
+              color: "var(--red)",
               padding: "16px 20px",
               marginBottom: 28,
               fontSize: 14,
@@ -388,7 +388,7 @@ export default function VideoToAudioContent() {
                 border: "none",
                 cursor: "pointer",
                 fontWeight: 700,
-                color: "#ec3013",
+                color: "var(--red)",
                 fontSize: 16,
               }}
               aria-label="Dismiss error"
@@ -408,8 +408,8 @@ export default function VideoToAudioContent() {
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
             style={{
-              background: isDragging ? "#e9e7e7" : "#ffffff",
-              border: isDragging ? "2px dashed #ec3013" : "2px dashed rgba(0, 0, 0, 0.18)",
+              background: isDragging ? "#e9e7e7" : "var(--surface)",
+              border: isDragging ? "2px dashed var(--red)" : "2px dashed rgba(0, 0, 0, 0.18)",
               padding: "clamp(48px, 8vw, 80px) 24px",
               textAlign: "center",
               cursor: "pointer",
@@ -431,12 +431,12 @@ export default function VideoToAudioContent() {
                 width: 72,
                 height: 72,
                 margin: "0 auto 24px",
-                background: "#f3f2f2",
+                background: "var(--bg)",
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "#201e1d",
+                color: "var(--ink)",
               }}
             >
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -471,8 +471,8 @@ export default function VideoToAudioContent() {
             <span
               style={{
                 display: "inline-block",
-                background: "#201e1d",
-                color: "#f3f2f2",
+                background: "var(--solid)",
+                color: "var(--on-solid)",
                 padding: "12px 28px",
                 fontSize: 13,
                 fontWeight: 700,
@@ -500,7 +500,7 @@ export default function VideoToAudioContent() {
                     fontWeight: 700,
                     letterSpacing: "0.06em",
                     padding: "4px 8px",
-                    background: "#f3f2f2",
+                    background: "var(--bg)",
                     border: "1px solid rgba(0,0,0,0.08)",
                   }}
                 >
@@ -515,7 +515,7 @@ export default function VideoToAudioContent() {
             {/* Video Preview & Details Card */}
             <div
               style={{
-                background: "#ffffff",
+                background: "var(--surface)",
                 border: "1px solid rgba(0, 0, 0, 0.12)",
                 padding: 24,
                 boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
@@ -540,7 +540,7 @@ export default function VideoToAudioContent() {
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "#ec3013",
+                      color: "var(--red)",
                     }}
                   >
                     Uploaded Video
@@ -584,7 +584,7 @@ export default function VideoToAudioContent() {
                       textTransform: "uppercase",
                       letterSpacing: "0.06em",
                       cursor: "pointer",
-                      color: "#ec3013",
+                      color: "var(--red)",
                     }}
                   >
                     Reset
@@ -686,7 +686,7 @@ export default function VideoToAudioContent() {
             {/* Audio Settings Card */}
             <div
               style={{
-                background: "#ffffff",
+                background: "var(--surface)",
                 border: "1px solid rgba(0, 0, 0, 0.12)",
                 padding: 28,
                 boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
@@ -728,9 +728,9 @@ export default function VideoToAudioContent() {
                       onClick={() => setFormat("mp3")}
                       style={{
                         padding: "12px 16px",
-                        background: format === "mp3" ? "#201e1d" : "#f8f8f8",
-                        color: format === "mp3" ? "#f3f2f2" : "#201e1d",
-                        border: format === "mp3" ? "1px solid #201e1d" : "1px solid rgba(0,0,0,0.12)",
+                        background: format === "mp3" ? "var(--solid)" : "#f8f8f8",
+                        color: format === "mp3" ? "var(--on-solid)" : "var(--ink)",
+                        border: format === "mp3" ? "1px solid var(--border)" : "1px solid rgba(0,0,0,0.12)",
                         fontWeight: 700,
                         fontSize: 13,
                         cursor: "pointer",
@@ -748,9 +748,9 @@ export default function VideoToAudioContent() {
                       onClick={() => setFormat("wav")}
                       style={{
                         padding: "12px 16px",
-                        background: format === "wav" ? "#201e1d" : "#f8f8f8",
-                        color: format === "wav" ? "#f3f2f2" : "#201e1d",
-                        border: format === "wav" ? "1px solid #201e1d" : "1px solid rgba(0,0,0,0.12)",
+                        background: format === "wav" ? "var(--solid)" : "#f8f8f8",
+                        color: format === "wav" ? "var(--on-solid)" : "var(--ink)",
+                        border: format === "wav" ? "1px solid var(--border)" : "1px solid rgba(0,0,0,0.12)",
                         fontWeight: 700,
                         fontSize: 13,
                         cursor: "pointer",
@@ -851,9 +851,9 @@ export default function VideoToAudioContent() {
                       onClick={() => setChannels(2)}
                       style={{
                         padding: "10px 14px",
-                        background: channels === 2 ? "#201e1d" : "#f8f8f8",
-                        color: channels === 2 ? "#f3f2f2" : "#201e1d",
-                        border: channels === 2 ? "1px solid #201e1d" : "1px solid rgba(0,0,0,0.12)",
+                        background: channels === 2 ? "var(--solid)" : "#f8f8f8",
+                        color: channels === 2 ? "var(--on-solid)" : "var(--ink)",
+                        border: channels === 2 ? "1px solid var(--border)" : "1px solid rgba(0,0,0,0.12)",
                         fontWeight: 700,
                         fontSize: 13,
                         cursor: "pointer",
@@ -866,9 +866,9 @@ export default function VideoToAudioContent() {
                       onClick={() => setChannels(1)}
                       style={{
                         padding: "10px 14px",
-                        background: channels === 1 ? "#201e1d" : "#f8f8f8",
-                        color: channels === 1 ? "#f3f2f2" : "#201e1d",
-                        border: channels === 1 ? "1px solid #201e1d" : "1px solid rgba(0,0,0,0.12)",
+                        background: channels === 1 ? "var(--solid)" : "#f8f8f8",
+                        color: channels === 1 ? "var(--on-solid)" : "var(--ink)",
+                        border: channels === 1 ? "1px solid var(--border)" : "1px solid rgba(0,0,0,0.12)",
                         fontWeight: 700,
                         fontSize: 13,
                         cursor: "pointer",
@@ -901,7 +901,7 @@ export default function VideoToAudioContent() {
                     step="0.1"
                     value={gain}
                     onChange={(e) => setGain(parseFloat(e.target.value))}
-                    style={{ width: "100%", accentColor: "#ec3013" }}
+                    style={{ width: "100%", accentColor: "var(--red)" }}
                   />
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, opacity: 0.5, marginTop: 4 }}>
                     <span>50% (Quiet)</span>
@@ -933,9 +933,9 @@ export default function VideoToAudioContent() {
                     type="button"
                     onClick={() => setIsTrimming(!isTrimming)}
                     style={{
-                      background: isTrimming ? "#ec3013" : "#f8f8f8",
-                      color: isTrimming ? "#ffffff" : "#201e1d",
-                      border: isTrimming ? "1px solid #ec3013" : "1px solid rgba(0,0,0,0.18)",
+                      background: isTrimming ? "var(--red)" : "#f8f8f8",
+                      color: isTrimming ? "var(--on-solid)" : "var(--ink)",
+                      border: isTrimming ? "1px solid var(--red)" : "1px solid rgba(0,0,0,0.18)",
                       padding: "6px 14px",
                       fontSize: 12,
                       fontWeight: 700,
@@ -971,7 +971,7 @@ export default function VideoToAudioContent() {
                           step={0.1}
                           value={startTime}
                           onChange={(e) => setStartTime(parseFloat(e.target.value))}
-                          style={{ width: "100%", accentColor: "#ec3013" }}
+                          style={{ width: "100%", accentColor: "var(--red)" }}
                         />
                       </div>
 
@@ -986,7 +986,7 @@ export default function VideoToAudioContent() {
                           step={0.1}
                           value={endTime}
                           onChange={(e) => setEndTime(parseFloat(e.target.value))}
-                          style={{ width: "100%", accentColor: "#ec3013" }}
+                          style={{ width: "100%", accentColor: "var(--red)" }}
                         />
                       </div>
                     </div>
@@ -1002,7 +1002,7 @@ export default function VideoToAudioContent() {
                         style={{
                           background: "none",
                           border: "none",
-                          color: "#ec3013",
+                          color: "var(--red)",
                           fontWeight: 700,
                           cursor: "pointer",
                           fontSize: 12,
@@ -1023,8 +1023,8 @@ export default function VideoToAudioContent() {
                   onClick={handleExtractAudio}
                   style={{
                     width: "100%",
-                    background: isProcessing ? "#555" : "#ec3013",
-                    color: "#ffffff",
+                    background: isProcessing ? "#555" : "var(--red)",
+                    color: "var(--on-solid)",
                     border: "none",
                     padding: "18px 24px",
                     fontSize: 15,
@@ -1032,7 +1032,7 @@ export default function VideoToAudioContent() {
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
                     cursor: isProcessing ? "not-allowed" : "pointer",
-                    boxShadow: "0 4px 14px rgba(236, 48, 19, 0.3)",
+                    boxShadow: "0 4px 14px rgba(var(--accent-rgb), 0.3)",
                     transition: "all 0.15s ease",
                   }}
                 >
@@ -1055,12 +1055,12 @@ export default function VideoToAudioContent() {
                     <span>{progressStage}</span>
                     <span>{progress}%</span>
                   </div>
-                  <div style={{ height: 8, background: "#f0f0f0", borderRadius: 4, overflow: "hidden" }}>
+                  <div style={{ height: 8, background: "var(--surface-soft)", borderRadius: 4, overflow: "hidden" }}>
                     <div
                       style={{
                         height: "100%",
                         width: `${progress}%`,
-                        background: "#ec3013",
+                        background: "var(--red)",
                         transition: "width 0.2s ease",
                       }}
                     />
@@ -1074,8 +1074,8 @@ export default function VideoToAudioContent() {
               <div
                 className="reveal-fast"
                 style={{
-                  background: "#ffffff",
-                  border: "2px solid #201e1d",
+                  background: "var(--surface)",
+                  border: "2px solid var(--border)",
                   padding: 32,
                   boxShadow: "0 12px 36px rgba(0,0,0,0.08)",
                 }}
@@ -1091,7 +1091,7 @@ export default function VideoToAudioContent() {
                   <span
                     style={{
                       background: "#008a00",
-                      color: "#ffffff",
+                      color: "var(--on-solid)",
                       fontSize: 11,
                       fontWeight: 800,
                       padding: "4px 10px",
@@ -1151,8 +1151,8 @@ export default function VideoToAudioContent() {
                 {/* Audio Player Preview */}
                 <div
                   style={{
-                    background: "#201e1d",
-                    color: "#f3f2f2",
+                    background: "var(--solid)",
+                    color: "var(--on-solid)",
                     padding: "16px 20px",
                     marginBottom: 24,
                     display: "flex",
@@ -1177,9 +1177,9 @@ export default function VideoToAudioContent() {
                     type="button"
                     onClick={toggleAudioPlay}
                     style={{
-                      background: "#ec3013",
+                      background: "var(--red)",
                       border: "none",
-                      color: "#ffffff",
+                      color: "var(--on-solid)",
                       width: 44,
                       height: 44,
                       borderRadius: "50%",
@@ -1221,7 +1221,7 @@ export default function VideoToAudioContent() {
                           audioPreviewRef.current.currentTime = nextTime;
                         }
                       }}
-                      style={{ width: "100%", accentColor: "#ec3013" }}
+                      style={{ width: "100%", accentColor: "var(--red)" }}
                     />
                   </div>
                 </div>
@@ -1234,8 +1234,8 @@ export default function VideoToAudioContent() {
                     style={{
                       flex: 1,
                       minWidth: 240,
-                      background: "#201e1d",
-                      color: "#f3f2f2",
+                      background: "var(--solid)",
+                      color: "var(--on-solid)",
                       border: "none",
                       padding: "16px 28px",
                       fontSize: 14,
@@ -1262,7 +1262,7 @@ export default function VideoToAudioContent() {
                     onClick={resetAll}
                     style={{
                       background: "transparent",
-                      color: "#201e1d",
+                      color: "var(--ink)",
                       border: "1px solid rgba(0,0,0,0.2)",
                       padding: "16px 24px",
                       fontSize: 13,

@@ -39,7 +39,7 @@ export default function FullScreenModal({ title, onClose, children }: FullScreen
           position: "relative",
           width: "100vw",
           height: "100vh",
-          background: "#f3f2f2",
+          background: "var(--bg)",
           border: "none",
           borderRadius: 0,
           overflow: "hidden",
@@ -52,9 +52,9 @@ export default function FullScreenModal({ title, onClose, children }: FullScreen
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderBottom: "1px solid rgba(32,30,29,0.12)",
+            borderBottom: "1px solid rgba(var(--ink-rgb), 0.12)",
             padding: "10px 20px 8px",
-            background: "#f3f2f2",
+            background: "var(--bg)",
             flexShrink: 0,
           }}
         >
@@ -66,8 +66,8 @@ export default function FullScreenModal({ title, onClose, children }: FullScreen
             onClick={onClose}
             style={{
               background: "transparent",
-              border: "1px solid #201e1d",
-              color: "#201e1d",
+              border: "1px solid var(--border)",
+              color: "var(--ink)",
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "0.08em",

@@ -87,7 +87,7 @@ function Lightbox({
         }}
       >
         {images.length > 1 && (
-          <span style={{ color: "#f3f2f2", fontSize: 13, fontWeight: 700, opacity: 0.6, lineHeight: "40px", paddingRight: 6 }}>
+          <span style={{ color: "var(--on-solid)", fontSize: 13, fontWeight: 700, opacity: 0.6, lineHeight: "40px", paddingRight: 6 }}>
             {index + 1} / {images.length}
           </span>
         )}
@@ -100,7 +100,7 @@ function Lightbox({
             height: 40,
             border: "2px solid rgba(243,242,242,0.4)",
             background: "rgba(243,242,242,0.1)",
-            color: "#f3f2f2",
+            color: "var(--on-solid)",
             fontSize: 18,
             display: "flex",
             alignItems: "center",
@@ -118,7 +118,7 @@ function Lightbox({
             height: 40,
             border: "2px solid rgba(243,242,242,0.4)",
             background: "rgba(243,242,242,0.1)",
-            color: "#f3f2f2",
+            color: "var(--on-solid)",
             fontSize: 20,
             display: "flex",
             alignItems: "center",
@@ -142,7 +142,7 @@ function Lightbox({
             height: 44,
             border: "2px solid rgba(243,242,242,0.4)",
             background: "rgba(243,242,242,0.1)",
-            color: "#f3f2f2",
+            color: "var(--on-solid)",
             fontSize: 20,
             display: "flex",
             alignItems: "center",
@@ -181,7 +181,7 @@ function Lightbox({
             height: 44,
             border: "2px solid rgba(243,242,242,0.4)",
             background: "rgba(243,242,242,0.1)",
-            color: "#f3f2f2",
+            color: "var(--on-solid)",
             fontSize: 20,
             display: "flex",
             alignItems: "center",
@@ -261,7 +261,7 @@ export default function InstagramPostContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -283,7 +283,7 @@ export default function InstagramPostContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Instagram Post Downloader</h1>
           <p style={{ marginTop: 18, fontSize: "clamp(15px, 1.8vw, 19px)", lineHeight: 1.7, opacity: 0.7, maxWidth: 560 }}>
@@ -302,9 +302,9 @@ export default function InstagramPostContent() {
                 style={{
                   flex: 1,
                   minWidth: 260,
-                  border: `2px solid ${error ? "#ec3013" : "#201e1d"}`,
+                  border: `2px solid ${error ? "var(--red)" : "var(--border)"}`,
                   background: "transparent",
-                  color: "#201e1d",
+                  color: "var(--ink)",
                   fontFamily: "var(--font-archivo)",
                   fontSize: 15,
                   fontWeight: 500,
@@ -316,7 +316,7 @@ export default function InstagramPostContent() {
                 {loading ? "Fetching…" : "Fetch Post"}
               </button>
             </div>
-            {error && <p style={{ marginTop: 8, fontSize: 13, color: "#ec3013", fontWeight: 600 }}>{error}</p>}
+            {error && <p style={{ marginTop: 8, fontSize: 13, color: "var(--red)", fontWeight: 600 }}>{error}</p>}
           </form>
 
           {loading && (
@@ -327,7 +327,7 @@ export default function InstagramPostContent() {
           )}
 
           {result && (
-            <div className="fade-in-up" style={{ marginTop: 32, border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 36px)" }}>
+            <div className="fade-in-up" style={{ marginTop: 32, border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 36px)" }}>
 
               {/* Meta row */}
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 28, alignItems: "flex-start" }}>
@@ -335,19 +335,19 @@ export default function InstagramPostContent() {
                   <img
                     src={result.thumbnail}
                     alt="thumbnail"
-                    style={{ width: 72, height: 72, objectFit: "cover", border: "2px solid #201e1d", flexShrink: 0 }}
+                    style={{ width: 72, height: 72, objectFit: "cover", border: "2px solid var(--border)", flexShrink: 0 }}
                   />
                 )}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 6 }}>
                     <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4 }}>Instagram Post</span>
                     {result.isCarousel && (
-                      <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", background: "#201e1d", color: "#f3f2f2", padding: "2px 7px" }}>
+                      <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", background: "var(--solid)", color: "var(--on-solid)", padding: "2px 7px" }}>
                         {result.imageCount} photos
                       </span>
                     )}
                     {result.type === "video" && (
-                      <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", background: "#ec3013", color: "#f3f2f2", padding: "2px 7px" }}>
+                      <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", background: "var(--red)", color: "var(--on-solid)", padding: "2px 7px" }}>
                         Video
                       </span>
                     )}
@@ -375,9 +375,9 @@ export default function InstagramPostContent() {
                     alignItems: "center",
                     justifyContent: "space-between",
                     padding: "16px 22px",
-                    border: "2px solid #201e1d",
-                    background: "#201e1d",
-                    color: "#f3f2f2",
+                    border: "2px solid var(--border)",
+                    background: "var(--solid)",
+                    color: "var(--on-solid)",
                     fontFamily: "var(--font-archivo)",
                     fontWeight: 700,
                     fontSize: 15,
@@ -395,7 +395,7 @@ export default function InstagramPostContent() {
                 <div>
                   <div
                     onClick={() => setLightbox(0)}
-                    style={{ position: "relative", display: "inline-block", cursor: "zoom-in", border: "2px solid #201e1d", marginBottom: 12 }}
+                    style={{ position: "relative", display: "inline-block", cursor: "zoom-in", border: "2px solid var(--border)", marginBottom: 12 }}
                   >
                     <img
                       src={result.imageUrls[0]}
@@ -412,9 +412,9 @@ export default function InstagramPostContent() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       padding: "14px 22px",
-                      border: "2px solid #201e1d",
-                      background: "#201e1d",
-                      color: "#f3f2f2",
+                      border: "2px solid var(--border)",
+                      background: "var(--solid)",
+                      color: "var(--on-solid)",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 700,
                       fontSize: 15,
@@ -436,7 +436,7 @@ export default function InstagramPostContent() {
                   </p>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
                     {result.imageUrls.map((imgUrl, i) => (
-                      <div key={i} style={{ border: "2px solid #201e1d", overflow: "hidden" }}>
+                      <div key={i} style={{ border: "2px solid var(--border)", overflow: "hidden" }}>
                         {/* Image (click → lightbox) */}
                         <div
                           onClick={() => setLightbox(i)}
@@ -448,7 +448,7 @@ export default function InstagramPostContent() {
                             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                           />
                           {/* Number badge */}
-                          <div style={{ position: "absolute", top: 7, left: 7, background: "#201e1d", color: "#f3f2f2", fontSize: 10, fontWeight: 800, padding: "2px 7px" }}>
+                          <div style={{ position: "absolute", top: 7, left: 7, background: "var(--solid)", color: "var(--on-solid)", fontSize: 10, fontWeight: 800, padding: "2px 7px" }}>
                             {i + 1}
                           </div>
                           {/* Zoom hint overlay */}
@@ -456,7 +456,7 @@ export default function InstagramPostContent() {
                             style={{
                               position: "absolute",
                               inset: 0,
-                              background: "rgba(32,30,29,0.4)",
+                              background: "rgba(var(--ink-rgb), 0.4)",
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
@@ -466,7 +466,7 @@ export default function InstagramPostContent() {
                             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
                             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0")}
                           >
-                            <span style={{ color: "#f3f2f2", fontSize: 28 }}>⤢</span>
+                            <span style={{ color: "var(--on-solid)", fontSize: 28 }}>⤢</span>
                           </div>
                         </div>
 
@@ -482,9 +482,9 @@ export default function InstagramPostContent() {
                             justifyContent: "space-between",
                             padding: "10px 14px",
                             border: "none",
-                            borderTop: "2px solid #201e1d",
-                            background: downloading === i ? "#201e1d" : "transparent",
-                            color: downloading === i ? "#f3f2f2" : "#201e1d",
+                            borderTop: "2px solid var(--border)",
+                            background: downloading === i ? "var(--solid)" : "transparent",
+                            color: downloading === i ? "var(--on-solid)" : "var(--ink)",
                             fontFamily: "var(--font-archivo)",
                             fontWeight: 700,
                             fontSize: 12,
@@ -495,14 +495,14 @@ export default function InstagramPostContent() {
                           }}
                           onMouseEnter={(e) => {
                             if (downloading !== i) {
-                              (e.currentTarget as HTMLButtonElement).style.background = "#201e1d";
-                              (e.currentTarget as HTMLButtonElement).style.color = "#f3f2f2";
+                              (e.currentTarget as HTMLButtonElement).style.background = "var(--solid)";
+                              (e.currentTarget as HTMLButtonElement).style.color = "var(--on-solid)";
                             }
                           }}
                           onMouseLeave={(e) => {
                             if (downloading !== i) {
                               (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-                              (e.currentTarget as HTMLButtonElement).style.color = "#201e1d";
+                              (e.currentTarget as HTMLButtonElement).style.color = "var(--ink)";
                             }
                           }}
                         >
@@ -528,9 +528,9 @@ export default function InstagramPostContent() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       padding: "14px 22px",
-                      border: "2px solid #201e1d",
-                      background: "#201e1d",
-                      color: "#f3f2f2",
+                      border: "2px solid var(--border)",
+                      background: "var(--solid)",
+                      color: "var(--on-solid)",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 700,
                       fontSize: 15,
@@ -555,7 +555,7 @@ export default function InstagramPostContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             The server fetches the public Instagram page, extracts all image URLs from the embedded page data (supporting carousel posts with multiple photos), and proxies each file download directly to your device. Only public posts can be downloaded. Only use this tool for content you own or have permission to download.

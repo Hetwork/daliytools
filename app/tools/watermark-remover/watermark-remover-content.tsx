@@ -146,7 +146,7 @@ export default function WatermarkRemoverContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
       <canvas ref={canvasRef} style={{ display: "none" }} />
@@ -160,7 +160,7 @@ export default function WatermarkRemoverContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Watermark Remover</h1>
@@ -181,14 +181,14 @@ export default function WatermarkRemoverContent() {
               onDragLeave={() => setIsDragging(false)}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`,
-                background: isDragging ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`,
+                background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
               }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
               <p style={{ fontSize: "clamp(13px, 1.5vw, 15px)", opacity: 0.55 }}>or click to browse — JPG, PNG, WebP</p>
               <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -198,7 +198,7 @@ export default function WatermarkRemoverContent() {
           {image && (
             <div className="fade-in-up">
               {/* Settings */}
-              <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
                 <div style={{ display: "flex", gap: 32, flexWrap: "wrap", alignItems: "flex-end" }}>
                   <div>
                     <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Removal Method</p>
@@ -206,8 +206,8 @@ export default function WatermarkRemoverContent() {
                       {(["blur", "fill", "clone"] as Method[]).map((m) => (
                         <button key={m} type="button" onClick={() => setMethod(m)}
                           style={{
-                            padding: "8px 16px", border: `2px solid ${method === m ? "#ec3013" : "#201e1d"}`,
-                            background: method === m ? "#ec3013" : "transparent", color: method === m ? "#f3f2f2" : "#201e1d",
+                            padding: "8px 16px", border: `2px solid ${method === m ? "var(--red)" : "var(--border)"}`,
+                            background: method === m ? "var(--red)" : "transparent", color: method === m ? "var(--on-solid)" : "var(--ink)",
                             fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.04em",
                             fontFamily: "var(--font-archivo)", transition: "all 0.2s ease",
                           }}
@@ -218,9 +218,9 @@ export default function WatermarkRemoverContent() {
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                       <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45 }}>Intensity</p>
-                      <p style={{ fontSize: 13, fontWeight: 700, color: "#ec3013" }}>{intensity}</p>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: "var(--red)" }}>{intensity}</p>
                     </div>
-                    <input type="range" min={5} max={30} value={intensity} onChange={(e) => setIntensity(Number(e.target.value))} style={{ width: "100%", accentColor: "#ec3013" }} />
+                    <input type="range" min={5} max={30} value={intensity} onChange={(e) => setIntensity(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--red)" }} />
                   </div>
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     <button
@@ -246,7 +246,7 @@ export default function WatermarkRemoverContent() {
                     Original {!selection && "— click and drag to select watermark"}
                   </p>
                   <div
-                    style={{ border: "2px solid #201e1d", position: "relative", cursor: "crosshair", userSelect: "none" }}
+                    style={{ border: "2px solid var(--border)", position: "relative", cursor: "crosshair", userSelect: "none" }}
                     onMouseDown={onMouseDown}
                     onMouseMove={onMouseMove}
                     onMouseUp={onMouseUp}
@@ -261,8 +261,8 @@ export default function WatermarkRemoverContent() {
                           top: `${currentSel.startY}%`,
                           width: `${Math.abs(currentSel.width)}%`,
                           height: `${Math.abs(currentSel.height)}%`,
-                          border: "2px solid #ec3013",
-                          background: "rgba(236,48,19,0.15)",
+                          border: "2px solid var(--red)",
+                          background: "rgba(var(--accent-rgb), 0.15)",
                         }}
                       />
                     )}
@@ -271,9 +271,9 @@ export default function WatermarkRemoverContent() {
 
                 <div>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45, marginBottom: 8 }}>
-                    Result {processed && <span style={{ color: "#ec3013" }}>— ready to download</span>}
+                    Result {processed && <span style={{ color: "var(--red)" }}>— ready to download</span>}
                   </p>
-                  <div style={{ border: "2px solid #201e1d", minHeight: 200, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff" }}>
+                  <div style={{ border: "2px solid var(--border)", minHeight: 200, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--surface)" }}>
                     {processed ? (
                       <img src={processed} alt="Processed" style={{ display: "block", width: "100%", maxHeight: 500, objectFit: "contain" }} />
                     ) : (
@@ -293,7 +293,7 @@ export default function WatermarkRemoverContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             <strong>Blur</strong> averages surrounding pixels to soften the selected area.

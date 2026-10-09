@@ -117,7 +117,7 @@ export default function ImageToPdfContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -130,7 +130,7 @@ export default function ImageToPdfContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Image to PDF</h1>
@@ -151,15 +151,15 @@ export default function ImageToPdfContent() {
             onDragLeave={() => setDragOver(false)}
             className="fade-in-up"
             style={{
-              border: `2px dashed ${dragOver ? "#ec3013" : "#201e1d"}`,
-              background: dragOver ? "rgba(236,48,19,0.05)" : "transparent",
+              border: `2px dashed ${dragOver ? "var(--red)" : "var(--border)"}`,
+              background: dragOver ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
               padding: "clamp(32px, 5vw, 48px) 24px",
               textAlign: "center",
               transition: "border-color 0.25s ease, background 0.25s ease",
               marginBottom: images.length > 0 ? 24 : 0,
             }}
           >
-            <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800 }}>IMG</div>
+            <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800 }}>IMG</div>
             <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>
               {images.length > 0 ? "Add more images" : "Drag & drop images here"}
             </p>
@@ -170,7 +170,7 @@ export default function ImageToPdfContent() {
           {images.length > 0 && (
             <div className="fade-in-up">
               {/* Page settings */}
-              <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
                 <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
                   <div>
                     <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45, marginBottom: 10 }}>Page Size</p>
@@ -179,9 +179,9 @@ export default function ImageToPdfContent() {
                         <button key={s} type="button" onClick={() => setPageSize(s)}
                           style={{
                             padding: "8px 16px",
-                            border: `2px solid ${pageSize === s ? "#ec3013" : "#201e1d"}`,
-                            background: pageSize === s ? "#ec3013" : "transparent",
-                            color: pageSize === s ? "#f3f2f2" : "#201e1d",
+                            border: `2px solid ${pageSize === s ? "var(--red)" : "var(--border)"}`,
+                            background: pageSize === s ? "var(--red)" : "transparent",
+                            color: pageSize === s ? "var(--on-solid)" : "var(--ink)",
                             fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.04em",
                             fontFamily: "var(--font-archivo)", transition: "all 0.2s ease",
                           }}
@@ -196,9 +196,9 @@ export default function ImageToPdfContent() {
                         <button key={o} type="button" onClick={() => setOrientation(o)}
                           style={{
                             padding: "8px 16px",
-                            border: `2px solid ${orientation === o ? "#ec3013" : "#201e1d"}`,
-                            background: orientation === o ? "#ec3013" : "transparent",
-                            color: orientation === o ? "#f3f2f2" : "#201e1d",
+                            border: `2px solid ${orientation === o ? "var(--red)" : "var(--border)"}`,
+                            background: orientation === o ? "var(--red)" : "transparent",
+                            color: orientation === o ? "var(--on-solid)" : "var(--ink)",
                             fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.04em",
                             fontFamily: "var(--font-archivo)", transition: "all 0.2s ease",
                           }}
@@ -218,14 +218,14 @@ export default function ImageToPdfContent() {
                     onDragStart={() => setDraggedIndex(i)}
                     onDragOver={(e) => { e.preventDefault(); if (draggedIndex !== null && draggedIndex !== i) moveImage(draggedIndex, i); setDraggedIndex(i); }}
                     onDragEnd={() => setDraggedIndex(null)}
-                    style={{ border: "2px solid #201e1d", position: "relative", aspectRatio: "1", overflow: "hidden", cursor: "grab" }}
+                    style={{ border: "2px solid var(--border)", position: "relative", aspectRatio: "1", overflow: "hidden", cursor: "grab" }}
                   >
                     <img src={img.preview} alt={img.file.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                    <div style={{ position: "absolute", top: 4, left: 6, background: "#201e1d", color: "#f3f2f2", fontSize: 10, fontWeight: 800, padding: "2px 6px" }}>{i + 1}</div>
+                    <div style={{ position: "absolute", top: 4, left: 6, background: "var(--solid)", color: "var(--on-solid)", fontSize: 10, fontWeight: 800, padding: "2px 6px" }}>{i + 1}</div>
                     <button
                       type="button"
                       onClick={() => removeImage(img.id)}
-                      style={{ position: "absolute", top: 4, right: 4, width: 22, height: 22, background: "#ec3013", border: "none", color: "#f3f2f2", fontWeight: 800, fontSize: 14, lineHeight: 1, cursor: "pointer" }}
+                      style={{ position: "absolute", top: 4, right: 4, width: 22, height: 22, background: "var(--red)", border: "none", color: "var(--on-solid)", fontWeight: 800, fontSize: 14, lineHeight: 1, cursor: "pointer" }}
                     >×</button>
                   </div>
                 ))}

@@ -6,17 +6,17 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
-import type { BlogPost } from "../../_data/blogs";
+import { formatBlogDate, type BlogPost } from "../../_data/blogs";
 
 export default function BlogPostContent({ post }: { post: BlogPost }) {
-  const isSvg = post.image.endsWith(".svg");
+  const isSvg = post.image?.endsWith(".svg");
 
   return (
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -49,25 +49,25 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
             href="/blogs"
             style={{
               textDecoration: "none",
-              color: "#201e1d",
+              color: "var(--ink)",
               fontSize: 13,
               fontWeight: 700,
               letterSpacing: "0.04em",
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              border: "1.5px solid #201e1d",
+              border: "1.5px solid var(--border)",
               padding: "6px 14px",
-              background: "#ffffff",
+              background: "var(--surface)",
               transition: "all 0.2s ease",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#201e1d";
-              e.currentTarget.style.color = "#f3f2f2";
+              e.currentTarget.style.background = "var(--solid)";
+              e.currentTarget.style.color = "var(--on-solid)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#ffffff";
-              e.currentTarget.style.color = "#201e1d";
+              e.currentTarget.style.background = "var(--surface)";
+              e.currentTarget.style.color = "var(--ink)";
             }}
           >
             Back to all blogs
@@ -89,7 +89,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
             <Link href="/blogs" style={{ color: "inherit", textDecoration: "none" }}>
               Blogs
             </Link>{" "}
-            / <span style={{ color: "#ec3013" }}>{post.category}</span>
+            / <span style={{ color: "var(--red)" }}>{post.category}</span>
           </div>
         </div>
 
@@ -108,8 +108,8 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 fontSize: 11,
                 fontWeight: 800,
                 letterSpacing: "0.14em",
-                color: "#f3f2f2",
-                background: "#ec3013",
+                color: "var(--on-solid)",
+                background: "var(--red)",
                 padding: "4px 12px",
                 textTransform: "uppercase",
               }}
@@ -149,44 +149,46 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
               fontWeight: 600,
               opacity: 0.65,
               paddingBottom: 20,
-              borderBottom: "1.5px solid rgba(32, 30, 29, 0.15)",
+              borderBottom: "1.5px solid rgba(var(--ink-rgb), 0.15)",
               flexWrap: "wrap",
             }}
           >
-            <span>Published on {post.publishedAt}</span>
+            <span>Published <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt)}</time></span>
+            {post.updatedAt && <span>Updated <time dateTime={post.updatedAt}>{formatBlogDate(post.updatedAt)}</time></span>}
             <span>&bull;</span>
-            <span>By {post.author.name}</span>
+            <span>By <Link href="/about">{post.author.name}</Link> / <Link href="/editorial-policy">How we write guides</Link></span>
           </div>
         </header>
 
         {/* ── FEATURED IMAGE CONTAINER ── */}
-        <div
+        {post.image && <div
           style={{
             position: "relative",
             width: "100%",
             aspectRatio: "16 / 9",
             overflow: "hidden",
             background: "#1e1c1b",
-            border: "2px solid #201e1d",
+            border: "2px solid var(--border)",
             marginBottom: 48,
           }}
         >
           <Image
             src={post.image}
-            alt={post.title}
+            alt={post.imageAlt || post.title}
             fill
             priority
             unoptimized={isSvg}
+            sizes="(max-width: 860px) 100vw, 860px"
             style={{ objectFit: "cover" }}
           />
-        </div>
+        </div>}
 
         {/* ── ARTICLE CONTENT ── */}
         <article
           style={{
             fontSize: "clamp(15px, 1.7vw, 17px)",
             lineHeight: 1.75,
-            color: "#201e1d",
+            color: "var(--ink)",
           }}
         >
           <ReactMarkdown
@@ -202,7 +204,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                     marginTop: 48,
                     marginBottom: 16,
                     paddingBottom: 10,
-                    borderBottom: "2px solid #201e1d",
+                    borderBottom: "2px solid var(--border)",
                   }}
                   {...props}
                 />
@@ -216,7 +218,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                     lineHeight: 1.3,
                     marginTop: 24,
                     marginBottom: 10,
-                    color: "#201e1d",
+                    color: "var(--ink)",
                   }}
                   {...props}
                 />
@@ -267,7 +269,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 <Link
                   href={href || "#"}
                   style={{
-                    color: "#ec3013",
+                    color: "var(--red)",
                     fontWeight: 700,
                     textDecoration: "underline",
                     textUnderlineOffset: 3,
@@ -278,10 +280,10 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
               blockquote: ({ children, ...props }) => (
                 <blockquote
                   style={{
-                    borderLeft: "4px solid #ec3013",
+                    borderLeft: "4px solid var(--red)",
                     paddingLeft: 16,
                     margin: "4px 0 8px 0",
-                    color: "rgba(32,30,29,0.7)",
+                    color: "rgba(var(--ink-rgb), 0.7)",
                     fontSize: 15,
                     fontWeight: 600,
                     fontStyle: "italic",
@@ -295,28 +297,29 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 <hr
                   style={{
                     border: "none",
-                    borderTop: "1px dashed rgba(32,30,29,0.2)",
+                    borderTop: "1px dashed rgba(var(--ink-rgb), 0.2)",
                     margin: "28px 0",
                   }}
                 />
               ),
+              pre: ({ children }) => <pre className="guide-code">{children}</pre>,
               table: ({ ...props }) => (
-                <table
+                <div className="guide-table-scroll" role="region" aria-label="Comparison table" tabIndex={0}><table
                   style={{
                     width: "100%",
                     borderCollapse: "collapse",
                     fontSize: 14,
                     margin: "20px 0",
-                    border: "1.5px solid #201e1d",
+                    border: "1.5px solid var(--border)",
                   }}
                   {...props}
-                />
+                /></div>
               ),
               thead: ({ ...props }) => (
                 <thead
                   style={{
-                    background: "#201e1d",
-                    color: "#f3f2f2",
+                    background: "var(--solid)",
+                    color: "var(--on-solid)",
                   }}
                   {...props}
                 />
@@ -338,7 +341,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 <td
                   style={{
                     padding: "8px 14px",
-                    borderTop: "1px solid rgba(32,30,29,0.1)",
+                    borderTop: "1px solid rgba(var(--ink-rgb), 0.1)",
                     lineHeight: 1.5,
                     fontSize: 14,
                   }}
@@ -357,7 +360,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
             style={{
               marginTop: 48,
               paddingTop: 40,
-              borderTop: "2px solid #201e1d",
+              borderTop: "2px solid var(--border)",
             }}
           >
             <div style={{ marginBottom: 28 }}>
@@ -367,7 +370,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                   fontWeight: 800,
                   textTransform: "uppercase",
                   letterSpacing: "0.14em",
-                  color: "#ec3013",
+                  color: "var(--red)",
                 }}
               >
                 Clear Answers
@@ -389,7 +392,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                   marginTop: 6,
                 }}
               >
-                Everything you need to know about everyday online productivity tools, security, and browser privacy.
+                Questions about this workflow and its limitations.
               </p>
             </div>
 
@@ -405,8 +408,8 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                   key={i}
                   style={{
                     padding: "22px 24px",
-                    background: "#ffffff",
-                    border: "2px solid #201e1d",
+                    background: "var(--surface)",
+                    border: "2px solid var(--border)",
                     transition: "box-shadow 0.2s ease, transform 0.2s ease",
                   }}
                 >
@@ -422,7 +425,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                   >
                     <span
                       style={{
-                        color: "#ec3013",
+                        color: "var(--red)",
                         fontFamily: "monospace",
                         fontWeight: 900,
                       }}
@@ -453,8 +456,8 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
             style={{
               marginTop: 56,
               padding: "32px",
-              background: "#ffffff",
-              border: "2px solid #201e1d",
+              background: "var(--surface)",
+              border: "2px solid var(--border)",
             }}
           >
             <p
@@ -463,7 +466,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 fontWeight: 800,
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "#ec3013",
+                color: "var(--red)",
                 marginBottom: 8,
               }}
             >
@@ -476,7 +479,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 marginBottom: 12,
               }}
             >
-              Try Free Client-Side Tools on Daliy.Tools
+              Tools used in this guide
             </h3>
             <p
               style={{
@@ -486,7 +489,7 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                 lineHeight: 1.6,
               }}
             >
-              Execute your daily file conversions, PDF tasks, and image compression directly in your browser with zero data uploads.
+              Open a tool to try the workflow. Check its supported formats and processing limits before choosing a file.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               {post.relatedTools.map((tool) => (
@@ -495,8 +498,8 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                   href={`/tools/${tool.slug}`}
                   style={{
                     padding: "8px 16px",
-                    background: "#201e1d",
-                    color: "#f3f2f2",
+                    background: "var(--solid)",
+                    color: "var(--on-solid)",
                     fontSize: 13,
                     fontWeight: 700,
                     letterSpacing: "0.04em",
@@ -507,11 +510,11 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
                     transition: "background 0.2s ease, transform 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#ec3013";
+                    e.currentTarget.style.background = "var(--red)";
                     e.currentTarget.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#201e1d";
+                    e.currentTarget.style.background = "var(--solid)";
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >

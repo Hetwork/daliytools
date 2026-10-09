@@ -296,8 +296,8 @@ export default function ScreenRecorderContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -325,7 +325,7 @@ export default function ScreenRecorderContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20, flexWrap: "wrap" }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>No uploads. Everything stays in your browser.</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Screen & Audio Recorder</h1>
@@ -334,7 +334,7 @@ export default function ScreenRecorderContent() {
           </p>
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: "clamp(36px, 6vw, 56px)", border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 30px)" }}>
+        <div className="fade-in-up" style={{ marginTop: "clamp(36px, 6vw, 56px)", border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 30px)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 18, marginBottom: 20 }}>
             <label style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, fontWeight: 600 }}>
               <input
@@ -342,7 +342,7 @@ export default function ScreenRecorderContent() {
                 checked={includeMic}
                 onChange={(event) => setIncludeMic(event.target.checked)}
                 disabled={isRecording || isStarting}
-                style={{ width: 16, height: 16, accentColor: "#ec3013" }}
+                style={{ width: 16, height: 16, accentColor: "var(--red)" }}
               />
               Include microphone
             </label>
@@ -354,9 +354,9 @@ export default function ScreenRecorderContent() {
                 onChange={(event) => setFormat(event.target.value as OutputFormat)}
                 disabled={isRecording || isStarting}
                 style={{
-                  border: "2px solid #201e1d",
+                  border: "2px solid var(--border)",
                   background: "transparent",
-                  color: "#201e1d",
+                  color: "var(--ink)",
                   padding: "8px 10px",
                   fontFamily: "inherit",
                   fontWeight: 600,
@@ -374,7 +374,7 @@ export default function ScreenRecorderContent() {
                 {isStarting ? "Starting…" : "Start recording"}
               </button>
             ) : (
-              <button type="button" onClick={stopRecording} className="btn btn-primary" style={{ background: "#201e1d", color: "#f3f2f2" }}>
+              <button type="button" onClick={stopRecording} className="btn btn-primary" style={{ background: "var(--solid)", color: "var(--on-solid)" }}>
                 Stop recording
               </button>
             )}
@@ -384,20 +384,20 @@ export default function ScreenRecorderContent() {
             </span>
 
             {isRecording && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#ec3013" }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--red)" }}>
                 <span className="pulse-dot" /> Live capture
               </span>
             )}
           </div>
 
           {format === "mp4" && !mp4Supported && (
-            <p style={{ marginTop: 14, fontSize: 13, color: "#ec3013", fontWeight: 600 }}>
+            <p style={{ marginTop: 14, fontSize: 13, color: "var(--red)", fontWeight: 600 }}>
               MP4 recording is not available in this browser. Use WebM or try Safari for MP4 support.
             </p>
           )}
 
           {error && (
-            <p style={{ marginTop: 14, fontSize: 13, color: "#ec3013", fontWeight: 600 }}>{error}</p>
+            <p style={{ marginTop: 14, fontSize: 13, color: "var(--red)", fontWeight: 600 }}>{error}</p>
           )}
 
           {info && (
@@ -405,10 +405,10 @@ export default function ScreenRecorderContent() {
           )}
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: 20, border: "2px solid #201e1d", background: "#201e1d", minHeight: 280, position: "relative", display: "grid", placeItems: "center" }}>
+        <div className="fade-in-up" style={{ marginTop: 20, border: "2px solid var(--border)", background: "var(--solid)", minHeight: 280, position: "relative", display: "grid", placeItems: "center" }}>
           <video ref={previewRef} autoPlay playsInline muted style={{ width: "100%", maxHeight: 520, objectFit: "contain", visibility: previewStream ? "visible" : "hidden" }} />
           {!previewStream && (
-            <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", textAlign: "center", color: "#f3f2f2", padding: "24px" }}>
+            <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", textAlign: "center", color: "var(--on-solid)", padding: "24px" }}>
               <div>
                 <p style={{ fontSize: "clamp(17px, 2.4vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Live preview appears here</p>
                 <p style={{ opacity: 0.7, fontSize: 14 }}>After you click start, pick a screen, tab, or window in the browser chooser.</p>
@@ -418,7 +418,7 @@ export default function ScreenRecorderContent() {
         </div>
 
         {recordedUrl && (
-          <div className="fade-in-up" style={{ marginTop: 22, border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)" }}>
+          <div className="fade-in-up" style={{ marginTop: 22, border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap", marginBottom: 14 }}>
               <h2 style={{ fontSize: "clamp(20px, 2.8vw, 28px)", fontWeight: 800, letterSpacing: "-0.01em" }}>Recording Ready</h2>
               <button type="button" onClick={downloadRecording} className="btn btn-primary">
@@ -430,11 +430,11 @@ export default function ScreenRecorderContent() {
               {recordedType || "video/webm"} &middot; {formatFileSize(recordedBytes)}
             </p>
 
-            <video src={recordedUrl} controls playsInline style={{ width: "100%", border: "2px solid #201e1d" }} />
+            <video src={recordedUrl} controls playsInline style={{ width: "100%", border: "2px solid var(--border)" }} />
           </div>
         )}
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 760 }}>
             This tool uses getDisplayMedia to capture your chosen screen source and MediaRecorder to encode the stream locally in your browser. If microphone is enabled, mic and system audio are mixed in memory and stored only in your active session.

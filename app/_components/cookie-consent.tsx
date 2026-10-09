@@ -41,17 +41,17 @@ export default function CookieConsent() {
         width: "min(680px, calc(100vw - 48px))",
         boxSizing: "border-box",
         padding: "20px 22px",
-        border: "2px solid #201e1d",
-        background: "#f3f2f2",
-        color: "#201e1d",
-        boxShadow: "8px 8px 0 #201e1d",
+        border: "2px solid var(--border)",
+        background: "var(--bg)",
+        color: "var(--ink)",
+        boxShadow: "8px 8px 0 var(--border)",
       }}
     >
       <div className="cookie-consent-copy" style={{ maxWidth: 470 }}>
         <p className="cookie-consent-title" style={{ marginBottom: 6, fontSize: 14, fontWeight: 800 }}>
           Cookies & privacy
         </p>
-        <p style={{ color: "rgba(32, 30, 29, 0.68)", fontSize: 13, lineHeight: 1.5 }}>
+        <p style={{ color: "rgba(var(--ink-rgb), 0.68)", fontSize: 13, lineHeight: 1.5 }}>
           We use cookies and similar technologies for advertising and site
           functionality. Read our <Link href="/privacy-policy">Privacy Policy</Link> for details.
         </p>
@@ -61,7 +61,7 @@ export default function CookieConsent() {
           type="button"
           className="cookie-consent-decline"
           onClick={() => chooseConsent("declined")}
-          style={{ minWidth: 80, padding: "10px 14px", border: "2px solid #201e1d", background: "transparent", color: "#201e1d", cursor: "pointer", font: "700 12px/1 var(--font-archivo), sans-serif" }}
+          style={{ minWidth: 80, padding: "10px 14px", border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", cursor: "pointer", font: "700 12px/1 var(--font-archivo), sans-serif" }}
         >
           Decline
         </button>
@@ -69,7 +69,7 @@ export default function CookieConsent() {
           type="button"
           className="cookie-consent-accept"
           onClick={() => chooseConsent("accepted")}
-          style={{ minWidth: 80, padding: "10px 14px", border: "2px solid #ec3013", background: "#ec3013", color: "#f3f2f2", cursor: "pointer", font: "700 12px/1 var(--font-archivo), sans-serif" }}
+          style={{ minWidth: 80, padding: "10px 14px", border: "2px solid var(--red)", background: "var(--red)", color: "var(--on-solid)", cursor: "pointer", font: "700 12px/1 var(--font-archivo), sans-serif" }}
         >
           Accept
         </button>

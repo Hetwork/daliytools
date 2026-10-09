@@ -166,7 +166,7 @@ export default function UnlockPdfContent() {
   const showDropzone = !file && status !== "error";
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
       <section style={{ maxWidth: 900, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
         <p className="reveal-fast" style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", opacity: 0.45, marginBottom: 28 }}>
@@ -174,7 +174,7 @@ export default function UnlockPdfContent() {
         </p>
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: 13, fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Unlock PDF</h1>
@@ -185,8 +185,8 @@ export default function UnlockPdfContent() {
 
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }}>
           {showDropzone && (
-            <div role="button" tabIndex={0} onClick={() => fileInputRef.current?.click()} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); fileInputRef.current?.click(); } }} onDrop={(event) => { event.preventDefault(); setIsDragging(false); handleFile(event.dataTransfer.files?.[0] ?? null); }} onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} className="fade-in-up" style={{ border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`, background: isDragging ? "rgba(236,48,19,0.05)" : "transparent", padding: "clamp(48px, 8vw, 80px) 24px", textAlign: "center", transition: "border-color 0.25s ease, background 0.25s ease" }}>
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>PDF</div>
+            <div role="button" tabIndex={0} onClick={() => fileInputRef.current?.click()} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); fileInputRef.current?.click(); } }} onDrop={(event) => { event.preventDefault(); setIsDragging(false); handleFile(event.dataTransfer.files?.[0] ?? null); }} onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} className="fade-in-up" style={{ border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`, background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent", padding: "clamp(48px, 8vw, 80px) 24px", textAlign: "center", transition: "border-color 0.25s ease, background 0.25s ease" }}>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>PDF</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your protected PDF here</p>
               <p style={{ fontSize: 14, opacity: 0.55 }}>or click to browse — up to 100MB</p>
               <input ref={fileInputRef} type="file" accept="application/pdf,.pdf" hidden onChange={(event) => handleFile(event.target.files?.[0] ?? null)} />
@@ -194,16 +194,16 @@ export default function UnlockPdfContent() {
           )}
 
           {file && status !== "done" && (
-            <div className="fade-in-up" style={{ border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 32px)" }}>
+            <div className="fade-in-up" style={{ border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 32px)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <div style={{ width: 48, height: 48, border: "2px solid #201e1d", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, flexShrink: 0 }}>PDF</div>
+                <div style={{ width: 48, height: 48, border: "2px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, flexShrink: 0 }}>PDF</div>
                 <div style={{ minWidth: 0 }}><p style={{ fontWeight: 700, fontSize: 18, wordBreak: "break-all" }}>{file.name}</p><p style={{ opacity: 0.5, fontSize: 13, marginTop: 4 }}>{formatBytes(file.size)}</p></div>
               </div>
               <label style={{ display: "block", marginTop: 28, fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.55 }}>
                 PDF password
                 <span style={{ display: "block", position: "relative", maxWidth: 460, marginTop: 10 }}>
-                  <input type={showPassword ? "text" : "password"} value={password} onChange={(event) => { setPassword(event.target.value); setErrorMsg(""); }} placeholder="Enter the password you know" autoComplete="off" style={{ display: "block", width: "100%", padding: "14px 52px 14px 16px", border: "2px solid #201e1d", background: "transparent", color: "#201e1d", font: "inherit", fontSize: 16 }} />
-                  <button type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? "Hide password" : "Show password"} title={showPassword ? "Hide password" : "Show password"} style={{ position: "absolute", top: "50%", right: 8, width: 36, height: 36, transform: "translateY(-50%)", display: "flex", alignItems: "center", justifyContent: "center", border: "none", background: "transparent", color: "#201e1d", padding: 0 }}>
+                  <input type={showPassword ? "text" : "password"} value={password} onChange={(event) => { setPassword(event.target.value); setErrorMsg(""); }} placeholder="Enter the password you know" autoComplete="off" style={{ display: "block", width: "100%", padding: "14px 52px 14px 16px", border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", font: "inherit", fontSize: 16 }} />
+                  <button type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? "Hide password" : "Show password"} title={showPassword ? "Hide password" : "Show password"} style={{ position: "absolute", top: "50%", right: 8, width: 36, height: 36, transform: "translateY(-50%)", display: "flex", alignItems: "center", justifyContent: "center", border: "none", background: "transparent", color: "var(--ink)", padding: 0 }}>
                     {showPassword ? (
                       <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3l18 18" /><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" /><path d="M9.9 4.2A10.8 10.8 0 0 1 12 4c5 0 8.7 4 10 8a11.7 11.7 0 0 1-2.1 3.7" /><path d="M6.6 6.6C4.7 7.8 3.4 9.8 2 12c1.3 3.3 4.8 7 10 7 1.4 0 2.7-.3 3.8-.8" /></svg>
                     ) : (
@@ -213,21 +213,21 @@ export default function UnlockPdfContent() {
                 </span>
               </label>
               <p style={{ marginTop: 14, fontSize: 13, lineHeight: 1.6, opacity: 0.55, maxWidth: 560 }}>The new PDF is rendered page by page, so text selection, forms, bookmarks, and links will not carry over.</p>
-              {errorMsg && <p style={{ marginTop: 16, color: "#ec3013", fontSize: 13, fontWeight: 600 }}>{errorMsg}</p>}
-              {status === "unlocking" && <div style={{ marginTop: 24 }}><div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, marginBottom: 10 }}><span><span className="pulse-dot" /> Unlocking&hellip;</span><span>{progressPercent}%</span></div><div style={{ height: 8, background: "#e2e0e0" }}><div style={{ width: `${progressPercent}%`, height: "100%", background: "#ec3013", transition: "width 0.2s ease" }} /></div></div>}
+              {errorMsg && <p style={{ marginTop: 16, color: "var(--red)", fontSize: 13, fontWeight: 600 }}>{errorMsg}</p>}
+              {status === "unlocking" && <div style={{ marginTop: 24 }}><div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, marginBottom: 10 }}><span><span className="pulse-dot" /> Unlocking&hellip;</span><span>{progressPercent}%</span></div><div style={{ height: 8, background: "#e2e0e0" }}><div style={{ width: `${progressPercent}%`, height: "100%", background: "var(--red)", transition: "width 0.2s ease" }} /></div></div>}
               {status !== "unlocking" && <div style={{ marginTop: 24, display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}><button type="button" onClick={reset} className="ink-hover" style={{ background: "none", border: "none", fontSize: 13, fontWeight: 600, opacity: 0.5, font: "inherit" }}>Remove</button><button type="button" onClick={unlock} className="btn btn-primary">Create Unlocked PDF <span className="btn-arrow">&rarr;</span></button></div>}
             </div>
           )}
 
           {status === "done" && downloadUrl && (
-            <div className="fade-in-up" style={{ border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 32px)" }}>
+            <div className="fade-in-up" style={{ border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 32px)" }}>
               <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.45, marginBottom: 8 }}>Ready to download</p>
-              <p style={{ fontSize: "clamp(22px, 3.5vw, 36px)", fontWeight: 800, color: "#ec3013", lineHeight: 1, marginBottom: 24 }}>{formatBytes(outputSize)} · No password</p>
+              <p style={{ fontSize: "clamp(22px, 3.5vw, 36px)", fontWeight: 800, color: "var(--red)", lineHeight: 1, marginBottom: 24 }}>{formatBytes(outputSize)} · No password</p>
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}><a href={downloadUrl} download={downloadName} className="btn btn-primary">Download Unlocked PDF <span className="btn-arrow">&darr;</span></a><button type="button" onClick={reset} className="btn">Unlock another PDF</button></div>
             </div>
           )}
 
-          {status === "error" && !file && <div style={{ marginTop: 20, borderLeft: "4px solid #ec3013", paddingLeft: 20 }}><p style={{ color: "#ec3013", fontSize: 13, fontWeight: 600 }}>{errorMsg}</p><button type="button" onClick={reset} className="btn" style={{ marginTop: 16 }}>Start over</button></div>}
+          {status === "error" && !file && <div style={{ marginTop: 20, borderLeft: "4px solid var(--red)", paddingLeft: 20 }}><p style={{ color: "var(--red)", fontSize: 13, fontWeight: 600 }}>{errorMsg}</p><button type="button" onClick={reset} className="btn" style={{ marginTop: 16 }}>Start over</button></div>}
         </div>
         <ToolEditorial toolName="Unlock PDF" {...toolEditorialData["unlock-pdf"]} />
       </section>

@@ -160,7 +160,7 @@ export default function VideoToFramesContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
       <video ref={videoRef} src={video?.url} style={{ display: "none" }} />
@@ -175,7 +175,7 @@ export default function VideoToFramesContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Video to Frames</h1>
@@ -196,14 +196,14 @@ export default function VideoToFramesContent() {
               onDragLeave={() => setIsDragging(false)}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`,
-                background: isDragging ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`,
+                background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
               }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800 }}>VID</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800 }}>VID</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your video here</p>
               <p style={{ fontSize: "clamp(13px, 1.5vw, 15px)", opacity: 0.55 }}>or click to browse — MP4, WebM, MOV</p>
               <input ref={fileInputRef} type="file" accept="video/*" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -213,9 +213,9 @@ export default function VideoToFramesContent() {
           {video && (
             <div className="fade-in-up">
               {/* Settings */}
-              <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
-                  <div style={{ width: 48, height: 48, border: "2px solid #201e1d", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, flexShrink: 0 }}>VID</div>
+                  <div style={{ width: 48, height: 48, border: "2px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, flexShrink: 0 }}>VID</div>
                   <div>
                     <p style={{ fontWeight: 700, fontSize: 16 }}>{video.file.name}</p>
                     <p style={{ opacity: 0.5, fontSize: 13 }}>Duration: {formatTime(video.duration)}</p>
@@ -227,9 +227,9 @@ export default function VideoToFramesContent() {
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                       <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.45 }}>Extract every</p>
-                      <p style={{ fontSize: 13, fontWeight: 700, color: "#ec3013" }}>{interval}s · ~{estimatedFrames} frames</p>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: "var(--red)" }}>{interval}s · ~{estimatedFrames} frames</p>
                     </div>
-                    <input type="range" min={0.5} max={10} step={0.5} value={interval} onChange={(e) => setIntervalVal(Number(e.target.value))} style={{ width: "100%", accentColor: "#ec3013" }} />
+                    <input type="range" min={0.5} max={10} step={0.5} value={interval} onChange={(e) => setIntervalVal(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--red)" }} />
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, opacity: 0.4, marginTop: 4 }}>
                       <span>0.5s (more frames)</span>
                       <span>10s (fewer frames)</span>
@@ -249,7 +249,7 @@ export default function VideoToFramesContent() {
                       <span>{progress}%</span>
                     </div>
                     <div style={{ height: 8, background: "#e2e0e0" }}>
-                      <div style={{ height: "100%", background: "#ec3013", width: `${progress}%`, transition: "width 0.2s ease" }} />
+                      <div style={{ height: "100%", background: "var(--red)", width: `${progress}%`, transition: "width 0.2s ease" }} />
                     </div>
                   </div>
                 )}
@@ -266,9 +266,9 @@ export default function VideoToFramesContent() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: 10 }}>
                     {frames.map((frame) => (
-                      <div key={frame.index} style={{ border: "2px solid #201e1d", position: "relative", cursor: "pointer" }} onClick={() => downloadFrame(frame)}>
+                      <div key={frame.index} style={{ border: "2px solid var(--border)", position: "relative", cursor: "pointer" }} onClick={() => downloadFrame(frame)}>
                         <img src={frame.url} alt={`Frame ${frame.index + 1}`} style={{ display: "block", width: "100%", aspectRatio: "16/9", objectFit: "cover" }} />
-                        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(32,30,29,0.75)", color: "#f3f2f2", fontSize: 10, fontWeight: 700, padding: "3px 6px", textAlign: "center" }}>
+                        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(var(--ink-rgb), 0.75)", color: "var(--on-solid)", fontSize: 10, fontWeight: 700, padding: "3px 6px", textAlign: "center" }}>
                           {formatTime(frame.timestamp)}
                         </div>
                       </div>
@@ -281,7 +281,7 @@ export default function VideoToFramesContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             The video is seeked to each timestamp using the browser&apos;s video API. At every stop, the current frame is

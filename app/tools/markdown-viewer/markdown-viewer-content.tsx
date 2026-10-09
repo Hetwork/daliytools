@@ -68,7 +68,7 @@ export default function MarkdownViewerContent() {
   }
 
   const paneStyle: React.CSSProperties = {
-    border: "2px solid #201e1d",
+    border: "2px solid var(--border)",
     flex: 1,
     minHeight: 420,
     overflow: "hidden",
@@ -83,8 +83,8 @@ export default function MarkdownViewerContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -112,7 +112,7 @@ export default function MarkdownViewerContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>
               Live
             </span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>
@@ -136,9 +136,9 @@ export default function MarkdownViewerContent() {
                 onClick={() => setView(v)}
                 style={{
                   padding: "8px 18px",
-                  border: `2px solid ${view === v ? "#ec3013" : "#201e1d"}`,
-                  background: view === v ? "#ec3013" : "transparent",
-                  color: view === v ? "#f3f2f2" : "#201e1d",
+                  border: `2px solid ${view === v ? "var(--red)" : "var(--border)"}`,
+                  background: view === v ? "var(--red)" : "transparent",
+                  color: view === v ? "var(--on-solid)" : "var(--ink)",
                   fontWeight: 700,
                   fontSize: 12,
                   textTransform: "uppercase",
@@ -153,7 +153,7 @@ export default function MarkdownViewerContent() {
             <button
               type="button"
               onClick={copy}
-              style={{ padding: "8px 18px", border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-archivo)", marginLeft: "auto" }}
+              style={{ padding: "8px 18px", border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-archivo)", marginLeft: "auto" }}
             >
               {copied ? "Copied!" : "Copy"}
             </button>
@@ -170,14 +170,14 @@ export default function MarkdownViewerContent() {
           <div style={{ display: "flex", gap: 16, flexDirection: view === "split" && maximizedPanel === null ? "row" : "column", minHeight: 420 }}>
             {isEditorVisible && (
               <div style={paneStyle}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px", flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(var(--ink-rgb), 0.12)", padding: "10px 20px 8px", flexShrink: 0 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
                     Markdown
                   </p>
                   <button
                     type="button"
                     onClick={() => setMaximizedPanel((current) => current === "editor" ? null : "editor")}
-                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                    style={{ background: "transparent", border: "1px solid var(--border)", color: "var(--ink)", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
                   >
                     Full Screen
                   </button>
@@ -190,7 +190,7 @@ export default function MarkdownViewerContent() {
                     flex: 1,
                     border: "none",
                     background: "transparent",
-                    color: "#201e1d",
+                    color: "var(--ink)",
                     fontFamily: "monospace",
                     fontSize: 13,
                     lineHeight: 1.65,
@@ -204,21 +204,21 @@ export default function MarkdownViewerContent() {
               </div>
             )}
             {isPreviewVisible && (
-              <div style={{ ...paneStyle, background: "#fff" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(32,30,29,0.12)", padding: "10px 20px 8px", flexShrink: 0 }}>
+              <div style={{ ...paneStyle, background: "var(--surface)" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(var(--ink-rgb), 0.12)", padding: "10px 20px 8px", flexShrink: 0 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, margin: 0 }}>
                     Preview
                   </p>
                   <button
                     type="button"
                     onClick={() => setMaximizedPanel((current) => current === "preview" ? null : "preview")}
-                    style={{ background: "transparent", border: "1px solid #201e1d", color: "#201e1d", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
+                    style={{ background: "transparent", border: "1px solid var(--border)", color: "var(--ink)", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 8px", cursor: "pointer" }}
                   >
                     Full Screen
                   </button>
                 </div>
                 <div
-                  style={{ flex: 1, padding: "20px 24px", overflowY: "auto", fontSize: 15, lineHeight: 1.7, color: "#201e1d" }}
+                  style={{ flex: 1, padding: "20px 24px", overflowY: "auto", fontSize: 15, lineHeight: 1.7, color: "var(--ink)" }}
                   className="md-preview"
                 >
                   <ReactMarkdown remarkPlugins={plugins}>{markdown}</ReactMarkdown>
@@ -241,8 +241,8 @@ export default function MarkdownViewerContent() {
                 style={{
                   flex: 1,
                   border: "none",
-                  background: "#f3f2f2",
-                  color: "#201e1d",
+                  background: "var(--bg)",
+                  color: "var(--ink)",
                   fontFamily: "monospace",
                   fontSize: 13,
                   lineHeight: 1.65,
@@ -255,7 +255,7 @@ export default function MarkdownViewerContent() {
                 placeholder="Type Markdown here…"
               />
             ) : (
-              <div style={{ flex: 1, padding: "20px 24px", overflowY: "auto", fontSize: 15, lineHeight: 1.7, color: "#201e1d", background: "#fff" }} className="md-preview">
+              <div style={{ flex: 1, padding: "20px 24px", overflowY: "auto", fontSize: 15, lineHeight: 1.7, color: "var(--ink)", background: "var(--surface)" }} className="md-preview">
                 <ReactMarkdown remarkPlugins={plugins}>{markdown}</ReactMarkdown>
               </div>
             )}
@@ -264,7 +264,7 @@ export default function MarkdownViewerContent() {
 
         <div
           className="reveal"
-          style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}
+          style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}
         >
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>
             How It Works

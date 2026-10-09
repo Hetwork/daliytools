@@ -194,8 +194,8 @@ export default function IconKitchenContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -238,8 +238,8 @@ export default function IconKitchenContent() {
                 fontSize: "clamp(11px, 1.4vw, 13px)",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
-                color: "#f3f2f2",
-                background: "#ec3013",
+                color: "var(--on-solid)",
+                background: "var(--red)",
                 padding: "6px 14px",
                 textTransform: "uppercase",
               }}
@@ -288,9 +288,9 @@ export default function IconKitchenContent() {
           {/* ── LEFT: CONTROLS PANEL ── */}
           <div
             style={{
-              border: "2px solid #201e1d",
-              background: "#ffffff",
-              boxShadow: "4px 4px 0 #201e1d",
+              border: "2px solid var(--border)",
+              background: "var(--surface)",
+              boxShadow: "4px 4px 0 var(--border)",
             }}
           >
             {/* Tabs Header */}
@@ -298,8 +298,8 @@ export default function IconKitchenContent() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                borderBottom: "2px solid #201e1d",
-                background: "#f3f2f2",
+                borderBottom: "2px solid var(--border)",
+                background: "var(--bg)",
               }}
             >
               {[
@@ -318,9 +318,9 @@ export default function IconKitchenContent() {
                     textTransform: "uppercase",
                     cursor: "pointer",
                     border: "none",
-                    borderRight: tab.id !== "shape" ? "2px solid #201e1d" : "none",
-                    background: activeTab === tab.id ? "#ffffff" : "transparent",
-                    color: activeTab === tab.id ? "#ec3013" : "#201e1d",
+                    borderRight: tab.id !== "shape" ? "2px solid var(--border)" : "none",
+                    background: activeTab === tab.id ? "var(--surface)" : "transparent",
+                    color: activeTab === tab.id ? "var(--red)" : "var(--ink)",
                     transition: "all 0.15s ease",
                   }}
                 >
@@ -362,9 +362,9 @@ export default function IconKitchenContent() {
                             padding: "10px",
                             fontWeight: 700,
                             fontSize: 12,
-                            border: "2px solid #201e1d",
-                            background: config.foregroundType === t.id ? "#201e1d" : "#ffffff",
-                            color: config.foregroundType === t.id ? "#f3f2f2" : "#201e1d",
+                            border: "2px solid var(--border)",
+                            background: config.foregroundType === t.id ? "var(--solid)" : "var(--surface)",
+                            color: config.foregroundType === t.id ? "var(--on-solid)" : "var(--ink)",
                             cursor: "pointer",
                           }}
                         >
@@ -410,9 +410,9 @@ export default function IconKitchenContent() {
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
-                              border: "2px solid #201e1d",
-                              background: config.clipartId === item.id ? "#ec3013" : "#f8f8f8",
-                              color: config.clipartId === item.id ? "#ffffff" : "#201e1d",
+                              border: "2px solid var(--border)",
+                              background: config.clipartId === item.id ? "var(--red)" : "#f8f8f8",
+                              color: config.clipartId === item.id ? "var(--on-solid)" : "var(--ink)",
                               cursor: "pointer",
                               padding: 8,
                             }}
@@ -448,13 +448,13 @@ export default function IconKitchenContent() {
                           alignItems: "center",
                           justifyContent: "center",
                           padding: "24px 16px",
-                          border: "2px dashed #201e1d",
-                          background: "#fafafa",
+                          border: "2px dashed var(--border)",
+                          background: "var(--surface-soft)",
                           cursor: "pointer",
                           textAlign: "center",
                         }}
                       >
-                        <span style={{ fontWeight: 700, fontSize: 13, color: "#ec3013" }}>Choose file</span>
+                        <span style={{ fontWeight: 700, fontSize: 13, color: "var(--red)" }}>Choose file</span>
                         <span style={{ fontSize: 11, opacity: 0.5, marginTop: 4 }}>
                           Transparent PNG or SVG recommended
                         </span>
@@ -492,7 +492,7 @@ export default function IconKitchenContent() {
                           style={{
                             width: "100%",
                             padding: "10px 14px",
-                            border: "2px solid #201e1d",
+                            border: "2px solid var(--border)",
                             fontWeight: 800,
                             fontSize: 18,
                           }}
@@ -523,7 +523,7 @@ export default function IconKitchenContent() {
                       max={45}
                       value={config.padding}
                       onChange={(e) => setConfig((p) => ({ ...p, padding: Number(e.target.value) }))}
-                      style={{ width: "100%", accentColor: "#ec3013" }}
+                      style={{ width: "100%", accentColor: "var(--red)" }}
                     />
                   </div>
 
@@ -546,7 +546,7 @@ export default function IconKitchenContent() {
                           type="checkbox"
                           checked={config.useForeTint}
                           onChange={(e) => setConfig((p) => ({ ...p, useForeTint: e.target.checked }))}
-                          style={{ accentColor: "#ec3013" }}
+                          style={{ accentColor: "var(--red)" }}
                         />
                         Enable Tint
                       </label>
@@ -560,7 +560,7 @@ export default function IconKitchenContent() {
                           style={{
                             width: 44,
                             height: 38,
-                            border: "2px solid #201e1d",
+                            border: "2px solid var(--border)",
                             padding: 0,
                             cursor: "pointer",
                           }}
@@ -572,7 +572,7 @@ export default function IconKitchenContent() {
                           style={{
                             flex: 1,
                             padding: "8px 12px",
-                            border: "2px solid #201e1d",
+                            border: "2px solid var(--border)",
                             fontFamily: "monospace",
                             fontWeight: 700,
                           }}
@@ -614,9 +614,9 @@ export default function IconKitchenContent() {
                             padding: "10px",
                             fontWeight: 700,
                             fontSize: 12,
-                            border: "2px solid #201e1d",
-                            background: config.bgType === b.id ? "#201e1d" : "#ffffff",
-                            color: config.bgType === b.id ? "#f3f2f2" : "#201e1d",
+                            border: "2px solid var(--border)",
+                            background: config.bgType === b.id ? "var(--solid)" : "var(--surface)",
+                            color: config.bgType === b.id ? "var(--on-solid)" : "var(--ink)",
                             cursor: "pointer",
                           }}
                         >
@@ -655,7 +655,7 @@ export default function IconKitchenContent() {
                           title={preset.name}
                           style={{
                             height: 38,
-                            border: "2px solid #201e1d",
+                            border: "2px solid var(--border)",
                             background: `linear-gradient(135deg, ${preset.c1}, ${preset.c2})`,
                             cursor: "pointer",
                             position: "relative",
@@ -687,13 +687,13 @@ export default function IconKitchenContent() {
                             type="color"
                             value={config.bgColor1}
                             onChange={(e) => setConfig((p) => ({ ...p, bgColor1: e.target.value }))}
-                            style={{ width: 44, height: 38, border: "2px solid #201e1d", padding: 0 }}
+                            style={{ width: 44, height: 38, border: "2px solid var(--border)", padding: 0 }}
                           />
                           <input
                             type="text"
                             value={config.bgColor1}
                             onChange={(e) => setConfig((p) => ({ ...p, bgColor1: e.target.value }))}
-                            style={{ flex: 1, padding: "8px 12px", border: "2px solid #201e1d", fontFamily: "monospace" }}
+                            style={{ flex: 1, padding: "8px 12px", border: "2px solid var(--border)", fontFamily: "monospace" }}
                           />
                         </div>
                       </div>
@@ -719,13 +719,13 @@ export default function IconKitchenContent() {
                                 type="color"
                                 value={config.bgColor2}
                                 onChange={(e) => setConfig((p) => ({ ...p, bgColor2: e.target.value }))}
-                                style={{ width: 44, height: 38, border: "2px solid #201e1d", padding: 0 }}
+                                style={{ width: 44, height: 38, border: "2px solid var(--border)", padding: 0 }}
                               />
                               <input
                                 type="text"
                                 value={config.bgColor2}
                                 onChange={(e) => setConfig((p) => ({ ...p, bgColor2: e.target.value }))}
-                                style={{ flex: 1, padding: "8px 12px", border: "2px solid #201e1d", fontFamily: "monospace" }}
+                                style={{ flex: 1, padding: "8px 12px", border: "2px solid var(--border)", fontFamily: "monospace" }}
                               />
                             </div>
                           </div>
@@ -751,7 +751,7 @@ export default function IconKitchenContent() {
                               max={360}
                               value={config.gradientAngle}
                               onChange={(e) => setConfig((p) => ({ ...p, gradientAngle: Number(e.target.value) }))}
-                              style={{ width: "100%", accentColor: "#ec3013" }}
+                              style={{ width: "100%", accentColor: "var(--red)" }}
                             />
                           </div>
                         </>
@@ -795,9 +795,9 @@ export default function IconKitchenContent() {
                             padding: "10px 6px",
                             fontWeight: 700,
                             fontSize: 11,
-                            border: "2px solid #201e1d",
-                            background: config.shape === s.id ? "#201e1d" : "#ffffff",
-                            color: config.shape === s.id ? "#f3f2f2" : "#201e1d",
+                            border: "2px solid var(--border)",
+                            background: config.shape === s.id ? "var(--solid)" : "var(--surface)",
+                            color: config.shape === s.id ? "var(--on-solid)" : "var(--ink)",
                             cursor: "pointer",
                           }}
                         >
@@ -830,7 +830,7 @@ export default function IconKitchenContent() {
                         max={50}
                         value={config.cornerRadius}
                         onChange={(e) => setConfig((p) => ({ ...p, cornerRadius: Number(e.target.value) }))}
-                        style={{ width: "100%", accentColor: "#ec3013" }}
+                        style={{ width: "100%", accentColor: "var(--red)" }}
                       />
                     </div>
                   )}
@@ -865,9 +865,9 @@ export default function IconKitchenContent() {
                             padding: "10px",
                             fontWeight: 700,
                             fontSize: 12,
-                            border: "2px solid #201e1d",
-                            background: config.effect === eff.id ? "#201e1d" : "#ffffff",
-                            color: config.effect === eff.id ? "#f3f2f2" : "#201e1d",
+                            border: "2px solid var(--border)",
+                            background: config.effect === eff.id ? "var(--solid)" : "var(--surface)",
+                            color: config.effect === eff.id ? "var(--on-solid)" : "var(--ink)",
                             cursor: "pointer",
                           }}
                         >
@@ -899,13 +899,13 @@ export default function IconKitchenContent() {
                         placeholder="e.g. BETA, PRO"
                         value={config.badgeText}
                         onChange={(e) => setConfig((p) => ({ ...p, badgeText: e.target.value }))}
-                        style={{ flex: 1, padding: "8px 12px", border: "2px solid #201e1d", fontWeight: 700 }}
+                        style={{ flex: 1, padding: "8px 12px", border: "2px solid var(--border)", fontWeight: 700 }}
                       />
                       <input
                         type="color"
                         value={config.badgeColor}
                         onChange={(e) => setConfig((p) => ({ ...p, badgeColor: e.target.value }))}
-                        style={{ width: 44, height: 38, border: "2px solid #201e1d", padding: 0 }}
+                        style={{ width: 44, height: 38, border: "2px solid var(--border)", padding: 0 }}
                       />
                     </div>
                   </div>
@@ -919,9 +919,9 @@ export default function IconKitchenContent() {
             {/* Preview Card */}
             <div
               style={{
-                border: "2px solid #201e1d",
-                background: "#ffffff",
-                boxShadow: "4px 4px 0 #201e1d",
+                border: "2px solid var(--border)",
+                background: "var(--surface)",
+                boxShadow: "4px 4px 0 var(--border)",
                 padding: 24,
               }}
             >
@@ -930,7 +930,7 @@ export default function IconKitchenContent() {
                 style={{
                   display: "flex",
                   gap: 8,
-                  borderBottom: "2px solid #f0f0f0",
+                  borderBottom: "2px solid var(--surface-soft)",
                   paddingBottom: 16,
                   marginBottom: 20,
                   flexWrap: "wrap",
@@ -949,9 +949,9 @@ export default function IconKitchenContent() {
                       padding: "8px 14px",
                       fontSize: 12,
                       fontWeight: 700,
-                      border: "2px solid #201e1d",
-                      background: previewPlatform === plat.id ? "#201e1d" : "#ffffff",
-                      color: previewPlatform === plat.id ? "#f3f2f2" : "#201e1d",
+                      border: "2px solid var(--border)",
+                      background: previewPlatform === plat.id ? "var(--solid)" : "var(--surface)",
+                      color: previewPlatform === plat.id ? "var(--on-solid)" : "var(--ink)",
                       cursor: "pointer",
                     }}
                   >
@@ -995,7 +995,7 @@ export default function IconKitchenContent() {
                     >
                       <canvas ref={androidMockupRef} style={{ width: 100, height: 100 }} />
                     </div>
-                    <p style={{ color: "#ffffff", fontSize: 11, fontWeight: 700, marginTop: 10, opacity: 0.8 }}>
+                    <p style={{ color: "var(--on-solid)", fontSize: 11, fontWeight: 700, marginTop: 10, opacity: 0.8 }}>
                       Round Launcher
                     </p>
                   </div>
@@ -1013,7 +1013,7 @@ export default function IconKitchenContent() {
                     >
                       <canvas ref={mainCanvasRef} style={{ width: 100, height: 100 }} />
                     </div>
-                    <p style={{ color: "#ffffff", fontSize: 11, fontWeight: 700, marginTop: 10, opacity: 0.8 }}>
+                    <p style={{ color: "var(--on-solid)", fontSize: 11, fontWeight: 700, marginTop: 10, opacity: 0.8 }}>
                       Adaptive Standard
                     </p>
                   </div>
@@ -1034,7 +1034,7 @@ export default function IconKitchenContent() {
                   >
                     <canvas ref={iosMockupRef} style={{ width: 110, height: 110 }} />
                   </div>
-                  <p style={{ color: "#ffffff", fontSize: 12, fontWeight: 700, marginTop: 12 }}>
+                  <p style={{ color: "var(--on-solid)", fontSize: 12, fontWeight: 700, marginTop: 12 }}>
                     App Store & Home Screen
                   </p>
                 </div>
@@ -1053,7 +1053,7 @@ export default function IconKitchenContent() {
                     }}
                   >
                     <canvas ref={webMockupRef} style={{ width: 18, height: 18, borderRadius: 2 }} />
-                    <span style={{ color: "#f3f2f2", fontSize: 12, fontWeight: 600 }}>
+                    <span style={{ color: "var(--on-solid)", fontSize: 12, fontWeight: 600 }}>
                       My Web Application &bull; Tab
                     </span>
                   </div>
@@ -1164,9 +1164,9 @@ export default function IconKitchenContent() {
             {/* HTML Integration Snippet */}
             <div
               style={{
-                border: "2px solid #201e1d",
-                background: "#201e1d",
-                color: "#f3f2f2",
+                border: "2px solid var(--border)",
+                background: "var(--solid)",
+                color: "var(--on-solid)",
                 padding: 20,
               }}
             >
@@ -1177,8 +1177,8 @@ export default function IconKitchenContent() {
                 <button
                   onClick={copyHtmlTags}
                   style={{
-                    background: "#ec3013",
-                    color: "#ffffff",
+                    background: "var(--red)",
+                    color: "var(--on-solid)",
                     border: "none",
                     padding: "4px 10px",
                     fontSize: 11,

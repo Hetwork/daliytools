@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SiteHeader from "../../_components/site-header";
 import SiteFooter from "../../_components/site-footer";
+import ToolGuideLinks from "../../_components/tool-guide-links";
 
 const MAX_SIZE = 50 * 1024 * 1024;
 
@@ -280,8 +281,8 @@ export default function CompressPdfContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -333,8 +334,8 @@ export default function CompressPdfContent() {
                 fontSize: "clamp(11px, 1.4vw, 13px)",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
-                color: "#f3f2f2",
-                background: "#ec3013",
+                color: "var(--on-solid)",
+                background: "var(--red)",
                 padding: "6px 14px",
                 textTransform: "uppercase",
               }}
@@ -380,6 +381,7 @@ export default function CompressPdfContent() {
           </p>
         </div>
 
+        <p className="tool-output-note"><strong>Check before compressing:</strong> The output contains page images. Selectable text, links, forms, bookmarks, accessibility tags, and digital signatures are not preserved. Keep the original for searchable CVs, signed documents, and accessible files.</p>
         {/* tool body */}
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }}>
           {showDropzone && (
@@ -398,8 +400,8 @@ export default function CompressPdfContent() {
               onDragLeave={onDragLeave}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`,
-                background: isDragging ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`,
+                background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
@@ -409,7 +411,7 @@ export default function CompressPdfContent() {
                 style={{
                   width: 56,
                   height: 56,
-                  border: "2px solid #201e1d",
+                  border: "2px solid var(--border)",
                   margin: "0 auto 24px",
                   display: "flex",
                   alignItems: "center",
@@ -451,7 +453,7 @@ export default function CompressPdfContent() {
             <div
               className="fade-in-up"
               style={{
-                border: "2px solid #201e1d",
+                border: "2px solid var(--border)",
                 padding: "clamp(24px, 4vw, 32px)",
               }}
             >
@@ -460,7 +462,7 @@ export default function CompressPdfContent() {
                   style={{
                     width: 48,
                     height: 48,
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -510,10 +512,10 @@ export default function CompressPdfContent() {
                           onClick={() => setQuality(q)}
                           style={{
                             padding: "10px 20px",
-                            border: `2px solid ${quality === q ? "#ec3013" : "#201e1d"
+                            border: `2px solid ${quality === q ? "var(--red)" : "var(--border)"
                               }`,
-                            background: quality === q ? "#ec3013" : "transparent",
-                            color: quality === q ? "#f3f2f2" : "#201e1d",
+                            background: quality === q ? "var(--red)" : "transparent",
+                            color: quality === q ? "var(--on-solid)" : "var(--ink)",
                             fontWeight: 700,
                             fontSize: 13,
                             textTransform: "uppercase",
@@ -618,7 +620,7 @@ export default function CompressPdfContent() {
                     <div
                       style={{
                         height: "100%",
-                        background: "#ec3013",
+                        background: "var(--red)",
                         width: `${progressPct}%`,
                         transition: "width 0.2s ease",
                       }}
@@ -633,7 +635,7 @@ export default function CompressPdfContent() {
             <div
               className="fade-in-up"
               style={{
-                border: "2px solid #201e1d",
+                border: "2px solid var(--border)",
                 padding: "clamp(32px, 5vw, 48px)",
               }}
             >
@@ -662,7 +664,7 @@ export default function CompressPdfContent() {
                   style={{
                     fontSize: "clamp(36px, 6vw, 60px)",
                     fontWeight: 800,
-                    color: "#ec3013",
+                    color: "var(--red)",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
@@ -692,7 +694,7 @@ export default function CompressPdfContent() {
                     <span style={{ opacity: 0.5 }}>Original</span>
                     <span>{formatBytes(originalSize)}</span>
                   </div>
-                  <div style={{ height: 10, background: "#201e1d" }} />
+                  <div style={{ height: 10, background: "var(--solid)" }} />
                 </div>
                 <div>
                   <div
@@ -710,7 +712,7 @@ export default function CompressPdfContent() {
                   <div
                     style={{
                       height: 10,
-                      background: "#ec3013",
+                      background: "var(--red)",
                       width: `${compressionPct}%`,
                       transition: "width 0.6s cubic-bezier(0.22,1,0.36,1)",
                     }}
@@ -766,7 +768,7 @@ export default function CompressPdfContent() {
             <div
               className="fade-in-up"
               style={{
-                borderLeft: "4px solid #ec3013",
+                borderLeft: "4px solid var(--red)",
                 paddingLeft: 24,
               }}
             >
@@ -802,7 +804,7 @@ export default function CompressPdfContent() {
           className="reveal"
           style={{
             marginTop: "clamp(56px, 8vw, 88px)",
-            borderTop: "2px solid #201e1d",
+            borderTop: "2px solid var(--border)",
             paddingTop: 40,
           }}
         >
@@ -814,7 +816,7 @@ export default function CompressPdfContent() {
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "#ec3013",
+                color: "var(--red)",
               }}
             >
               Step-by-Step Guide
@@ -836,22 +838,22 @@ export default function CompressPdfContent() {
                 gap: 20,
               }}
             >
-              <div style={{ padding: "16px 20px", background: "#fff", border: "1.5px solid #201e1d" }}>
-                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>01</p>
+              <div style={{ padding: "16px 20px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "var(--red)" }}>01</p>
                 <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>Select or Drop PDF</p>
                 <p style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>
                   Choose any PDF document from your computer, tablet, or phone.
                 </p>
               </div>
-              <div style={{ padding: "16px 20px", background: "#fff", border: "1.5px solid #201e1d" }}>
-                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>02</p>
+              <div style={{ padding: "16px 20px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "var(--red)" }}>02</p>
                 <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>Pick Compression Level</p>
                 <p style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>
                   Choose High (best quality), Balanced (recommended), or Low (smallest size).
                 </p>
               </div>
-              <div style={{ padding: "16px 20px", background: "#fff", border: "1.5px solid #201e1d" }}>
-                <p style={{ fontWeight: 800, fontSize: 18, color: "#ec3013" }}>03</p>
+              <div style={{ padding: "16px 20px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
+                <p style={{ fontWeight: 800, fontSize: 18, color: "var(--red)" }}>03</p>
                 <p style={{ fontWeight: 700, fontSize: 15, margin: "6px 0" }}>Download Instantly</p>
                 <p style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>
                   Get your optimized PDF immediately without waitlists, watermarks, or sign-ups.
@@ -861,14 +863,14 @@ export default function CompressPdfContent() {
           </div>
 
           {/* Technical Explanation / How it works */}
-          <div style={{ marginBottom: 48, background: "#fff", border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 36px)" }}>
+          <div style={{ marginBottom: 48, background: "var(--surface)", border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 36px)" }}>
             <span
               style={{
                 fontSize: 12,
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "#ec3013",
+                color: "var(--red)",
               }}
             >
               Under the Hood
@@ -891,7 +893,7 @@ export default function CompressPdfContent() {
                 marginBottom: 14,
               }}
             >
-              Unlike traditional PDF converters that transmit your private files over the internet to remote cloud servers, Daliy.Tools performs all rendering and compression operations directly inside your web browser using modern WebAssembly and HTML5 Canvas technology.
+              The tool uses PDF.js to render each page onto a canvas, encodes that page as a JPEG, and uses pdf-lib to create a new PDF. Your selected PDF is processed locally in this browser tab.
             </p>
             <p
               style={{
@@ -900,7 +902,7 @@ export default function CompressPdfContent() {
                 opacity: 0.8,
               }}
             >
-              Each page is analyzed and reconstructed into high-efficiency, compressed raster layers. This eliminates bloated embedded metadata, uncompressed color profiles, and oversized scanned images while preserving clean, legible text for email attachments, government portals, and web publishing.
+              High uses 200 DPI and 85% JPEG quality; Balanced uses 150 DPI and 72%; Low uses 100 DPI and 50%. The output preserves page appearance as images, not the original document structure. Text-only PDFs can grow larger. Compare the output size and inspect fine print before using the download.
             </p>
           </div>
 
@@ -912,7 +914,7 @@ export default function CompressPdfContent() {
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "#ec3013",
+                color: "var(--red)",
               }}
             >
               Answers to Common Questions
@@ -934,16 +936,16 @@ export default function CompressPdfContent() {
                 gap: 20,
               }}
             >
-              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+              <div style={{ padding: "20px 24px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
                 <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                   Will compressing my PDF reduce text quality?
                 </h3>
                 <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.6 }}>
-                  Our <strong>Balanced</strong> preset keeps text crisp while reducing large image sizes. If you are printing your document or need maximum sharpness, choose the <strong>High</strong> quality setting.
+                  All presets rasterize text and can soften small letters. Compare <strong>Balanced</strong> with <strong>High</strong> and inspect the smallest print. Text selection and accessibility tags are lost with every preset.
                 </p>
               </div>
 
-              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+              <div style={{ padding: "20px 24px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
                 <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                   Is my PDF uploaded to any server?
                 </h3>
@@ -952,16 +954,16 @@ export default function CompressPdfContent() {
                 </p>
               </div>
 
-              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+              <div style={{ padding: "20px 24px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
                 <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                   What is the maximum file size supported?
                 </h3>
                 <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.6 }}>
-                  You can compress PDFs up to 50MB directly in your browser. For optimal performance, modern browsers handle multi-page documents seamlessly within seconds.
+                  The input limit is 50 MB. Processing time and memory use depend on page count, dimensions, and your device. A long scan may need to be split into smaller parts.
                 </p>
               </div>
 
-              <div style={{ padding: "20px 24px", background: "#fff", border: "1.5px solid #201e1d" }}>
+              <div style={{ padding: "20px 24px", background: "var(--surface)", border: "1.5px solid var(--border)" }}>
                 <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>
                   Can I compress password-protected PDF files?
                 </h3>
@@ -972,8 +974,9 @@ export default function CompressPdfContent() {
             </div>
           </div>
 
+          <ToolGuideLinks slug="compress-pdf" />
           {/* Related Daily Tools */}
-          <div style={{ borderTop: "1.5px dashed #201e1d", paddingTop: 32 }}>
+          <div style={{ borderTop: "1.5px dashed var(--border)", paddingTop: 32 }}>
             <p
               style={{
                 fontSize: 12,

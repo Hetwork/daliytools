@@ -111,7 +111,7 @@ export default function CompareFilesContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -124,7 +124,7 @@ export default function CompareFilesContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Compare Two Files</h1>
@@ -153,9 +153,9 @@ export default function CompareFilesContent() {
                     rows={16}
                     style={{
                       width: "100%",
-                      border: "2px solid #201e1d",
+                      border: "2px solid var(--border)",
                       background: "transparent",
-                      color: "#201e1d",
+                      color: "var(--ink)",
                       fontFamily: "monospace",
                       fontSize: 13,
                       lineHeight: 1.7,
@@ -180,9 +180,9 @@ export default function CompareFilesContent() {
                     rows={16}
                     style={{
                       width: "100%",
-                      border: "2px solid #201e1d",
+                      border: "2px solid var(--border)",
                       background: "transparent",
-                      color: "#201e1d",
+                      color: "var(--ink)",
                       fontFamily: "monospace",
                       fontSize: 13,
                       lineHeight: 1.7,
@@ -209,15 +209,15 @@ export default function CompareFilesContent() {
                   onClick={loadSample}
                   style={{
                     padding: "10px 18px",
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
                     fontFamily: "var(--font-archivo)",
                     fontWeight: 700,
                     fontSize: 13,
                     transition: "background 0.15s ease, color 0.15s ease",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "#201e1d"; e.currentTarget.style.color = "#f3f2f2"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#201e1d"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "var(--solid)"; e.currentTarget.style.color = "var(--on-solid)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--ink)"; }}
                 >
                   Load sample
                 </button>
@@ -232,7 +232,7 @@ export default function CompareFilesContent() {
               <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16, flexWrap: "wrap" }}>
                 <div style={{ display: "flex", gap: 12 }}>
                   <span style={{ fontSize: 13, fontWeight: 800, color: "#2d8a4e" }}>+{added} added</span>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: "#ec3013" }}>−{removed} removed</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: "var(--red)" }}>−{removed} removed</span>
                   {added === 0 && removed === 0 && (
                     <span style={{ fontSize: 13, fontWeight: 800, opacity: 0.5 }}>Files are identical</span>
                   )}
@@ -244,9 +244,9 @@ export default function CompareFilesContent() {
                     onClick={() => setOnlyChanges(!onlyChanges)}
                     style={{
                       padding: "7px 14px",
-                      border: "2px solid #201e1d",
-                      background: onlyChanges ? "#201e1d" : "transparent",
-                      color: onlyChanges ? "#f3f2f2" : "#201e1d",
+                      border: "2px solid var(--border)",
+                      background: onlyChanges ? "var(--solid)" : "transparent",
+                      color: onlyChanges ? "var(--on-solid)" : "var(--ink)",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 700,
                       fontSize: 12,
@@ -260,15 +260,15 @@ export default function CompareFilesContent() {
                     onClick={() => { setShowDiff(false); setOnlyChanges(false); }}
                     style={{
                       padding: "7px 14px",
-                      border: "2px solid #201e1d",
+                      border: "2px solid var(--border)",
                       background: "transparent",
                       fontFamily: "var(--font-archivo)",
                       fontWeight: 700,
                       fontSize: 12,
                       transition: "background 0.15s ease, color 0.15s ease",
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = "#201e1d"; e.currentTarget.style.color = "#f3f2f2"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#201e1d"; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "var(--solid)"; e.currentTarget.style.color = "var(--on-solid)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--ink)"; }}
                   >
                     ← Edit
                   </button>
@@ -276,14 +276,14 @@ export default function CompareFilesContent() {
               </div>
 
               {/* Column headers */}
-              <div style={{ display: "grid", gridTemplateColumns: "40px 40px 1fr", gap: 0, borderBottom: "2px solid #201e1d", paddingBottom: 6, marginBottom: 4 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "40px 40px 1fr", gap: 0, borderBottom: "2px solid var(--border)", paddingBottom: 6, marginBottom: 4 }}>
                 <span style={{ fontSize: 10, fontWeight: 700, opacity: 0.4, textTransform: "uppercase", letterSpacing: "0.06em" }}>A</span>
                 <span style={{ fontSize: 10, fontWeight: 700, opacity: 0.4, textTransform: "uppercase", letterSpacing: "0.06em" }}>B</span>
                 <span style={{ fontSize: 10, fontWeight: 700, opacity: 0.4, textTransform: "uppercase", letterSpacing: "0.06em" }}>Content</span>
               </div>
 
               {/* Diff lines */}
-              <div style={{ border: "2px solid #201e1d", overflow: "auto", maxHeight: 600 }}>
+              <div style={{ border: "2px solid var(--border)", overflow: "auto", maxHeight: 600 }}>
                 {visibleLines.length === 0 && (
                   <p style={{ padding: "24px 20px", fontSize: 14, opacity: 0.5, fontStyle: "italic" }}>No changes to show.</p>
                 )}
@@ -296,14 +296,14 @@ export default function CompareFilesContent() {
                       alignItems: "stretch",
                       background: BG[line.type],
                       borderLeft: `3px solid ${BORDER[line.type]}`,
-                      borderBottom: "1px solid rgba(32,30,29,0.06)",
+                      borderBottom: "1px solid rgba(var(--ink-rgb), 0.06)",
                       minHeight: 28,
                     }}
                   >
-                    <span style={{ padding: "4px 8px", fontSize: 11, fontFamily: "monospace", opacity: 0.3, textAlign: "right", borderRight: "1px solid rgba(32,30,29,0.1)", userSelect: "none" }}>
+                    <span style={{ padding: "4px 8px", fontSize: 11, fontFamily: "monospace", opacity: 0.3, textAlign: "right", borderRight: "1px solid rgba(var(--ink-rgb), 0.1)", userSelect: "none" }}>
                       {line.leftNum ?? ""}
                     </span>
-                    <span style={{ padding: "4px 8px", fontSize: 11, fontFamily: "monospace", opacity: 0.3, textAlign: "right", borderRight: "1px solid rgba(32,30,29,0.1)", userSelect: "none" }}>
+                    <span style={{ padding: "4px 8px", fontSize: 11, fontFamily: "monospace", opacity: 0.3, textAlign: "right", borderRight: "1px solid rgba(var(--ink-rgb), 0.1)", userSelect: "none" }}>
                       {line.rightNum ?? ""}
                     </span>
                     <span style={{ padding: "4px 4px", fontSize: 12, fontFamily: "monospace", fontWeight: 800, color: COLOR[line.type], display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none" }}>
@@ -333,10 +333,10 @@ export default function CompareFilesContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
-            The diff is computed using the Longest Common Subsequence (LCS) algorithm, the same approach used by Unix <code style={{ fontFamily: "monospace", background: "rgba(32,30,29,0.08)", padding: "1px 5px" }}>diff</code>. Lines present only in A are shown in red, lines present only in B are shown in green, and shared lines are shown as-is. Toggle &ldquo;Show changes only&rdquo; to hide unchanged lines. Nothing leaves your browser.
+            The diff is computed using the Longest Common Subsequence (LCS) algorithm, the same approach used by Unix <code style={{ fontFamily: "monospace", background: "rgba(var(--ink-rgb), 0.08)", padding: "1px 5px" }}>diff</code>. Lines present only in A are shown in red, lines present only in B are shown in green, and shared lines are shown as-is. Toggle &ldquo;Show changes only&rdquo; to hide unchanged lines. Nothing leaves your browser.
           </p>
         </div>
         <ToolEditorial toolName="Compare Two Files" {...toolEditorialData["compare-files"]} />

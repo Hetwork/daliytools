@@ -130,15 +130,15 @@ export default function CropImageContent() {
   const handleDotStyle: React.CSSProperties = {
     width: 14,
     height: 14,
-    background: "#f3f2f2",
-    border: "2px solid #201e1d",
+    background: "var(--bg)",
+    border: "2px solid var(--border)",
     position: "absolute",
   };
 
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
       <canvas ref={canvasRef} style={{ display: "none" }} />
@@ -152,7 +152,7 @@ export default function CropImageContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Crop Image</h1>
@@ -173,14 +173,14 @@ export default function CropImageContent() {
               onDragLeave={() => setIsDrop(false)}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDrop ? "#ec3013" : "#201e1d"}`,
-                background: isDrop ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDrop ? "var(--red)" : "var(--border)"}`,
+                background: isDrop ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
               }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>IMG</div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
               <p style={{ fontSize: "clamp(13px, 1.5vw, 15px)", opacity: 0.55 }}>or click to browse</p>
               <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={(e) => handleFile(e.target.files?.[0] ?? null)} />
@@ -200,9 +200,9 @@ export default function CropImageContent() {
                       onClick={() => setRatio(r.value)}
                       style={{
                         padding: "8px 16px",
-                        border: `2px solid ${selectedRatio === r.value ? "#ec3013" : "#201e1d"}`,
-                        background: selectedRatio === r.value ? "#ec3013" : "transparent",
-                        color: selectedRatio === r.value ? "#f3f2f2" : "#201e1d",
+                        border: `2px solid ${selectedRatio === r.value ? "var(--red)" : "var(--border)"}`,
+                        background: selectedRatio === r.value ? "var(--red)" : "transparent",
+                        color: selectedRatio === r.value ? "var(--on-solid)" : "var(--ink)",
                         fontWeight: 700,
                         fontSize: 12,
                         fontFamily: "var(--font-archivo)",
@@ -222,7 +222,7 @@ export default function CropImageContent() {
                 onPointerUp={handlePointerUp}
                 onPointerLeave={handlePointerUp}
                 onPointerCancel={handlePointerUp}
-                style={{ position: "relative", border: "2px solid #201e1d", background: "#201e1d", userSelect: "none", overflow: "hidden", touchAction: "none" }}
+                style={{ position: "relative", border: "2px solid var(--border)", background: "var(--solid)", userSelect: "none", overflow: "hidden", touchAction: "none" }}
               >
                 <img
                   ref={imageRef}
@@ -240,7 +240,7 @@ export default function CropImageContent() {
                     top: `${cropArea.y}%`,
                     width: `${cropArea.width}%`,
                     height: `${cropArea.height}%`,
-                    border: "2px solid #f3f2f2",
+                    border: "2px solid var(--bg)",
                     boxShadow: "0 0 0 9999px rgba(0,0,0,0.55)",
                     cursor: "move",
                   }}
@@ -287,7 +287,7 @@ export default function CropImageContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             The crop box is positioned as a percentage of the container. When you click "Crop & Download," those percentages are

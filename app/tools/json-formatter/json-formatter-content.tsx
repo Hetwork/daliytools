@@ -61,8 +61,8 @@ export default function JsonFormatterContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -97,7 +97,7 @@ export default function JsonFormatterContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>
               Live
             </span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>
@@ -134,11 +134,12 @@ export default function JsonFormatterContent() {
           </div>
 
           {error && (
-            <div style={{ borderLeft: "4px solid #ec3013", paddingLeft: 16, marginBottom: 12 }}>
-              <p style={{ fontSize: 14, color: "#ec3013", fontWeight: 600 }}>{error}</p>
+            <div style={{ borderLeft: "4px solid var(--red)", paddingLeft: 16, marginBottom: 12 }}>
+              <p style={{ fontSize: 14, color: "var(--red)", fontWeight: 600 }}>{error}</p>
             </div>
           )}
 
+          <p className="tool-output-note">Formatting parses and rewrites the data. Duplicate keys collapse and large integers can lose precision. Keep the original for signed payloads or exact numeric data. <Link href="/blogs/json-formatting-validation-and-data-loss">See examples and limitations</Link>.</p>
           <textarea
             value={json}
             onChange={(e) => { setJson(e.target.value); setError(null); }}
@@ -146,9 +147,9 @@ export default function JsonFormatterContent() {
             style={{
               width: "100%",
               minHeight: 400,
-              border: `2px solid ${error ? "#ec3013" : "#201e1d"}`,
+              border: `2px solid ${error ? "var(--red)" : "var(--border)"}`,
               background: "transparent",
-              color: "#201e1d",
+              color: "var(--ink)",
               fontFamily: "monospace",
               fontSize: 13,
               lineHeight: 1.65,

@@ -107,8 +107,8 @@ export default function ColorPickerContent() {
     <main
       className="noise"
       style={{
-        background: "#f3f2f2",
-        color: "#201e1d",
+        background: "var(--bg)",
+        color: "var(--ink)",
         fontFamily: "var(--font-archivo), sans-serif",
         minHeight: "100vh",
         position: "relative",
@@ -134,7 +134,7 @@ export default function ColorPickerContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Color Picker</h1>
@@ -155,14 +155,14 @@ export default function ColorPickerContent() {
               onDragLeave={() => setIsDragging(false)}
               className="fade-in-up"
               style={{
-                border: `2px dashed ${isDragging ? "#ec3013" : "#201e1d"}`,
-                background: isDragging ? "rgba(236,48,19,0.05)" : "transparent",
+                border: `2px dashed ${isDragging ? "var(--red)" : "var(--border)"}`,
+                background: isDragging ? "rgba(var(--accent-rgb), 0.05)" : "transparent",
                 padding: "clamp(48px, 8vw, 80px) 24px",
                 textAlign: "center",
                 transition: "border-color 0.25s ease, background 0.25s ease",
               }}
             >
-              <div style={{ width: 56, height: 56, border: "2px solid #201e1d", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>
+              <div style={{ width: 56, height: 56, border: "2px solid var(--border)", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800 }}>
                 IMG
               </div>
               <p style={{ fontSize: "clamp(17px, 2.2vw, 22px)", fontWeight: 700, marginBottom: 8 }}>Drag & drop your image here</p>
@@ -175,7 +175,7 @@ export default function ColorPickerContent() {
             <div className="fade-in-up">
               {/* Color display bar */}
               <div style={{ display: "flex", gap: 16, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
-                <div style={{ width: 56, height: 56, border: "2px solid #201e1d", background: display?.hex ?? "#f3f2f2", flexShrink: 0, transition: "background 0.1s" }} />
+                <div style={{ width: 56, height: 56, border: "2px solid var(--border)", background: display?.hex ?? "var(--bg)", flexShrink: 0, transition: "background 0.1s" }} />
                 <div style={{ flex: 1, minWidth: 200 }}>
                   {display ? (
                     <>
@@ -208,7 +208,7 @@ export default function ColorPickerContent() {
               </div>
 
               {/* Image */}
-              <div style={{ border: "2px solid #201e1d", overflow: "hidden", position: "relative" }}>
+              <div style={{ border: "2px solid var(--border)", overflow: "hidden", position: "relative" }}>
                 <img
                   ref={imgRef}
                   src={imageUrl}
@@ -235,7 +235,7 @@ export default function ColorPickerContent() {
                         style={{
                           width: 36,
                           height: 36,
-                          border: `2px solid ${selected?.hex === c.hex ? "#ec3013" : "#201e1d"}`,
+                          border: `2px solid ${selected?.hex === c.hex ? "var(--red)" : "var(--border)"}`,
                           background: c.hex,
                           position: "relative",
                         }}
@@ -248,7 +248,7 @@ export default function ColorPickerContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>
             How It Works
           </p>

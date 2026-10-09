@@ -64,7 +64,7 @@ export default function QrCodeGeneratorContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -77,7 +77,7 @@ export default function QrCodeGeneratorContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>QR Code Generator</h1>
@@ -102,9 +102,9 @@ export default function QrCodeGeneratorContent() {
                 placeholder="https://example.com"
                 style={{
                   width: "100%",
-                  border: "2px solid #201e1d",
+                  border: "2px solid var(--border)",
                   background: "transparent",
-                  color: "#201e1d",
+                  color: "var(--ink)",
                   fontFamily: "var(--font-archivo)",
                   fontSize: 15,
                   fontWeight: 500,
@@ -120,12 +120,12 @@ export default function QrCodeGeneratorContent() {
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                   <label style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45 }}>Size</label>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "#ec3013" }}>{size}px</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--red)" }}>{size}px</span>
                 </div>
                 <input
                   type="range" min={128} max={512} step={32} value={size}
                   onChange={(e) => { setSize(Number(e.target.value)); setGenerated(false); }}
-                  style={{ width: "100%", accentColor: "#ec3013" }}
+                  style={{ width: "100%", accentColor: "var(--red)" }}
                 />
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, opacity: 0.4, marginTop: 4 }}>
                   <span>128px</span><span>512px</span>
@@ -144,9 +144,9 @@ export default function QrCodeGeneratorContent() {
                       onClick={() => { setEcc(level); setGenerated(false); }}
                       style={{
                         padding: "8px 4px",
-                        border: "2px solid #201e1d",
-                        background: ecc === level ? "#201e1d" : "transparent",
-                        color: ecc === level ? "#f3f2f2" : "#201e1d",
+                        border: "2px solid var(--border)",
+                        background: ecc === level ? "var(--solid)" : "transparent",
+                        color: ecc === level ? "var(--on-solid)" : "var(--ink)",
                         fontFamily: "var(--font-archivo)",
                         fontWeight: 700,
                         fontSize: 12,
@@ -176,9 +176,9 @@ export default function QrCodeGeneratorContent() {
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, minWidth: 220 }}>
             <div
               style={{
-                border: "2px solid #201e1d",
+                border: "2px solid var(--border)",
                 padding: 12,
-                background: "#f3f2f2",
+                background: "var(--bg)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -203,7 +203,7 @@ export default function QrCodeGeneratorContent() {
                   type="button"
                   onClick={copyImage}
                   className="ink-hover"
-                  style={{ fontSize: 12, fontWeight: 700, padding: "10px 16px", border: "2px solid #201e1d", background: "transparent", fontFamily: "inherit" }}
+                  style={{ fontSize: 12, fontWeight: 700, padding: "10px 16px", border: "2px solid var(--border)", background: "transparent", fontFamily: "inherit" }}
                 >
                   {copied ? "Copied!" : "Copy Image"}
                 </button>

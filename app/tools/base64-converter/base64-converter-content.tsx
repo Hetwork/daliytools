@@ -96,7 +96,7 @@ export default function Base64ConverterContent() {
   }
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
       <section style={{ maxWidth: 980, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
@@ -106,7 +106,7 @@ export default function Base64ConverterContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Base64, URL, and HTML entities</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Base64 / URL / HTML Converter</h1>
@@ -121,7 +121,7 @@ export default function Base64ConverterContent() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
-            <textarea value={input} onChange={(event) => setInput(event.target.value)} spellCheck={false} placeholder="Input" style={{ width: "100%", minHeight: 150, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 16, resize: "vertical", outline: "none" }} />
+            <textarea value={input} onChange={(event) => setInput(event.target.value)} spellCheck={false} placeholder="Input" style={{ width: "100%", minHeight: 150, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 16, resize: "vertical", outline: "none" }} />
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <button type="button" onClick={runEncode} className="btn btn-primary">Encode</button>
@@ -130,9 +130,9 @@ export default function Base64ConverterContent() {
               <button type="button" onClick={copyOutput} className="btn" disabled={!output}>{copied ? "Copied" : "Copy output"}</button>
             </div>
 
-            {error && <p style={{ color: "#ec3013", fontWeight: 600, fontSize: 13 }}>{error}</p>}
+            {error && <p style={{ color: "var(--red)", fontWeight: 600, fontSize: 13 }}>{error}</p>}
 
-            <textarea value={output} onChange={(event) => setOutput(event.target.value)} spellCheck={false} placeholder="Output" style={{ width: "100%", minHeight: 150, border: "2px solid #201e1d", background: "transparent", color: "#201e1d", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 16, resize: "vertical", outline: "none" }} />
+            <textarea value={output} onChange={(event) => setOutput(event.target.value)} spellCheck={false} placeholder="Output" style={{ width: "100%", minHeight: 150, border: "2px solid var(--border)", background: "transparent", color: "var(--ink)", fontFamily: "monospace", fontSize: 13, lineHeight: 1.65, padding: 16, resize: "vertical", outline: "none" }} />
           </div>
         </div>
         <ToolEditorial toolName="Base64 / URL / HTML Converter" {...toolEditorialData["base64-converter"]} />

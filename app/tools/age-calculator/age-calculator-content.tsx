@@ -113,7 +113,7 @@ export default function AgeCalculatorContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -126,7 +126,7 @@ export default function AgeCalculatorContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Age Calculator</h1>
@@ -138,7 +138,7 @@ export default function AgeCalculatorContent() {
         <div style={{ marginTop: "clamp(40px, 6vw, 64px)" }} className="fade-in-up">
 
           {/* Inputs */}
-          <div style={{ border: "2px solid #201e1d", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
+          <div style={{ border: "2px solid var(--border)", padding: "clamp(20px, 3vw, 28px)", marginBottom: 20 }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, flexWrap: "wrap" }}>
               <div>
                 <label style={{ display: "block", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.45, marginBottom: 8 }}>
@@ -151,9 +151,9 @@ export default function AgeCalculatorContent() {
                   max={refDate}
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
+                    border: "2px solid var(--border)",
                     background: "transparent",
-                    color: "#201e1d",
+                    color: "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontSize: 16,
                     fontWeight: 700,
@@ -176,7 +176,7 @@ export default function AgeCalculatorContent() {
                     <span style={{
                       width: 32,
                       height: 18,
-                      background: useToday ? "#ec3013" : "#c8c6c5",
+                      background: useToday ? "var(--red)" : "#c8c6c5",
                       borderRadius: 9,
                       position: "relative",
                       display: "inline-block",
@@ -189,7 +189,7 @@ export default function AgeCalculatorContent() {
                         left: useToday ? 15 : 1,
                         width: 16,
                         height: 16,
-                        background: "#f3f2f2",
+                        background: "var(--bg)",
                         borderRadius: "50%",
                         transition: "left 0.2s",
                       }} />
@@ -204,9 +204,9 @@ export default function AgeCalculatorContent() {
                   disabled={useToday}
                   style={{
                     width: "100%",
-                    border: "2px solid #201e1d",
-                    background: useToday ? "rgba(32,30,29,0.04)" : "transparent",
-                    color: useToday ? "rgba(32,30,29,0.35)" : "#201e1d",
+                    border: "2px solid var(--border)",
+                    background: useToday ? "rgba(var(--ink-rgb), 0.04)" : "transparent",
+                    color: useToday ? "rgba(var(--ink-rgb), 0.35)" : "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     fontSize: 16,
                     fontWeight: 700,
@@ -218,7 +218,7 @@ export default function AgeCalculatorContent() {
             </div>
 
             {dob && result === null && (
-              <p style={{ marginTop: 12, fontSize: 13, color: "#ec3013", fontWeight: 600 }}>
+              <p style={{ marginTop: 12, fontSize: 13, color: "var(--red)", fontWeight: 600 }}>
                 Date of birth must be before the reference date.
               </p>
             )}
@@ -228,12 +228,12 @@ export default function AgeCalculatorContent() {
           {result && (
             <>
               {result.isToday && (
-                <div style={{ background: "#ec3013", color: "#f3f2f2", padding: "12px 20px", marginBottom: 16, fontWeight: 700, fontSize: 15, letterSpacing: "0.02em" }}>
+                <div style={{ background: "var(--red)", color: "var(--on-solid)", padding: "12px 20px", marginBottom: 16, fontWeight: 700, fontSize: 15, letterSpacing: "0.02em" }}>
                   🎂 Happy Birthday!
                 </div>
               )}
 
-              <div style={{ border: "2px solid #201e1d", padding: "clamp(24px, 4vw, 40px)", marginBottom: 16 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "clamp(24px, 4vw, 40px)", marginBottom: 16 }}>
                 <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>Exact Age</p>
                 <div style={{ display: "flex", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
                   {[
@@ -242,7 +242,7 @@ export default function AgeCalculatorContent() {
                     { value: result.days,   label: "Days"   },
                   ].map(({ value, label }) => (
                     <div key={label}>
-                      <p style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.03em", color: "#ec3013" }}>
+                      <p style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--red)" }}>
                         {value}
                       </p>
                       <p style={{ fontSize: 14, fontWeight: 600, opacity: 0.5, marginTop: 4, textTransform: "uppercase", letterSpacing: "0.08em" }}>
@@ -256,7 +256,7 @@ export default function AgeCalculatorContent() {
               {/* Stats grid */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginBottom: 16 }}>
                 {STATS.map(({ label, value }) => (
-                  <div key={label} style={{ border: "2px solid #201e1d", padding: "16px 20px" }}>
+                  <div key={label} style={{ border: "2px solid var(--border)", padding: "16px 20px" }}>
                     <p style={{ fontSize: "clamp(20px, 2.5vw, 28px)", fontWeight: 800, letterSpacing: "-0.01em" }}>{value}</p>
                     <p style={{ fontSize: 12, fontWeight: 600, opacity: 0.45, marginTop: 4, textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}</p>
                   </div>
@@ -264,7 +264,7 @@ export default function AgeCalculatorContent() {
               </div>
 
               {/* Next birthday */}
-              <div style={{ border: "2px solid #201e1d", padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+              <div style={{ border: "2px solid var(--border)", padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
                 <div>
                   <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4, marginBottom: 4 }}>
                     {result.isToday ? "Next Birthday" : "Days until next birthday"}
@@ -283,7 +283,7 @@ export default function AgeCalculatorContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             Age is calculated by subtracting the birth date from the reference date in full calendar units — borrowing days from the previous month when needed, and borrowing months when the month count goes negative. This matches how ages are expressed in everyday language. All statistics (total days, weeks, hours) are derived from the raw millisecond difference between the two dates.

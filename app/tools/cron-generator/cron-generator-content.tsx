@@ -126,7 +126,7 @@ export default function CronGeneratorContent() {
   }
 
   return (
-    <main className="noise" style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
+    <main className="noise" style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}>
       <SiteHeader active="Tools" />
 
       <section style={{ maxWidth: 980, margin: "0 auto", padding: "0 32px", paddingTop: "clamp(32px, 6vw, 64px)", paddingBottom: "clamp(48px, 8vw, 96px)", position: "relative", zIndex: 1 }}>
@@ -136,7 +136,7 @@ export default function CronGeneratorContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>5-field cron expression builder</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Cron Expression Builder</h1>
@@ -146,14 +146,14 @@ export default function CronGeneratorContent() {
         </div>
 
         <div className="fade-in-up" style={{ marginTop: "clamp(36px, 6vw, 56px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
-          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Minute</span><input value={minute} onChange={(event) => setMinute(event.target.value)} placeholder="* or */5" style={{ border: "2px solid #201e1d", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
-          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Hour</span><input value={hour} onChange={(event) => setHour(event.target.value)} placeholder="* or 9" style={{ border: "2px solid #201e1d", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
-          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Day of month</span><input value={dayOfMonth} onChange={(event) => setDayOfMonth(event.target.value)} placeholder="* or 1-5" style={{ border: "2px solid #201e1d", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
-          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Month</span><input value={month} onChange={(event) => setMonth(event.target.value)} placeholder="* or 1,6,12" style={{ border: "2px solid #201e1d", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
-          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Day of week</span><input value={dayOfWeek} onChange={(event) => setDayOfWeek(event.target.value)} placeholder="* or 1-5" style={{ border: "2px solid #201e1d", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
+          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Minute</span><input value={minute} onChange={(event) => setMinute(event.target.value)} placeholder="* or */5" style={{ border: "2px solid var(--border)", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
+          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Hour</span><input value={hour} onChange={(event) => setHour(event.target.value)} placeholder="* or 9" style={{ border: "2px solid var(--border)", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
+          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Day of month</span><input value={dayOfMonth} onChange={(event) => setDayOfMonth(event.target.value)} placeholder="* or 1-5" style={{ border: "2px solid var(--border)", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
+          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Month</span><input value={month} onChange={(event) => setMonth(event.target.value)} placeholder="* or 1,6,12" style={{ border: "2px solid var(--border)", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
+          <label style={{ display: "grid", gap: 6 }}><span style={{ fontSize: 12, opacity: 0.55, fontWeight: 700 }}>Day of week</span><input value={dayOfWeek} onChange={(event) => setDayOfWeek(event.target.value)} placeholder="* or 1-5" style={{ border: "2px solid var(--border)", background: "transparent", padding: "10px 12px", fontFamily: "monospace" }} /></label>
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid #201e1d", padding: 16 }}>
+        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid var(--border)", padding: 16 }}>
           <p style={{ fontSize: 12, fontWeight: 700, opacity: 0.45, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>Expression</p>
           <p style={{ fontFamily: "monospace", fontSize: 20, fontWeight: 700, marginBottom: 10 }}>{expression}</p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -165,10 +165,10 @@ export default function CronGeneratorContent() {
           <p style={{ marginTop: 10, fontSize: 13, opacity: 0.65 }}>
             {explainField("minute", minute)}, {explainField("hour", hour)}, {explainField("day-of-month", dayOfMonth)}, {explainField("month", month)}, {explainField("day-of-week", dayOfWeek)}
           </p>
-          {!isValid && <p style={{ marginTop: 8, color: "#ec3013", fontWeight: 600, fontSize: 13 }}>Expression contains an invalid field syntax.</p>}
+          {!isValid && <p style={{ marginTop: 8, color: "var(--red)", fontWeight: 600, fontSize: 13 }}>Expression contains an invalid field syntax.</p>}
         </div>
 
-        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid #201e1d", padding: 16 }}>
+        <div className="fade-in-up" style={{ marginTop: 16, border: "2px solid var(--border)", padding: 16 }}>
           <p style={{ fontSize: 12, fontWeight: 700, opacity: 0.45, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>Upcoming Runs</p>
           {schedule.length === 0 ? (
             <p style={{ fontSize: 13, opacity: 0.65 }}>No schedule preview available for this expression.</p>

@@ -113,7 +113,7 @@ export default function CaseConverterContent() {
   return (
     <main
       className="noise"
-      style={{ background: "#f3f2f2", color: "#201e1d", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
+      style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--font-archivo), sans-serif", minHeight: "100vh", position: "relative" }}
     >
       <SiteHeader active="Tools" />
 
@@ -126,7 +126,7 @@ export default function CaseConverterContent() {
 
         <div className="reveal">
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "#f3f2f2", background: "#ec3013", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
+            <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 700, letterSpacing: "0.18em", color: "var(--on-solid)", background: "var(--red)", padding: "6px 14px", textTransform: "uppercase" }}>Live</span>
             <span style={{ fontSize: "clamp(11px, 1.4vw, 13px)", fontWeight: 500, opacity: 0.5 }}>Runs entirely in your browser</span>
           </div>
           <h1 style={{ fontSize: "clamp(34px, 6vw, 60px)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>Case Converter</h1>
@@ -149,9 +149,9 @@ export default function CaseConverterContent() {
               rows={6}
               style={{
                 width: "100%",
-                border: "2px solid #201e1d",
+                border: "2px solid var(--border)",
                 background: "transparent",
-                color: "#201e1d",
+                color: "var(--ink)",
                 fontFamily: "var(--font-archivo)",
                 fontSize: "clamp(14px, 1.6vw, 16px)",
                 fontWeight: 400,
@@ -183,15 +183,15 @@ export default function CaseConverterContent() {
                     alignItems: "flex-start",
                     gap: 4,
                     padding: "14px 16px",
-                    border: `2px solid ${isActive ? "#201e1d" : "#c8c6c5"}`,
-                    background: isActive ? "#201e1d" : "transparent",
-                    color: isActive ? "#f3f2f2" : "#201e1d",
+                    border: `2px solid ${isActive ? "var(--border)" : "#c8c6c5"}`,
+                    background: isActive ? "var(--solid)" : "transparent",
+                    color: isActive ? "var(--on-solid)" : "var(--ink)",
                     fontFamily: "var(--font-archivo)",
                     textAlign: "left",
                     transition: "all 0.15s ease",
                     position: "relative",
                   }}
-                  onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.borderColor = "#201e1d"; e.currentTarget.style.background = "rgba(32,30,29,0.05)"; } }}
+                  onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.background = "rgba(var(--ink-rgb), 0.05)"; } }}
                   onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.borderColor = "#c8c6c5"; e.currentTarget.style.background = "transparent"; } }}
                 >
                   <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.55 }}>{label}</span>
@@ -211,7 +211,7 @@ export default function CaseConverterContent() {
                       right: 10,
                       fontSize: 11,
                       fontWeight: 800,
-                      color: isActive ? "#f3f2f2" : "#ec3013",
+                      color: isActive ? "var(--on-solid)" : "var(--red)",
                       letterSpacing: "0.06em",
                     }}>
                       COPIED
@@ -224,7 +224,7 @@ export default function CaseConverterContent() {
 
           {/* Output preview */}
           {input && output && (
-            <div style={{ marginTop: 20, border: "2px solid #201e1d", padding: "clamp(16px, 2.5vw, 24px)" }}>
+            <div style={{ marginTop: 20, border: "2px solid var(--border)", padding: "clamp(16px, 2.5vw, 24px)" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, gap: 12, flexWrap: "wrap" }}>
                 <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.4 }}>
                   {CASES.find((c) => c.key === activeCase)?.label} — full output
@@ -250,7 +250,7 @@ export default function CaseConverterContent() {
           )}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid #201e1d", paddingTop: 32 }}>
+        <div className="reveal" style={{ marginTop: "clamp(56px, 8vw, 88px)", borderTop: "2px solid var(--border)", paddingTop: 32 }}>
           <p style={{ fontSize: "clamp(11px, 1.2vw, 12px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.4, marginBottom: 16 }}>How It Works</p>
           <p style={{ fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.75, opacity: 0.75, maxWidth: 640 }}>
             Each case conversion first tokenises your input into words — splitting on spaces, hyphens, underscores, dots, and camelCase boundaries — then joins them with the appropriate separator and applies capitalisation rules. Click any format card to select it and instantly copy the converted result to your clipboard. Everything runs in your browser.
